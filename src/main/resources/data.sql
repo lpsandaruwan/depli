@@ -1,0 +1,1 @@
+INSERT INTO jmx_nodes(node_name,hostname,port,auth_required,ssl_required) VALUES ('Local','127.0.0.1',5000,FALSE,FALSE);

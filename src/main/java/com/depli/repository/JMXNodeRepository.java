@@ -1,0 +1,27 @@
+package com.depli.repository;
+
+import com.depli.entity.JMXNode;
+import org.springframework.data.repository.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+/**
+ * Created by lpsandaruwan on 3/22/17.
+ */
+
+@Transactional
+public interface JMXNodeRepository extends Repository<JMXNode, String> {
+
+    // Returns a list of JMXNode objects
+    List<JMXNode> findAll();
+
+    // Find JMX node information by node id
+    JMXNode findByNodeId(String nodeId);
+
+    // Delete JMX node entry from database
+    Long removeByNodeId(String nodeId);
+
+    // Add new JMX node information to database
+    JMXNode save(JMXNode jmxNode);
+}
