@@ -14,10 +14,8 @@ public class JMXNode {
 
     @Column(name = "node_id")
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @NotNull
-    @Size(max = 20)
-    private String nodeId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long nodeId;
 
     @Column(name = "node_name")
     @NotNull
@@ -31,7 +29,7 @@ public class JMXNode {
 
     @Column(name = "port")
     @NotNull
-    private Integer port;
+    private int port;
 
     @Column(name="username")
     @Size(max = 50)
@@ -49,26 +47,21 @@ public class JMXNode {
     @NotNull
     private boolean sslRequired;
 
-
     protected JMXNode() {}
 
     public JMXNode(String nodeName,
                    String hostname,
                    int port,
-                   String username,
-                   String password,
                    boolean authRequired,
                    boolean sslRequired) {
         this.nodeName = nodeName;
         this.hostname = hostname;
-        this.username = username;
-        this.password = password;
         this.port = port;
         this.authRequired = authRequired;
         this.sslRequired = sslRequired;
     }
 
-    public String getNodeId() {
+    public long getNodeId() {
         return nodeId;
     }
 
@@ -100,7 +93,7 @@ public class JMXNode {
         return sslRequired;
     }
 
-    public void setNodeId(String nodeId) {
+    public void setNodeId(long nodeId) {
         this.nodeId = nodeId;
     }
 

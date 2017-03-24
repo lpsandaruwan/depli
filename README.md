@@ -1,3 +1,3 @@
 # depli
 
-###### Monitor jvm performance through multiple JMX remote connections.
+###### A monitoring dashboard to indicate jvm performance for any number of JMX remote connections.
