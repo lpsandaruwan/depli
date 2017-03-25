@@ -1,8 +1,8 @@
 package com.depli.service;
 
-import com.depli.remote.DJMXConnection;
 import com.depli.data.NodeData;
 import com.depli.entity.JMXNode;
+import com.depli.remote.DJMXConnection;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ public class DataInitializerService {
 
     public DataInitializerService() {}
 
-    // Create object hashmap filling it with NodeData objects
+    // Create object hash map filling it with NodeData objects
     @Async
     public void initializeDJMXNodeConnections(JMXNodeService jmxNodeService) throws InterruptedException, IOException {
         Thread.sleep(1000);
@@ -51,20 +51,25 @@ public class DataInitializerService {
 
             System.out.println("Initializing remote MXBean on nodeId: " + nodeDataEntry.getValue().getDjmxConnection().getJmxNode().getNodeId());
 
-            // Initialize remote ClassLoading MX bean
+            // Initialize remote ClassLoading MX bean data
             nodeDataEntry.getValue().getdClassLoadingMXBean().initialize();
+            nodeDataEntry.getValue().getdClassLoadingMXBean().refreshData();
 
-            // Initialize remote Memory MX bean
+            // Initialize remote Memory MX bean data
             nodeDataEntry.getValue().getdMemoryMXBean().initialize();
+            nodeDataEntry.getValue().getdMemoryMXBean().refreshData();
 
-            // Initialize remote OperatingSystem MX bean
+            // Initialize remote OperatingSystem MX bean data
             nodeDataEntry.getValue().getdOperatingSystemMXBean().initialize();
+            nodeDataEntry.getValue().getdOperatingSystemMXBean().refreshData();
 
             // Initialize remote Runtime MX bean
             nodeDataEntry.getValue().getdRuntimeMXBean().initialize();
+            nodeDataEntry.getValue().getdRuntimeMXBean().refreshData();
 
             // Initialize remote Thread MX bean
             nodeDataEntry.getValue().getdThreadMXBean().initialize();
+            nodeDataEntry.getValue().getdThreadMXBean().refreshdata();
 
             Thread.sleep(500);
 
@@ -72,4 +77,6 @@ public class DataInitializerService {
             nodeDataEntry.getValue().setInitialized(true);
         }
     }
+
+
 }

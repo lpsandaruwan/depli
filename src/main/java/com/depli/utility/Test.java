@@ -1,8 +1,8 @@
 package com.depli.utility;
 
+import com.depli.entity.JMXNode;
 import com.depli.remote.DJMXConnection;
 import com.depli.remote.DThreadMXBean;
-import com.depli.entity.JMXNode;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,6 @@
 package com.depli.data;
 
 import com.depli.remote.*;
-import com.depli.data.object.*;
 
 /**NodeData
  * Combined model of all the data and stats of a node.
@@ -29,6 +28,14 @@ public class NodeData {
         this.dOperatingSystemMXBean = new DOperatingSystemMXBean(djmxConnection);
         this.dRuntimeMXBean = new DRuntimeMXBean(djmxConnection);
         this.dThreadMXBean = new DThreadMXBean(djmxConnection);
+    }
+
+    public void refreshData() {
+        dClassLoadingMXBean.refreshData();
+        dMemoryMXBean.refreshData();
+        dOperatingSystemMXBean.refreshData();
+        dRuntimeMXBean.refreshData();
+        dThreadMXBean.refreshdata();
     }
 
     public DJMXConnection getDjmxConnection() {

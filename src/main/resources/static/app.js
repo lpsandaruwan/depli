@@ -30,6 +30,27 @@ depliFrontend
 
 
 depliFrontend
-    .controller("mainController", function () {
+    .controller("mainController", function ($http, $scope) {
+        $scope.jmxNodeList = [];
 
+        // obtain jmx node list
+        var getJmxNodeList = function () {
+            $http.get("nodes")
+                .then(function onSucces(response) {
+                    $scope.jmxNodeList = response.data;
+                })
+                .catch(function onError() {
+
+                });
+        };
+
+        // refresh scope data
+        getJmxNodeList();
+    })
+
+    .config(function($mdThemingProvider) {
+        $mdThemingProvider.theme('customTheme')
+            .primaryPalette('red')
+            .accentPalette('red')
+            .warnPalette('red');
     });

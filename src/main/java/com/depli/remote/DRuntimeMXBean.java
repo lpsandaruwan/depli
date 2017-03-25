@@ -5,7 +5,6 @@ import com.depli.data.object.RuntimeData;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
-import java.util.List;
 
 /**
  * Depli implementation for loading remote RuntimeMXBean
