@@ -6,8 +6,9 @@ import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
 
-/**
- * Depli implementation for initialize remote OpearatingSystemMxBean
+/**DOperatingSystemMXBean
+ *
+ * Depli implementation for initializing remote OperatingSystemMxBean
  * Load operating system monitoring interface of the remote
  *
  * Created by lpsandaruwan on 3/23/17.

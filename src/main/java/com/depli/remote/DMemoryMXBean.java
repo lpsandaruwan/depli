@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 
-/**
+/** DMemoryMXBean
+ *
  * Depli implementation for loading remote MemoryMXBean
  * Load memory management interface of the remote JVM.
  *

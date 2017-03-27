@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
 
-/**
+/** DThreadMXBean
+ *
  * Depli implementation for loading remote ThreadMXBean
  * Load thread management interface of the remote.
  *

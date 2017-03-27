@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 
-/**
+/** DRuntimeMXBean
+ *
  * Depli implementation for loading remote RuntimeMXBean
  * Load runtime management interface of the remote
  *

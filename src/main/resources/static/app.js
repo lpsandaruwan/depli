@@ -3,6 +3,7 @@
  */
 
 var depliFrontend = angular.module("depliFrontend", [
+    "chart.js",
     "homeViewModule",
     "instanceViewModule",
     "ngMessages",

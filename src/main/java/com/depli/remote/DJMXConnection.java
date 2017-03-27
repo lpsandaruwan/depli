@@ -8,7 +8,8 @@ import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 import java.io.IOException;
 
-/**
+/** DJMXConnection
+ *
  * Depli implementation for initialize remote JMX Connection
  * Make connection to the JMX node.
  *

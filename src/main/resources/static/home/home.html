@@ -4,31 +4,44 @@
                   md-gutter="12px" md-gutter-gt-sm="8px" >
 
         <md-grid-tile class="gray" ng-repeat="jmxNode in jmxNodeList" md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
-            <div layout="row">
-                <div class="padding-right-10"></div>
+            <div flex="100">
+                <div class="padding-20">
+                    <div layout="row">
+                        <h2 class="color-main">{{jmxNode.nodeName}}</h2>
 
-                <h2 class="color-main">{{jmxNode.nodeName}}</h2>
+                        <div flex></div>
 
-                <div flex></div>
+                        <md-button md-theme="customTheme" class="md-fab md-mini">
+                            <md-icon>open_in_browser</md-icon>
+                        </md-button>
+                    </div>
 
-                <md-button md-theme="customTheme" class="md-fab md-mini">
-                    <md-icon>open_in_new</md-icon>
-                </md-button>
-            </div>
+                    <div class="padding-20">
+                        <canvas id="line" class="chart chart-line" chart-data="jmxNode.chartData"
+                                chart-labels="chartLabels" chart-series="chartSeries" chart-options="{animation: false}"
+                                chart-dataset-override="datasetOverride" chart-colors="jmxNode.chartColor">
+                        </canvas>
+                    </div>
 
-            <md-grid-tile-footer>
-                <div layout="row">
-                    <div class="padding-right-10"></div>
-
-                    <div class="color-submain">hostname: {{jmxNode.hostname}}</div>
-
-                    <div class="padding-right-30"></div>
-
-                    <div class="color-submain">port: {{jmxNode.port}}</div>
-
-                    <div class="padding-right-10"></div>
+                    <div>
+                        <div>CPU: {{jmxNode.cpuUsage}}%</div>
+                    </div>
                 </div>
-            </md-grid-tile-footer>
+
+                <md-grid-tile-footer>
+                    <div layout="row">
+                        <div class="padding-right-10"></div>
+
+                        <div class="color-submain">hostname: {{jmxNode.hostname}}</div>
+
+                        <div class="padding-right-30"></div>
+
+                        <div class="color-submain">port: {{jmxNode.port}}</div>
+
+                        <div class="padding-right-10"></div>
+                    </div>
+                </md-grid-tile-footer>
+            </div>
         </md-grid-tile>
     </md-grid-list>
 </div>

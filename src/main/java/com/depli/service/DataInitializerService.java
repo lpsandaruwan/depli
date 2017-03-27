@@ -67,9 +67,15 @@ public class DataInitializerService {
             nodeDataEntry.getValue().getdRuntimeMXBean().initialize();
             nodeDataEntry.getValue().getdRuntimeMXBean().refreshData();
 
+            // Initialize remote sun OperatingSystem MX bean
+            nodeDataEntry.getValue().getdSunOperatingSystemMXBean().initialize();
+
             // Initialize remote Thread MX bean
             nodeDataEntry.getValue().getdThreadMXBean().initialize();
             nodeDataEntry.getValue().getdThreadMXBean().refreshdata();
+
+            // Update statistics data
+            nodeDataEntry.getValue().updateStatisticsData();
 
             Thread.sleep(500);
 

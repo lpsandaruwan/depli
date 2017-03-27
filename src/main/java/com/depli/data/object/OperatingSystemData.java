@@ -1,6 +1,7 @@
 package com.depli.data.object;
 
 /** OperatingSystemData
+ *
  * Keeps operating system MX Bean data
  *
  * Created by lpsandaruwan on 3/24/17.

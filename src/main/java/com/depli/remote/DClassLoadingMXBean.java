@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.lang.management.ClassLoadingMXBean;
 import java.lang.management.ManagementFactory;
 
-/**
+/** DClassLoadingMXBean
+ *
  * Depli implementation for loading remote ClassLoadingMXBean
  * Load class loading system management interface of the remote JVM.
  *
