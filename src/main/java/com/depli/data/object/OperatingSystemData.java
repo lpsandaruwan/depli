@@ -12,7 +12,6 @@ public class OperatingSystemData {
     private String architecture;
     private int cpuCount;
     private String operatingSystemName;
-    private double systemLoadAveragePerMinute;
     private String operatingSystemVersion;
 
     public OperatingSystemData () {}
@@ -20,12 +19,10 @@ public class OperatingSystemData {
     public void setData(String architecture,
                         int cpuCount,
                         String operatingSystemName,
-                        double systemLoadAveragePerMinute,
                         String operatingSystemVersion) {
         this.architecture = architecture;
         this.cpuCount = cpuCount;
         this.operatingSystemName = operatingSystemName;
-        this.systemLoadAveragePerMinute = systemLoadAveragePerMinute;
         this.operatingSystemVersion = operatingSystemVersion;
     }
 
@@ -39,10 +36,6 @@ public class OperatingSystemData {
 
     public String getOperatingSystemName() {
         return operatingSystemName;
-    }
-
-    public double getSystemLoadAveragePerMinute() {
-        return systemLoadAveragePerMinute;
     }
 
     public String getOperatingSystemVersion() {
@@ -59,10 +52,6 @@ public class OperatingSystemData {
 
     public void setOperatingSystemName(String operatingSystemName) {
         this.operatingSystemName = operatingSystemName;
-    }
-
-    public void setSystemLoadAveragePerMinute(double systemLoadAveragePerMinute) {
-        this.systemLoadAveragePerMinute = systemLoadAveragePerMinute;
     }
 
     public void setOperatingSystemVersion(String operatingSystemVersion) {

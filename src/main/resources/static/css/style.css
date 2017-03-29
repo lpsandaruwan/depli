@@ -105,3 +105,28 @@ body {
 .padding-right-30 {
     padding-right: 30px;
 }
+
+.text-stat {
+    font-size: 13px;
+}
+
+
+/* page animations */
+@keyframes fadeOut {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.ng-enter           { animation: fadeIn 0.5s both ease-in; z-index: 8888; }
+.ng-leave           { animation: fadeOut 0.01s both ease-in; z-index: 9999; }
+
+.page-dashboard.ng-enter        { animation:fadeIn 0.5s both ease-in; }
+.page-dashboard.ng-leave        { animation:fadeOut 0.01s both ease-in; }
+
+.page-instance.ng-enter      { animation:fadeIn 0.5s both ease-in; }
+.page-instance.ng-leave      { animation:fadeOut .01s both ease-in; }

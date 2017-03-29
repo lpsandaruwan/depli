@@ -50,7 +50,6 @@ public class DOperatingSystemMXBean {
                 operatingSystemMXBean.getArch(),
                 operatingSystemMXBean.getAvailableProcessors(),
                 operatingSystemMXBean.getName(),
-                operatingSystemMXBean.getSystemLoadAverage(),
                 operatingSystemMXBean.getVersion()
         );
         return operatingSystemData;

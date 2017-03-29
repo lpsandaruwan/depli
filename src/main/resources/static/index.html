@@ -38,18 +38,18 @@
 
                     <md-menu-content>
                         <md-menu-item>
-                            <md-button>Dashboard</md-button>
+                            <md-button ng-click="gotoDashboardView()">Dashboard</md-button>
                         </md-menu-item>
 
                         <md-menu-item ng-repeat="jmxNode in jmxNodeList">
-                            <md-button>{{jmxNode.nodeName}} - {{jmxNode.hostname}}</md-button>
+                            <md-button ng-click="gotoInstanceView(jmxNode)">{{jmxNode.nodeName}} - {{jmxNode.hostname}}</md-button>
                         </md-menu-item>
                     </md-menu-content>
                 </md-menu>
 
                 <div class="padding-right-10"></div>
 
-                <h1 flex md-truncate>JMX Remote Connections</h1>
+                <h1 flex md-truncate>{{toolbarHeader}}</h1>
 
                 <md-button class="md-fab md-mini">
                     <md-tooltip>New JMX Remote Connection</md-tooltip>
@@ -63,7 +63,7 @@
 
                 <md-button class="md-fab md-mini">
                     <md-tooltip>Power</md-tooltip>
-                    <md-icon>power_settings_new</md-icon>
+                    <md-icon>settings_power</md-icon>
                 </md-button>
             </div>
         </div>

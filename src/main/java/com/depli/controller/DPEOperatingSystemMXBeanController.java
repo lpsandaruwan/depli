@@ -1,0 +1,25 @@
+package com.depli.controller;
+
+import com.depli.data.object.PEOperatingSystemData;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import static com.depli.DepliApplication.nodeDataMap;
+
+/** DOperatingSystemMXBeanController
+ * REST API to expose MemoryMXBean to frontend.
+ *
+ * Created by lpsandaruwan on 3/29/17.
+ */
+
+@RestController
+@RequestMapping("/peosdobjects")
+public class DPEOperatingSystemMXBeanController {
+
+    @RequestMapping(value = "/{nodeId}", method = RequestMethod.GET)
+    public PEOperatingSystemData findClassLoadingDataById(@PathVariable long nodeId) {
+        return nodeDataMap.getByNodeId(nodeId).getDpeOperatingSystemMXBean().getPeOperatingSystemData();
+    }
+}

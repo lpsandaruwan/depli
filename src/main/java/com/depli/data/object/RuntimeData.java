@@ -10,10 +10,10 @@ import java.util.List;
 
 public class RuntimeData {
 
-    private String bootstrapClassPath;
-    private String systemClassPath;
+    private String[] bootstrapClassPath;
+    private String[] systemClassPath;
     private List<String> inputArguments;
-    private String javaLibraryPath;
+    private String[] javaLibraryPath;
     private String managementInterfaceVersion;
     private String runningJvmName;
     private long jvmStartTime;
@@ -35,10 +35,10 @@ public class RuntimeData {
                         String jvmName,
                         String jvmVendor,
                         String jvmVersion) {
-        this.bootstrapClassPath = bootstrapClassPath;
-        this.systemClassPath = systemClassPath;
+        this.bootstrapClassPath = bootstrapClassPath.split(":", -1);
+        this.systemClassPath = systemClassPath.split(":", -1);
         this.inputArguments = inputArguments;
-        this.javaLibraryPath = javaLibraryPath;
+        this.javaLibraryPath = javaLibraryPath.split("::", -1);
         this.managementInterfaceVersion = managementInterfaceVersion;
         this.runningJvmName = runningJvmName;
         this.jvmStartTime = jvmStartTime;
@@ -48,11 +48,11 @@ public class RuntimeData {
         this.jvmVersion = jvmVersion;
     }
 
-    public String getBootstrapClassPath() {
+    public String[] getBootstrapClassPath() {
         return bootstrapClassPath;
     }
 
-    public String getSystemClassPath() {
+    public String[] getSystemClassPath() {
         return systemClassPath;
     }
 
@@ -60,7 +60,7 @@ public class RuntimeData {
         return inputArguments;
     }
 
-    public String getJavaLibraryPath() {
+    public String[] getJavaLibraryPath() {
         return javaLibraryPath;
     }
 
@@ -92,11 +92,11 @@ public class RuntimeData {
         return jvmVersion;
     }
 
-    public void setBootstrapClassPath(String bootstrapClassPath) {
+    public void setBootstrapClassPath(String[] bootstrapClassPath) {
         this.bootstrapClassPath = bootstrapClassPath;
     }
 
-    public void setSystemClassPath(String systemClassPath) {
+    public void setSystemClassPath(String[] systemClassPath) {
         this.systemClassPath = systemClassPath;
     }
 
@@ -104,7 +104,7 @@ public class RuntimeData {
         this.inputArguments = inputArguments;
     }
 
-    public void setJavaLibraryPath(String javaLibraryPath) {
+    public void setJavaLibraryPath(String[] javaLibraryPath) {
         this.javaLibraryPath = javaLibraryPath;
     }
 

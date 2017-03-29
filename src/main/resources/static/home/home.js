@@ -3,14 +3,14 @@
  * Created by lpsandaruwan on 3/21/17.
  */
 
-var homeViewModule = angular.module("homeViewModule", []);
+var homeViewModule = angular.module("homeViewModule", ["chart.js"]);
 
 
 homeViewModule
-    .controller("homeViewModule", function ($http, $scope, $interval) {
-
+    .controller("homeViewModule", function ($http, $interval, $rootScope, $scope, jmxNodeService) {
         // jmx node object
         $scope.jmxNodeList = [];
+
 
         // obtain jmx node list
         var getJmxNodeList = function () {
@@ -22,8 +22,10 @@ homeViewModule
                 });
         };
 
+
         // obtain jmx node data
         getJmxNodeList();
+
 
         // refresh stat data
         var refreshStatisticsData = function () {
@@ -33,23 +35,35 @@ homeViewModule
                         .then(function onSuccess(response) {
 
                             // cpu related data
-                            jmxNode.chartData = [response.data.cpuUsageData];
-                            jmxNode.isConnected = response.data.isConnected;
-                            jmxNode.cpuUsage = response.data.cpuUsage;
+                            jmxNode.chartData = [response.data.jvmCpuUsageData, response.data.hostCpuUsageData];
+                            jmxNode.isConnected = response.data.connected;
+                            jmxNode.jvmCpuUsage = response.data.jvmCpuUsage;
 
                             // set chart color
-                            if(response.data.cpuUsage < 33) {
-                                jmxNode.chartColor = [ '#868686'];
+                            if(response.data.jvmCpuUsage < 33) {
+                                jmxNode.chartColor = ['#868686', '#9E7A77' ];
                             }
-                            else if (response.data.cpuUsage > 33 && response.data.cpuUsage < 66) {
-                                jmxNode.chartColor = [ '#B05B4F'];
+                            else if (response.data.jvmCpuUsage > 33 && response.data.cpuUsage < 66) {
+                                jmxNode.chartColor = ['#B05B4F', '#9E7A77'];
                             } else {
-                                jmxNode.chartColor = [ '#FF220D'];
+                                jmxNode.chartColor = ['#FF220D', '#9E7A77'];
                             }
+
+                            // class loading data
+                            jmxNode.loadedClassCount = response.data.loadedClassCount;
 
                             // memory related data
                             jmxNode.usedHeapMemory = response.data.usedHeapMemory;
                             jmxNode.usedNonHeapMemory = response.data.usedNonHeapMemory;
+
+                            // thread loading data
+                            jmxNode.liveThreadCount = response.data.liveThreadCount;
+
+                            // host operating system data
+                            jmxNode.hostCpuUsage = response.data.hostCpuUsage;
+                            jmxNode.hostFreePhysicalMemory = response.data.hostFreePhysicalMemory;
+                            jmxNode.hostTotalPhysicalMemory = response.data.hostTotalPhysicalMemory;
+
                         })
                         .catch(function onError(response) {
 
@@ -57,12 +71,26 @@ homeViewModule
                 });
             }, 500);
         };
-
         refreshStatisticsData();
+
+
+        // goto instance view helper
+        $scope.gotoInstanceView = function (jmxNode) {
+            jmxNodeService.setNodeName(jmxNode.nodeName + " - " + jmxNode.hostname);
+            $rootScope.toolbarHeader = jmxNodeService.getNodeName();
+            jmxNodeService.selectJmxNode(jmxNode.nodeId);
+        };
 
 
         // cpu chart data
         $scope.chartLabels = [
-            '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
-        $scope.chartSeries = ['CPU'];
+            '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''
+        ];
+        $scope.chartSeries = ['JVM CPU', 'Host CPU'];
+
+
+        // cancel sync on page exit
+        $scope.$on('$destroy', function () {
+            $interval.cancel(refreshStatisticsData);
+        });
     });

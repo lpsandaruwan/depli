@@ -1,0 +1,73 @@
+<div class="padding-20" ng-controller="instanceViewModule">
+
+    <div>
+
+    </div>
+
+    <div>
+        <canvas id="lineClass" class="chart chart-line" chart-data="classChartData"
+                chart-labels="labelsClassChart" chart-series="seriesClassChart" chart-options="{animation: false}"
+                chart-colors="colorsClassChart">
+        </canvas>
+    </div>
+
+    <div>
+        <canvas id="barHost" class="chart chart-bar"
+                chart-data="hostMemChartData" chart-labels="labelsHostMemChart" chart-series="seriesHostMemChart">
+        </canvas>
+    </div>
+
+    <div>
+
+        <canvas id="barJVM" class="chart chart-bar"
+                chart-data="dataMemChart" chart-labels="labelsMemChart" chart-series="seriesMemChart">
+        </canvas>
+
+    </div>
+
+        <div>
+            <p>{{jmxNode.envData.architecture}}</p>
+            <p>{{jmxNode.envData.cpuCount}}</p>
+            <p>{{jmxNode.envData.operatingSystemName}}</p>
+            <p>{{jmxNode.envData.operatingSystemVersion}}</p>
+        </div>
+
+        <div>
+            <p>{{jmxNode.runData.managementInterfaceVersion}}</p>
+            <p>{{jmxNode.runData.runningJvmName}}</p>
+            <p>{{jmxNode.runData.jvmName}}</p>
+            <p>{{jmxNode.runData.jvmVendor}}</p>
+            <p>{{jmxNode.runData.jvmVersion}}</p>
+
+            <p>{{jmxNode.runData.jvmStartTime}}</p>
+            <p>{{jmxNode.runData.jvmUptime}}</p>
+
+            <section>
+                <md-subheader>Bootstrap Class Path</md-subheader>
+                <div ng-repeat="classPath in jmxNode.runData.bootstrapClassPath">
+                    <p>{{classPath}}</p>
+                </div>
+            </section>
+
+            <section>
+                <md-subheader>System Class Path</md-subheader>
+                <div ng-repeat="classPath in jmxNode.runData.systemClassPath">
+                    <p>{{classPath}}</p>
+                </div>
+            </section>
+
+            <section>
+                <md-subheader>Java Library Path</md-subheader>
+                <div ng-repeat="classPath in jmxNode.runData.javaLibraryPath">
+                    <p>{{classPath}}</p>
+                </div>
+            </section>
+
+            <section>
+                <md-subheader>Input Arguments</md-subheader>
+                <div ng-repeat="classPath in jmxNode.runData.inputArguments">
+                    <p>{{classPath}}</p>
+                </div>
+            </section>
+        </div>
+</div>

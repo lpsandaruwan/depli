@@ -10,36 +10,31 @@ import java.lang.management.MemoryUsage;
 
 public class MemoryData {
 
-    private MemoryUsage heapMemory;
-    private MemoryUsage nonHeapMemory;
+    private final DMemoryUsage heapMemory;
+    private final DMemoryUsage nonHeapMemory;
     private int awaitFinalizationObjectCount;
 
-    public MemoryData() {}
+    public MemoryData() {
+        heapMemory = new DMemoryUsage();
+        nonHeapMemory = new DMemoryUsage();
+    }
 
     public void setData(MemoryUsage heapMemory, MemoryUsage nonHeapMemory, int awaitFinalizationObjectCount) {
-        this.heapMemory = heapMemory;
-        this.nonHeapMemory = nonHeapMemory;
+        this.heapMemory.setData(heapMemory);
+        this.nonHeapMemory.setData(nonHeapMemory);
         this.awaitFinalizationObjectCount = awaitFinalizationObjectCount;
     }
 
-    public MemoryUsage getHeapMemory() {
+    public DMemoryUsage getHeapMemory() {
         return heapMemory;
     }
 
-    public MemoryUsage getNonHeapMemory() {
+    public DMemoryUsage getNonHeapMemory() {
         return nonHeapMemory;
     }
 
     public int getAwaitFinalizationObjectCount() {
         return awaitFinalizationObjectCount;
-    }
-
-    public void setHeapMemory(MemoryUsage heapMemory) {
-        this.heapMemory = heapMemory;
-    }
-
-    public void setNonHeapMemory(MemoryUsage nonHeapMemory) {
-        this.nonHeapMemory = nonHeapMemory;
     }
 
     public void setAwaitFinalizationObjectCount(int awaitFinalizationObjectCount) {

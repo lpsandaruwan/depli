@@ -14,31 +14,33 @@ public class NodeData {
     private final DJMXConnection djmxConnection;
     private StatisticsData statisticsData;
 
+    private boolean isInitialized;
+
+    // temp variable to keep timestamps
     private long previousJvmCpuTime;
     private long previousJvmUptime;
-
-    private boolean isInitialized;
 
     private final DClassLoadingMXBean dClassLoadingMXBean;
     private final DMemoryMXBean dMemoryMXBean;
     private final DOperatingSystemMXBean dOperatingSystemMXBean;
     private final DRuntimeMXBean dRuntimeMXBean;
-    private final DSunOperatingSystemMXBean dSunOperatingSystemMXBean;
+    private final DPEOperatingSystemMXBean dpeOperatingSystemMXBean;
     private final DThreadMXBean dThreadMXBean;
 
     public NodeData(DJMXConnection djmxConnection) {
         this.djmxConnection = djmxConnection;
         this.statisticsData = new StatisticsData();
 
+        this.isInitialized = false;
+
         this.previousJvmCpuTime = 0;
         this.previousJvmUptime = 0;
-        this.isInitialized = false;
 
         this.dClassLoadingMXBean = new DClassLoadingMXBean(djmxConnection);
         this.dMemoryMXBean = new DMemoryMXBean(djmxConnection);
         this.dOperatingSystemMXBean = new DOperatingSystemMXBean(djmxConnection);
         this.dRuntimeMXBean = new DRuntimeMXBean(djmxConnection);
-        this.dSunOperatingSystemMXBean = new DSunOperatingSystemMXBean(djmxConnection);
+        this.dpeOperatingSystemMXBean = new DPEOperatingSystemMXBean(djmxConnection);
         this.dThreadMXBean = new DThreadMXBean(djmxConnection);
     }
 
@@ -46,6 +48,7 @@ public class NodeData {
         dClassLoadingMXBean.refreshData();
         dMemoryMXBean.refreshData();
         dOperatingSystemMXBean.refreshData();
+        dpeOperatingSystemMXBean.refreshData();
         dRuntimeMXBean.refreshData();
         dThreadMXBean.refreshdata();
 
@@ -81,8 +84,8 @@ public class NodeData {
         return dRuntimeMXBean;
     }
 
-    public DSunOperatingSystemMXBean getdSunOperatingSystemMXBean() {
-        return dSunOperatingSystemMXBean;
+    public DPEOperatingSystemMXBean getDpeOperatingSystemMXBean() {
+        return dpeOperatingSystemMXBean;
     }
 
     public DThreadMXBean getdThreadMXBean() {
@@ -95,9 +98,9 @@ public class NodeData {
 
     // Get JVM CPU usage
     public float getJvmCpuUsage() {
-        if(dSunOperatingSystemMXBean.getSunOperatingSystemMXBean() != null) {
+        if(dpeOperatingSystemMXBean.getPeOperatingSystemMXBean() != null) {
             float cpuUsage = (
-                    dSunOperatingSystemMXBean.getSunOperatingSystemMXBean().getProcessCpuTime() - previousJvmCpuTime
+                    dpeOperatingSystemMXBean.getPeOperatingSystemMXBean().getProcessCpuTime() - previousJvmCpuTime
             ) / (
                     (
                             dRuntimeMXBean.getRuntimeMXBean().getUptime() - previousJvmUptime
@@ -105,7 +108,7 @@ public class NodeData {
             );
 
             // Set old timestamp values
-            previousJvmCpuTime = dSunOperatingSystemMXBean.getSunOperatingSystemMXBean().getProcessCpuTime();
+            previousJvmCpuTime = dpeOperatingSystemMXBean.getPeOperatingSystemMXBean().getProcessCpuTime();
             previousJvmUptime = dRuntimeMXBean.getRuntimeMXBean().getUptime();
 
             return (float) Math.round((cpuUsage * 10)) / 10;
@@ -116,11 +119,22 @@ public class NodeData {
 
     // Update statistics data
     public void updateStatisticsData() {
+        // set classes related data
+        statisticsData.setLoadedClassCount(dClassLoadingMXBean.getClassLoadingData().getLoadedClassCount());
+
         // set cpu related data
-        statisticsData.setCpuUsage(getJvmCpuUsage());
+        statisticsData.setJvmCpuUsageData(getJvmCpuUsage());
 
         // set memory related data
-        statisticsData.setUsedHeapMemory(getdMemoryMXBean().getMemoryData().getHeapMemory().getUsed());
-        statisticsData.setUsedNonHeapMemory(getdMemoryMXBean().getMemoryData().getNonHeapMemory().getUsed());
+        statisticsData.setUsedHeapMemory(dMemoryMXBean.getMemoryData().getHeapMemory().getUsed());
+        statisticsData.setUsedNonHeapMemory(dMemoryMXBean.getMemoryData().getNonHeapMemory().getUsed());
+
+        // set thread related data
+        statisticsData.setLiveThreadCount(dThreadMXBean.getThreadData().getLiveThreadCount());
+
+        // set host related data
+        statisticsData.setHostCpuUsage(dpeOperatingSystemMXBean.getPeOperatingSystemData().getHostCpuUsage());
+        statisticsData.setHostFreePhysicalMemory(dpeOperatingSystemMXBean.getPeOperatingSystemData().getFreePhysicalMemory());
+        statisticsData.setHostTotalPhysicalMemory(dpeOperatingSystemMXBean.getPeOperatingSystemData().getTotalPhysicalMemory());
     }
 }

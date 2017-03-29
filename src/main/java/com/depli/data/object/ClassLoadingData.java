@@ -9,19 +9,35 @@ package com.depli.data.object;
 public class ClassLoadingData {
 
     private int loadedClassCount;
+    private int[] loadedClassCountData;
     private long totalLoadedClassCount;
     private long unloadedClassCount;
 
-    public  ClassLoadingData() {}
+    public  ClassLoadingData() {
+        this.loadedClassCountData = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    }
 
     public void setData(int loadedClassCount, long totalLoadedClassCount, long unloadedClassCount) {
         this.loadedClassCount = loadedClassCount;
         this.totalLoadedClassCount = totalLoadedClassCount;
         this.unloadedClassCount = unloadedClassCount;
+
+        // update loaded class count data array
+        int index = 1;
+
+        while (index < loadedClassCountData.length) {
+            loadedClassCountData[index -1] = loadedClassCountData[index];
+            index++;
+        }
+        loadedClassCountData[index - 1] = loadedClassCount;
     }
 
     public int getLoadedClassCount() {
         return loadedClassCount;
+    }
+
+    public int[] getLoadedClassCountData() {
+        return loadedClassCountData;
     }
 
     public long getTotalLoadedClassCount() {
