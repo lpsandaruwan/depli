@@ -1,5 +1,8 @@
 package com.depli.data.object;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 /**
@@ -16,8 +19,7 @@ public class RuntimeData {
     private String[] javaLibraryPath;
     private String managementInterfaceVersion;
     private String runningJvmName;
-    private long jvmStartTime;
-    private long jvmUptime;
+    private String jvmStartTime;
     private String jvmName;
     private String jvmVendor;
     private String jvmVersion;
@@ -31,7 +33,6 @@ public class RuntimeData {
                         String managementInterfaceVersion,
                         String runningJvmName,
                         long jvmStartTime,
-                        long jvmUptime,
                         String jvmName,
                         String jvmVendor,
                         String jvmVersion) {
@@ -41,8 +42,7 @@ public class RuntimeData {
         this.javaLibraryPath = javaLibraryPath.split("::", -1);
         this.managementInterfaceVersion = managementInterfaceVersion;
         this.runningJvmName = runningJvmName;
-        this.jvmStartTime = jvmStartTime;
-        this.jvmUptime = jvmUptime;
+        this.jvmStartTime = String.valueOf(LocalDateTime.ofInstant(Instant.ofEpochMilli(jvmStartTime), ZoneId.systemDefault())).replace("T", " ");
         this.jvmName = jvmName;
         this.jvmVendor = jvmVendor;
         this.jvmVersion = jvmVersion;
@@ -72,12 +72,8 @@ public class RuntimeData {
         return runningJvmName;
     }
 
-    public long getJvmStartTime() {
+    public String getJvmStartTime() {
         return jvmStartTime;
-    }
-
-    public long getJvmUptime() {
-        return jvmUptime;
     }
 
     public String getJvmName() {
@@ -116,12 +112,8 @@ public class RuntimeData {
         this.runningJvmName = runningJvmName;
     }
 
-    public void setJvmStartTime(long jvmStartTime) {
+    public void setJvmStartTime(String jvmStartTime) {
         this.jvmStartTime = jvmStartTime;
-    }
-
-    public void setJvmUptime(long jvmUptime) {
-        this.jvmUptime = jvmUptime;
     }
 
     public void setJvmName(String jvmName) {

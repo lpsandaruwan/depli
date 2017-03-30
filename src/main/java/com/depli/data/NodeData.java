@@ -44,16 +44,19 @@ public class NodeData {
         this.dThreadMXBean = new DThreadMXBean(djmxConnection);
     }
 
-    public void refreshData() {
+    public void refreshInstantData() {
         dClassLoadingMXBean.refreshData();
         dMemoryMXBean.refreshData();
         dOperatingSystemMXBean.refreshData();
         dpeOperatingSystemMXBean.refreshData();
-        dRuntimeMXBean.refreshData();
-        dThreadMXBean.refreshdata();
 
         // Update statistics data
         updateStatisticsData();
+    }
+
+    public void refreshData() {
+        dRuntimeMXBean.refreshData();
+        dThreadMXBean.refreshData();
     }
 
     public DJMXConnection getDjmxConnection() {
@@ -129,8 +132,14 @@ public class NodeData {
         statisticsData.setUsedHeapMemory(dMemoryMXBean.getMemoryData().getHeapMemory().getUsed());
         statisticsData.setUsedNonHeapMemory(dMemoryMXBean.getMemoryData().getNonHeapMemory().getUsed());
 
+        // set jvm uptime
+        statisticsData.setJvmUptime(dRuntimeMXBean.getRuntimeMXBean().getUptime());
+
         // set thread related data
-        statisticsData.setLiveThreadCount(dThreadMXBean.getThreadData().getLiveThreadCount());
+        statisticsData.setDaemonThreadCount(dThreadMXBean.getThreadMXBean().getDaemonThreadCount());
+        statisticsData.setPeakThreadCount(dThreadMXBean.getThreadMXBean().getPeakThreadCount());
+        statisticsData.setLiveThreadCount(dThreadMXBean.getThreadMXBean().getThreadCount());
+        statisticsData.setTotalStartedThreadCount(dThreadMXBean.getThreadMXBean().getTotalStartedThreadCount());
 
         // set host related data
         statisticsData.setHostCpuUsage(dpeOperatingSystemMXBean.getPeOperatingSystemData().getHostCpuUsage());

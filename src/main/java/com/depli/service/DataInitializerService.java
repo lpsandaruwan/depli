@@ -73,7 +73,7 @@ public class DataInitializerService {
 
             // Initialize remote Thread MX bean
             nodeDataEntry.getValue().getdThreadMXBean().initialize();
-            nodeDataEntry.getValue().getdThreadMXBean().refreshdata();
+            nodeDataEntry.getValue().getdThreadMXBean().refreshData();
 
             // Update statistics data
             nodeDataEntry.getValue().updateStatisticsData();

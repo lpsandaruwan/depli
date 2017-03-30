@@ -45,18 +45,8 @@ public class DThreadMXBean {
     }
 
     // Refresh and get ThreadData object
-    public ThreadData refreshdata() {
-        threadData.setData(
-                threadMXBean.findDeadlockedThreads(),
-                threadMXBean.findMonitorDeadlockedThreads(),
-                threadMXBean.getAllThreadIds(),
-                threadMXBean.getCurrentThreadCpuTime(),
-                threadMXBean.getCurrentThreadUserTime(),
-                threadMXBean.getDaemonThreadCount(),
-                threadMXBean.getPeakThreadCount(),
-                threadMXBean.getThreadCount(),
-                threadMXBean.getTotalStartedThreadCount()
-        );
+    public ThreadData refreshData() {
+        threadData.setData(threadMXBean.getThreadInfo(threadMXBean.getAllThreadIds(), Integer.MAX_VALUE));
 
         return threadData;
     }

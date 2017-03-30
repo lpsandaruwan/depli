@@ -16,13 +16,33 @@ import static com.depli.DepliApplication.nodeDataMap;
 @Service
 public class DataRefreshService {
 
-    // update node data objects
+    // update instant node data objects
     @Async
-    public void refreshNodeData(long nodeId) {
-        nodeDataMap.getByNodeId(nodeId).refreshData();
+    public void refreshInstantNodeData(long nodeId) {
+        nodeDataMap.getByNodeId(nodeId).refreshInstantData();
     }
 
-    // Iterate through data map
+    // update rarely update data
+    @Async
+    public void refreshNodeData(long nodeId) {
+        nodeDataMap.getByNodeId(nodeId).refreshData();;
+    }
+
+    // Iterate through data map and refresh instant data
+    @Async
+    public void iterateAndRefreshInstantNodeDataMap() throws InterruptedException {
+        while (true) {
+            for(Map.Entry<Long, NodeData> nodeDataEntry : nodeDataMap.getNodeDataMap().entrySet()) {
+                if(nodeDataEntry.getValue().isInitialized()) {
+                    this.refreshInstantNodeData(nodeDataEntry.getKey());
+                }
+            }
+
+            Thread.sleep(1000);
+        }
+    }
+
+    // Iterate through data map and refresh rarely updated data
     @Async
     public void iterateAndRefreshNodeDataMap() throws InterruptedException {
         while (true) {
@@ -32,7 +52,7 @@ public class DataRefreshService {
                 }
             }
 
-            Thread.sleep(1000);
+            Thread.sleep( 60 * 1000);
         }
     }
 }

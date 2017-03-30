@@ -77,6 +77,12 @@ depliFrontend
 
             jmxNodeService.selectJmxNode(jmxNode.nodeId);
         };
+
+
+        // add new node function
+        $scope.addNewNode = function () {
+
+        };
     })
 
 

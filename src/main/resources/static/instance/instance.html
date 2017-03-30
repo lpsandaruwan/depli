@@ -1,73 +1,408 @@
-<div class="padding-20" ng-controller="instanceViewModule">
+<div>
 
-    <div>
+    <div layout="row">
+        <div flex="5"></div>
 
-    </div>
+        <md-tabs md-dynamic-height md-border-bottom flex="90">
+            <md-tab label="statistics">
+                <md-card ng-controller="instanceViewModule">
+                    <div class="padding-40" layout="row">
+                        <section flex="30">
+                            <h3>CPU</h3>
 
-    <div>
-        <canvas id="lineClass" class="chart chart-line" chart-data="classChartData"
-                chart-labels="labelsClassChart" chart-series="seriesClassChart" chart-options="{animation: false}"
-                chart-colors="colorsClassChart">
-        </canvas>
-    </div>
+                            <canvas id="lineCpu" class="chart chart-line" chart-data="statsData"
+                                    chart-labels="cpuChartLabels" chart-series="cpuChartSeries" chart-options="{animation: false}"
+                                    chart-colors="cpuChartColor">
+                            </canvas>
+                        </section>
 
-    <div>
-        <canvas id="barHost" class="chart chart-bar"
-                chart-data="hostMemChartData" chart-labels="labelsHostMemChart" chart-series="seriesHostMemChart">
-        </canvas>
-    </div>
+                        <div flex="5"></div>
 
-    <div>
+                        <section flex="30">
+                            <div>
+                                <h3>Host</h3>
 
-        <canvas id="barJVM" class="chart chart-bar"
-                chart-data="dataMemChart" chart-labels="labelsMemChart" chart-series="seriesMemChart">
-        </canvas>
+                                <div class="text-stat">
+                                    <div layout="row">
+                                        <div>Name</div>
 
-    </div>
+                                        <div flex></div>
 
-        <div>
-            <p>{{jmxNode.envData.architecture}}</p>
-            <p>{{jmxNode.envData.cpuCount}}</p>
-            <p>{{jmxNode.envData.operatingSystemName}}</p>
-            <p>{{jmxNode.envData.operatingSystemVersion}}</p>
-        </div>
+                                        <div>{{jmxNode.envData.operatingSystemName}}</div>
+                                    </div>
 
-        <div>
-            <p>{{jmxNode.runData.managementInterfaceVersion}}</p>
-            <p>{{jmxNode.runData.runningJvmName}}</p>
-            <p>{{jmxNode.runData.jvmName}}</p>
-            <p>{{jmxNode.runData.jvmVendor}}</p>
-            <p>{{jmxNode.runData.jvmVersion}}</p>
+                                    <div layout="row">
+                                        <div>Version</div>
 
-            <p>{{jmxNode.runData.jvmStartTime}}</p>
-            <p>{{jmxNode.runData.jvmUptime}}</p>
+                                        <div flex></div>
 
-            <section>
-                <md-subheader>Bootstrap Class Path</md-subheader>
-                <div ng-repeat="classPath in jmxNode.runData.bootstrapClassPath">
-                    <p>{{classPath}}</p>
+                                        <div>{{jmxNode.envData.operatingSystemVersion}}</div>
+                                    </div>
+
+                                    <div layout="row">
+                                        <div>Architecture</div>
+
+                                        <div flex></div>
+
+                                        <div>{{jmxNode.envData.architecture}}</div>
+                                    </div>
+
+                                    <div layout="row">
+                                        <div>Processors</div>
+
+                                        <div flex></div>
+
+                                        <div>x{{jmxNode.envData.cpuCount}}</div>
+                                    </div>
+
+                                    <div layout="row">
+                                        <div>Utilization</div>
+
+                                        <div flex></div>
+
+                                        <div>{{hostCpuUsage}}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div flex="5"></div>
+
+                        <section flex="30">
+                            <div>
+                                <h3>JVM</h3>
+
+                                <div class="text-stat">
+                                    <div layout="row">
+                                        <div>Name</div>
+
+                                        <div flex></div>
+
+                                        <div>{{jmxNode.runData.jvmName}}</div>
+                                    </div>
+
+
+                                    <div layout="row">
+                                        <div>Runtime Name</div>
+
+                                        <div flex></div>
+
+                                        <div>{{jmxNode.runData.runningJvmName}}</div>
+                                    </div>
+
+                                    <div layout="row">
+                                        <div>Version</div>
+
+                                        <div flex></div>
+
+                                        <div>{{jmxNode.runData.jvmVersion}}</div>
+                                    </div>
+
+                                    <div layout="row">
+                                        <div>Management Interface</div>
+
+                                        <div flex></div>
+
+                                        <div>{{jmxNode.runData.managementInterfaceVersion}}</div>
+                                    </div>
+
+                                    <div layout="row">
+                                        <div>Vendor</div>
+
+                                        <div flex></div>
+
+                                        <div>{{jmxNode.runData.jvmVendor}}</div>
+                                    </div>
+
+                                    <div layout="row">
+                                        <div>Started Time</div>
+
+                                        <div flex></div>
+
+                                        <div>{{jmxNode.runData.jvmStartTime}}</div>
+                                    </div>
+
+                                    <div layout="row">
+                                        <div>Uptime</div>
+
+                                        <div flex></div>
+
+                                        <div>{{jvmUptime}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </md-card>
+
+                <md-card>
+                    <div class="padding-40" layout="row">
+                        <section flex="30">
+                            <h3>Class Loading Data</h3>
+
+                            <div>
+                                <canvas id="lineClass" class="chart chart-line" chart-data="classChartData"
+                                        chart-labels="labelsClassChart" chart-series="seriesClassChart" chart-options="{animation: false}"
+                                        chart-colors="colorsClassChart">
+                                </canvas>
+                            </div>
+
+                            <div class="text-stat">
+                                <div layout="row">
+                                    <div>Loaded classes</div>
+
+                                    <div flex></div>
+
+                                    <div>{{jmxNode.classData.loadedClassCount}}</div>
+                                </div>
+
+                                <div layout="row">
+                                    <div>Total Loaded classes</div>
+
+                                    <div flex></div>
+
+                                    <div>{{jmxNode.classData.totalLoadedClassCount}}</div>
+                                </div>
+
+                                <div layout="row">
+                                    <div>Unloaded classes</div>
+
+                                    <div flex></div>
+
+                                    <div>{{jmxNode.classData.unloadedClassCount}}</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div flex="5"></div>
+
+                        <section flex="30">
+                            <h3>Host Memory(MB)</h3>
+
+                            <div>
+                                <canvas id="barHost" class="chart chart-bar"
+                                        chart-data="hostMemChartData" chart-labels="labelsHostMemChart" chart-series="seriesHostMemChart">
+                                </canvas>
+                            </div>
+
+                            <div class="text-stat">
+                                <div layout="row">
+                                    <div>Available Physical Memory</div>
+
+                                    <div flex></div>
+
+                                    <div>{{jmxNode.peosData.freePhysicalMemory}}MB/{{jmxNode.peosData.totalPhysicalMemory}}MB</div>
+                                </div>
+
+                                <div layout="row">
+                                    <div>Available Swap Memory</div>
+
+                                    <div flex></div>
+
+                                    <div>{{jmxNode.peosData.freeSwapSpace}}MB/{{jmxNode.peosData.totalSwapSpace}}MB</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div flex="5"></div>
+
+                        <section flex="30">
+                            <h3>JVM Memory(MB)</h3>
+
+                            <div>
+                                <canvas id="barJVM" class="chart chart-bar"
+                                        chart-data="dataMemChart" chart-labels="labelsMemChart" chart-series="seriesMemChart">
+                                </canvas>
+                            </div>
+
+                            <div layout="row">
+                                <div flex="45">
+                                    <h4>Heap</h4>
+
+                                    <div class="text-stat">
+                                        <div layout="row">
+                                            <div>Init</div>
+
+                                            <div flex></div>
+
+                                            <div>{{jmxNode.memData.heapMemory.init}}MB</div>
+                                        </div>
+
+                                        <div layout="row">
+                                            <div>Used</div>
+
+                                            <div flex></div>
+
+                                            <div>{{jmxNode.memData.heapMemory.used}}MB</div>
+                                        </div>
+
+                                        <div layout="row">
+                                            <div>Committed</div>
+
+                                            <div flex></div>
+
+                                            <div>{{jmxNode.memData.heapMemory.committed}}MB</div>
+                                        </div>
+
+                                        <div layout="row">
+                                            <div>Max</div>
+
+                                            <div flex></div>
+
+                                            <div>{{jmxNode.memData.heapMemory.max}}MB</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div flex="10"></div>
+
+                                <div flex="45">
+                                    <h4>NonHeap</h4>
+
+                                    <div class="text-stat">
+                                        <div layout="row">
+                                            <div>Init</div>
+
+                                            <div flex></div>
+
+                                            <div>{{jmxNode.memData.nonHeapMemory.init}}MB</div>
+                                        </div>
+
+                                        <div layout="row">
+                                            <div>Used</div>
+
+                                            <div flex></div>
+
+                                            <div>{{jmxNode.memData.nonHeapMemory.used}}MB</div>
+                                        </div>
+
+                                        <div layout="row">
+                                            <div>Committed</div>
+
+                                            <div flex></div>
+
+                                            <div>{{jmxNode.memData.nonHeapMemory.committed}}MB</div>
+                                        </div>
+
+                                        <div layout="row">
+                                            <div>Max</div>
+
+                                            <div flex></div>
+
+                                            <div>{{jmxNode.memData.nonHeapMemory.max}}MB</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </md-card>
+            </md-tab>
+
+            <md-tab label="runtime data">
+                <div ng-controller="instanceViewModule">
+                    <md-card class="padding-40">
+                        <div>
+                            <div>
+                                <md-input-container flex="80">
+                                    <input ng-model="searchPath" placeholder="Search Var/Path">
+                                </md-input-container>
+                            </div>
+                        </div>
+
+                        <h4>Input Arguments</h4>
+
+                        <div class="text-stat" ng-repeat="classPath in jmxNode.runData.inputArguments | filter:searchPath">
+                            <p>{{classPath}}</p>
+                        </div>
+                        <br>
+
+                        <h4>Library Path</h4>
+
+                        <div class="text-stat" ng-repeat="classPath in jmxNode.runData.javaLibraryPath | filter:searchPath">
+                            <p>{{classPath}}</p>
+                        </div>
+                        <br>
+
+                        <h4>Bootstrap Class Path</h4>
+
+                        <div class="text-stat" ng-repeat="classPath in jmxNode.runData.bootstrapClassPath | filter:searchPath">
+                            <p>{{classPath}}</p>
+                        </div>
+                        <br>
+
+                        <h4>System Class Path</h4>
+
+                        <div class="text-stat" ng-repeat="classPath in jmxNode.runData.systemClassPath | filter:searchPath">
+                            <p>{{classPath}}</p>
+                        </div>
+                    </md-card>
                 </div>
-            </section>
+            </md-tab>
 
-            <section>
-                <md-subheader>System Class Path</md-subheader>
-                <div ng-repeat="classPath in jmxNode.runData.systemClassPath">
-                    <p>{{classPath}}</p>
-                </div>
-            </section>
+            <md-tab label="thread data">
+                <div ng-controller="threadDataController">
+                    <md-card class="padding-40">
+                        <div>
+                            <div>
+                                <md-input-container flex="80">
+                                    <input ng-model="searchStack" placeholder="Search Stacktrace">
+                                </md-input-container>
+                            </div>
+                        </div>
 
-            <section>
-                <md-subheader>Java Library Path</md-subheader>
-                <div ng-repeat="classPath in jmxNode.runData.javaLibraryPath">
-                    <p>{{classPath}}</p>
-                </div>
-            </section>
+                        <md-list flex>
+                            <div ng-repeat="thread in threadData | filter:searchStack">
+                                <md-list-item class="md-3-line">
+                                    <div>
+                                        <div>
+                                            <h4>{{thread.threadName}}</h4>
+                                        </div>
 
-            <section>
-                <md-subheader>Input Arguments</md-subheader>
-                <div ng-repeat="classPath in jmxNode.runData.inputArguments">
-                    <p>{{classPath}}</p>
+                                        <div class="text-stat" layout="column">
+                                            <div layout="row">
+                                                <h5>State: {{thread.threadState}}</h5>
+
+                                                <div class="padding-right-30"></div>
+
+                                                <h5>Blocked: {{thread.blockedCount}}</h5>
+
+                                                <div class="padding-right-30"></div>
+
+                                                <h5>Waited: {{thread.waitedCount}}</h5>
+                                            </div>
+
+                                            <div layout="row">
+                                                <h5>Stacktrace:</h5>
+
+                                                <div class="padding-right-30"></div>
+
+                                                <div>
+                                                    <div ng-repeat="element in thread.stackTrace">
+                                                        <div>
+                                                            {{element.className}}
+
+                                                            <span ng-if="!element.nativeMethod">({{element.fileName}}:{{element.lineNumber}})</span>
+
+                                                            <span ng-if="element.nativeMethod">(Native Method)</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+
+                                <div class="padding-bottom-5"></div>
+
+                                <md-divider layout-padding></md-divider>
+                            </div>
+                        </md-list>
+                    </md-card>
                 </div>
-            </section>
-        </div>
+            </md-tab>
+        </md-tabs>
+
+        <div flex="5"></div>
+    </div>
 </div>

@@ -1,5 +1,7 @@
 package com.depli.data.object;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by lpsandaruwan on 3/26/17.
  */
@@ -19,8 +21,14 @@ public class StatisticsData {
     private float usedHeapMemory;
     private float usedNonHeapMemory;
 
+    // runtime data
+    private String jvmUptime;
+
     // thread loading data
+    private int daemonThreadCount;
+    private int peakThreadCount;
     private int liveThreadCount;
+    private long totalStartedThreadCount;
 
     // host operating system data
     private float hostCpuUsage;
@@ -51,8 +59,20 @@ public class StatisticsData {
         return usedNonHeapMemory;
     }
 
+    public int getDaemonThreadCount() {
+        return daemonThreadCount;
+    }
+
+    public int getPeakThreadCount() {
+        return peakThreadCount;
+    }
+
     public int getLiveThreadCount() {
         return liveThreadCount;
+    }
+
+    public long getTotalStartedThreadCount() {
+        return totalStartedThreadCount;
     }
 
     public float getHostCpuUsage() {
@@ -67,20 +87,8 @@ public class StatisticsData {
         return hostTotalPhysicalMemory;
     }
 
-    public void setLoadedClassCount(int loadedClassCount) {
-        this.loadedClassCount = loadedClassCount;
-    }
-
-    public void setUsedHeapMemory(float usedHeapMemory) {
-        this.usedHeapMemory = usedHeapMemory;
-    }
-
-    public void setUsedNonHeapMemory(float usedNonHeapMemory) {
-        this.usedNonHeapMemory = usedNonHeapMemory;
-    }
-
-    public void setLiveThreadCount(int liveThreadCount) {
-        this.liveThreadCount = liveThreadCount;
+    public String getJvmUptime() {
+        return jvmUptime;
     }
 
     public float getJvmCpuUsage() {
@@ -93,6 +101,40 @@ public class StatisticsData {
 
     public float[] getHostCpuUsageData() {
         return hostCpuUsageData;
+    }
+
+    public void setLoadedClassCount(int loadedClassCount) {
+        this.loadedClassCount = loadedClassCount;
+    }
+
+    public void setUsedHeapMemory(float usedHeapMemory) {
+        this.usedHeapMemory = usedHeapMemory;
+    }
+
+    public void setUsedNonHeapMemory(float usedNonHeapMemory) {
+        this.usedNonHeapMemory = usedNonHeapMemory;
+    }
+
+    public void setJvmUptime(long jvmUptime) {
+        this.jvmUptime = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(jvmUptime),
+                TimeUnit.MILLISECONDS.toMinutes(jvmUptime) % TimeUnit.HOURS.toMinutes(1),
+                TimeUnit.MILLISECONDS.toSeconds(jvmUptime) % TimeUnit.MINUTES.toSeconds(1));
+    }
+
+    public void setDaemonThreadCount(int daemonThreadCount) {
+        this.daemonThreadCount = daemonThreadCount;
+    }
+
+    public void setPeakThreadCount(int peakThreadCount) {
+        this.peakThreadCount = peakThreadCount;
+    }
+
+    public void setLiveThreadCount(int liveThreadCount) {
+        this.liveThreadCount = liveThreadCount;
+    }
+
+    public void setTotalStartedThreadCount(long totalStartedThreadCount) {
+        this.totalStartedThreadCount = totalStartedThreadCount;
     }
 
     public void setHostCpuUsage(float hostCpuUsage) {

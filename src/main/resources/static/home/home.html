@@ -5,20 +5,18 @@
 
         <md-grid-tile class="gray" ng-repeat="jmxNode in jmxNodeList" md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
             <div flex="100">
-                <md-grid-tile-header>
-                    <div class="md-toolbar-tools" layout="row">
+                <div class="md-toolbar-tools">
+                    <h2 class="color-main flex md-truncate">{{jmxNode.nodeName}}</h2>
+
+                    <div layout="row">
                         <md-button md-theme="customTheme" class="md-fab md-mini" ng-click="gotoInstanceView(jmxNode)">
                             <md-icon>open_in_browser</md-icon>
                         </md-button>
 
                         <md-button md-theme="customTheme" class="md-fab md-mini">
-                            <md-icon>build</md-icon>
+                            <md-icon>settings</md-icon>
                         </md-button>
                     </div>
-                </md-grid-tile-header>
-
-                <div class="padding-20">
-                    <h2 class="color-main">{{jmxNode.nodeName}}</h2>
                 </div>
 
                 <div flex></div>

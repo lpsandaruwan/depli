@@ -37,6 +37,7 @@ public class TaskRunner implements CommandLineRunner {
         dataInitializerService.initializeMxBeanDataObjects();
 
         // poll and refresh node data map
+        dataRefreshService.iterateAndRefreshInstantNodeDataMap();
         dataRefreshService.iterateAndRefreshNodeDataMap();
     }
 }

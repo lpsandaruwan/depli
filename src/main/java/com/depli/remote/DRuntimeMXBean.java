@@ -54,7 +54,6 @@ public class DRuntimeMXBean {
                 runtimeMXBean.getName(),
                 runtimeMXBean.getSpecName(),
                 runtimeMXBean.getStartTime(),
-                runtimeMXBean.getUptime(),
                 runtimeMXBean.getVmName(),
                 runtimeMXBean.getVmVendor(),
                 runtimeMXBean.getVmVersion()
