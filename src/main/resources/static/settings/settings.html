@@ -1,0 +1,36 @@
+<div ng-controller="settingsModule">
+    <div layout="row">
+        <div flex="5"></div>
+
+        <md-card flex="90">
+            <div class="">
+                <div layout="row">
+                    <div class="md-toolbar-tools">
+                        <h2 class="flex md-truncate">ALL NODES</h2>
+                    </div>
+
+                    <div flex></div>
+
+                    <md-button class="md-fab md-mini" ng-click="addNewNode($event)" md-theme="customTheme">
+                        <md-tooltip>Add New Node</md-tooltip>
+                        <md-icon>add</md-icon>
+                    </md-button>
+                </div>
+            </div>
+
+            <md-content>
+                <md-list flex>
+                    <md-list-item ng-repeat="jmxNode in jmxNodeList">
+                        <md-content class="md-list-item-text">
+                            <h3>{{jmxNode.nodeName}}</h3>
+                            <h4>{{jmxNode.hostname}}:{{jmxNode.port}}</h4>
+                            <p class="text-stat">SSL: {{jmxNode.sslRequired}}, Auth requied: {{jmxNode.authRequired}}</p>
+                        </md-content>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </md-card>
+
+        <div flex="5"></div>
+    </div>
+</div>

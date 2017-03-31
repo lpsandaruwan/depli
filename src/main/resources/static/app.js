@@ -9,12 +9,13 @@ var depliFrontend = angular.module("depliFrontend", [
     'ngAnimate',
     "ngMessages",
     "ngMaterial",
-    "ngRoute"
+    "ngRoute",
+    "settingsModule"
 ]);
 
 
 depliFrontend
-    .config(function ($httpProvider, $locationProvider, $routeProvider) {
+    .config(function ($httpProvider, $locationProvider, $routeProvider, $qProvider) {
 
         $routeProvider
             .when("/", {
@@ -27,12 +28,19 @@ depliFrontend
                 controller: "instanceViewModule"
             })
 
+            .when("/settings", {
+                templateUrl: "settings/settings.html",
+                controller: "settingsModule"
+            })
+
             .otherwise("/");
+
+        $qProvider.errorOnUnhandledRejections(false);
     });
 
 
 depliFrontend
-    .controller("mainController", function ($http, $location, $rootScope, $scope, jmxNodeService) {
+    .controller("mainController", function ($http, $location, $mdDialog, $rootScope, $scope, jmxNodeService) {
         // page animation helper
         $scope.pageClass = 'page-dashboard';
 
@@ -63,7 +71,7 @@ depliFrontend
 
         // redirect to dashboard view
         $scope.gotoDashboardView = function () {
-            jmxNodeService.setNodeName("DASHBOARD");
+            jmxNodeService.setNodeName("");
             setToolbarHeader();
 
             $location.url("/");
@@ -72,17 +80,21 @@ depliFrontend
 
         // display jmx node in detailed view
         $scope.gotoInstanceView = function (jmxNode) {
-            jmxNodeService.setNodeName(jmxNode.nodeName + " - " + jmxNode.hostname);
+            jmxNodeService.setNodeName("> " + jmxNode.nodeName + "@" + jmxNode.hostname);
             setToolbarHeader();
 
             jmxNodeService.selectJmxNode(jmxNode.nodeId);
         };
 
 
-        // add new node function
-        $scope.addNewNode = function () {
+        // redirect to settings view
+        $scope.gotoSettingsView = function () {
+            jmxNodeService.getNodeName("");
+            setToolbarHeader();
 
+            $location.url("/settings");
         };
+
     })
 
 
@@ -97,7 +109,7 @@ depliFrontend
 depliFrontend
     .service('jmxNodeService', function ($location) {
         var jmxNodeId = undefined;
-        var nodeName = "DASHBOARD";
+        var nodeName = "";
 
         return {
             selectJmxNode: function (_jmxNodeId) {

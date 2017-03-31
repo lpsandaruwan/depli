@@ -22,6 +22,10 @@ public class DMemoryMXBeanController {
 
     @RequestMapping(value = "/{nodeId}", method = RequestMethod.GET)
     public MemoryData findClassLoadingDataById(@PathVariable long nodeId) {
-        return nodeDataMap.getByNodeId(nodeId).getdMemoryMXBean().getMemoryData();
+        if(nodeDataMap.getByNodeId(nodeId).isInitialized()) {
+            return nodeDataMap.getByNodeId(nodeId).getdMemoryMXBean().getMemoryData();
+        }
+
+        return null;
     }
 }

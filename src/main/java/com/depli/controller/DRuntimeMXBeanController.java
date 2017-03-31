@@ -20,6 +20,10 @@ public class DRuntimeMXBeanController {
 
     @RequestMapping(value = "/{nodeId}", method = RequestMethod.GET)
     public RuntimeData findClassLoadingDataById(@PathVariable long nodeId) {
-        return nodeDataMap.getByNodeId(nodeId).getdRuntimeMXBean().getRuntimeData();
+        if(nodeDataMap.getByNodeId(nodeId).isInitialized()) {
+            return nodeDataMap.getByNodeId(nodeId).getdRuntimeMXBean().getRuntimeData();
+        }
+
+        return null;
     }
 }

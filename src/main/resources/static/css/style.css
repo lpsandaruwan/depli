@@ -74,6 +74,10 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
     color: #212121 !important;
 }
 
+.md-button:hover {
+    color: red !important;
+}
+
 md-input-container:not(.md-input-invalid).md-input-focused .md-input {
     border-color: #464646;
 }
@@ -137,14 +141,17 @@ body {
 }
 
 h3 {
+    font-weight: 500;
     padding-bottom: 8px;
 }
 
 h4 {
+    font-weight: 500;
     padding-bottom: 6px;
 }
 
 h5 {
+    font-weight: 500;
     padding-bottom: 4px;
 }
 
@@ -168,3 +175,6 @@ h5 {
 
 .page-instance.ng-enter      { animation:fadeIn 0.5s both ease-in; }
 .page-instance.ng-leave      { animation:fadeOut .01s both ease-in; }
+
+.page-settings.ng-enter      { animation:fadeIn 0.5s both ease-in; }
+.page-settings.ng-leave      { animation:fadeOut .01s both ease-in; }

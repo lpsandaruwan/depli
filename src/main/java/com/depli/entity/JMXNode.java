@@ -17,6 +17,9 @@ public class JMXNode {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long nodeId;
 
+    @JoinColumn(name = "auth_id", nullable = true)
+    private Long authId;
+
     @Column(name = "node_name")
     @NotNull
     @Size(max = 30)
@@ -30,14 +33,6 @@ public class JMXNode {
     @Column(name = "port")
     @NotNull
     private int port;
-
-    @Column(name="username")
-    @Size(max = 50)
-    private String username;
-
-    @Column(name="password")
-    @Size(max = 50)
-    private String password;
 
     @Column(name="auth_required")
     @NotNull
@@ -65,6 +60,10 @@ public class JMXNode {
         return nodeId;
     }
 
+    public Long getAuthId() {
+        return authId;
+    }
+
     public String getNodeName() {
         return nodeName;
     }
@@ -75,14 +74,6 @@ public class JMXNode {
 
     public Integer getPort() {
         return port;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public boolean isAuthRequired() {
@@ -107,14 +98,6 @@ public class JMXNode {
 
     public void setPort(Integer port) {
         this.port = port;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public void setAuthRequired(boolean authRequired) {

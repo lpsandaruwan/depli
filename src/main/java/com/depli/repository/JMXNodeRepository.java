@@ -2,6 +2,7 @@ package com.depli.repository;
 
 import com.depli.entity.JMXNode;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  */
 
 @Transactional
-public interface JMXNodeRepository extends JpaRepository<JMXNode, Long> {
+public interface JMXNodeRepository extends Repository<JMXNode, Long> {
 
     // Returns a list of JMXNode objects
     List<JMXNode> findAll();

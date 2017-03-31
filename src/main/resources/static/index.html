@@ -49,14 +49,9 @@
 
                 <div class="padding-right-10"></div>
 
-                <h1 flex md-truncate>{{toolbarHeader}}</h1>
+                <h1 flex md-truncate>NODES {{toolbarHeader | uppercase}}</h1>
 
-                <md-button class="md-fab md-mini">
-                    <md-tooltip>New JMX Remote Connection</md-tooltip>
-                    <md-icon>add</md-icon>
-                </md-button>
-
-                <md-button class="md-fab md-mini">
+                <md-button class="md-fab md-mini" ng-click="gotoSettingsView()">
                     <md-tooltip>Settings</md-tooltip>
                     <md-icon>settings</md-icon>
                 </md-button>
@@ -75,5 +70,6 @@
 <script src="app.js" type="text/javascript"></script>
 <script src="home/home.js" type="text/javascript"></script>
 <script src="instance/instance.js" type="text/javascript"></script>
+<script src="settings/settings.js" type="text/javascript"></script>
 </body>
 </html>

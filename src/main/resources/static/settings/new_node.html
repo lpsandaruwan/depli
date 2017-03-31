@@ -1,0 +1,67 @@
+<md-dialog aria-label="newNode">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Add new JMX connection</h2>
+
+            <span flex></span>
+
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon aria-label="Close dialog" class="close-dialog-icon">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-content class="padding-20">
+        <form name="newNode">
+            <md-dialog-content>
+                <div>{{errorResponse.error}}</div>
+
+                <md-input-container class="md-block">
+                    <label>Name</label>
+
+                    <input name="name" ng-model="jmxNode.nodeName">
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Hostname</label>
+
+                    <input name="hostname" ng-model="jmxNode.hostname">
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Port</label>
+
+                    <input name="port" ng-model="jmxNode.port">
+                </md-input-container>
+
+                <md-switch ng-model="jmxNode.authRequied" aria-label="auth" ng-true-value="true" ng-false-value="false">
+                    Authentication:
+
+                    <span ng-if="!jmxNode.authRequied">Off</span>
+
+                    <span ng-if="jmxNode.authRequied">On</span>
+                </md-switch>
+
+                <md-switch ng-model="jmxNode.sslRequired" aria-label="ssl" ng-true-value="true" ng-false-value="false">
+                    SSL:
+
+                    <span ng-if="!jmxNode.sslRequired">Off</span>
+
+                    <span ng-if="jmxNode.sslRequired">On</span>
+                </md-switch>
+
+                <md-input-container>
+                    <label>Username</label>
+
+                    <input name="username" ng-model="authData.username">
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Password</label>
+
+                    <input name="password" ng-model="authData.password">
+                </md-input-container>
+            </md-dialog-content>
+        </form>
+    </md-content>
+</md-dialog>

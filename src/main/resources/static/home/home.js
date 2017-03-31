@@ -33,40 +33,50 @@ homeViewModule
                 angular.forEach($scope.jmxNodeList, function (jmxNode) {
                     $http.get("stats/" + jmxNode.nodeId)
                         .then(function onSuccess(response) {
+                            if(response.data !== null) {
+                                jmxNode.isInitialized = true;
 
-                            // cpu related data
-                            jmxNode.chartData = [response.data.jvmCpuUsageData, response.data.hostCpuUsageData];
-                            jmxNode.isConnected = response.data.connected;
-                            jmxNode.jvmCpuUsage = response.data.jvmCpuUsage;
+                                // cpu related data
+                                jmxNode.chartData = [response.data.jvmCpuUsageData, response.data.hostCpuUsageData];
+                                jmxNode.isConnected = response.data.connected;
+                                jmxNode.jvmCpuUsage = response.data.jvmCpuUsage;
 
-                            // set chart color
-                            if(response.data.jvmCpuUsage < 33) {
-                                jmxNode.chartColor = ['#868686', '#9E7A77' ];
+
+                                // set chart color
+                                if(response.data.jvmCpuUsage < 33) {
+                                    jmxNode.chartColor = ['#868686', '#9E7A77' ];
+                                }
+                                else if (response.data.jvmCpuUsage > 33 && response.data.cpuUsage < 66) {
+                                    jmxNode.chartColor = ['#B05B4F', '#9E7A77'];
+                                } else {
+                                    jmxNode.chartColor = ['#FF220D', '#9E7A77'];
+                                }
+
+
+                                // class loading data
+                                jmxNode.loadedClassCount = response.data.loadedClassCount;
+
+                                // memory related data
+                                jmxNode.usedHeapMemory = response.data.usedHeapMemory;
+                                jmxNode.usedNonHeapMemory = response.data.usedNonHeapMemory;
+
+                                // thread loading data
+                                jmxNode.liveThreadCount = response.data.liveThreadCount;
+
+                                // host operating system data
+                                jmxNode.hostCpuUsage = response.data.hostCpuUsage;
+                                jmxNode.hostFreePhysicalMemory = response.data.hostFreePhysicalMemory;
+                                jmxNode.hostTotalPhysicalMemory = response.data.hostTotalPhysicalMemory;
                             }
-                            else if (response.data.jvmCpuUsage > 33 && response.data.cpuUsage < 66) {
-                                jmxNode.chartColor = ['#B05B4F', '#9E7A77'];
-                            } else {
-                                jmxNode.chartColor = ['#FF220D', '#9E7A77'];
+
+                            else {
+                                jmxNode.isInitialized = false;
                             }
-
-                            // class loading data
-                            jmxNode.loadedClassCount = response.data.loadedClassCount;
-
-                            // memory related data
-                            jmxNode.usedHeapMemory = response.data.usedHeapMemory;
-                            jmxNode.usedNonHeapMemory = response.data.usedNonHeapMemory;
-
-                            // thread loading data
-                            jmxNode.liveThreadCount = response.data.liveThreadCount;
-
-                            // host operating system data
-                            jmxNode.hostCpuUsage = response.data.hostCpuUsage;
-                            jmxNode.hostFreePhysicalMemory = response.data.hostFreePhysicalMemory;
-                            jmxNode.hostTotalPhysicalMemory = response.data.hostTotalPhysicalMemory;
 
                         })
                         .catch(function onError(response) {
-
+                            jmxNode.isInitialized = false;
+                            jmxNode.error = "Status code: " + response.status;
                         });
                 });
             }, 500);
@@ -76,7 +86,7 @@ homeViewModule
 
         // goto instance view helper
         $scope.gotoInstanceView = function (jmxNode) {
-            jmxNodeService.setNodeName(jmxNode.nodeName + " - " + jmxNode.hostname);
+            jmxNodeService.setNodeName("> " + jmxNode.nodeName + "@" + jmxNode.hostname);
             $rootScope.toolbarHeader = jmxNodeService.getNodeName();
             jmxNodeService.selectJmxNode(jmxNode.nodeId);
         };

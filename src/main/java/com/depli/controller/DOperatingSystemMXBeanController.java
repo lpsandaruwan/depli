@@ -20,6 +20,10 @@ public class DOperatingSystemMXBeanController {
 
     @RequestMapping(value = "/{nodeId}", method = RequestMethod.GET)
     public OperatingSystemData findClassLoadingDataById(@PathVariable long nodeId) {
-        return nodeDataMap.getByNodeId(nodeId).getdOperatingSystemMXBean().getOperatingSystemData();
+        if(nodeDataMap.getByNodeId(nodeId).isInitialized()) {
+            return nodeDataMap.getByNodeId(nodeId).getdOperatingSystemMXBean().getOperatingSystemData();
+        }
+
+        return null;
     }
 }

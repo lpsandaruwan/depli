@@ -84,6 +84,4 @@ public class DataInitializerService {
             nodeDataEntry.getValue().setInitialized(true);
         }
     }
-
-
 }
