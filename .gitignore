@@ -2,6 +2,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 log.txt
 depli.mv.db
+depli.trace.db
 
 ### STS ###
 .apt_generated
