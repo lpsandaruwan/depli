@@ -4,7 +4,7 @@
 
 Depli is a beautiful tool that lets you monitor multiple JVM connections at once though JMX remote connections, built using Spring-boot and angular material.
 Just run the jar file, and access the web UI though your browser to add a JMX connection.
-Once you added a connection, Depli saves the node data in a h2 database, don't bother adding connection data again and again.
+Once you added a connection, Depli saves the node data in an h2 database, don't bother adding connection data again and again.
 
 
 ## Requirements
@@ -49,7 +49,7 @@ java -jar depli-*.jar --server.port=9000
 ### Depli's features and next
 - [x] Add/edit/remove connection data
 - [x] Class paths and artifacts search and lookup
-- [x] Create JMX connections with SSL
+- [ ] Create JMX connections with SSL
 - [x] Create JMX connections with username/password authentication
 - [x] H2 file database/save connection data
 - [x] Hot plug and unplug JMX connections
@@ -64,7 +64,7 @@ java -jar depli-*.jar --server.port=9000
 
 ### License
 
-Copyright (c) 2017: Lahiru Pathirage<lpsandaruwan@gmail.com>
+Copyright (c) 2017: Lahiru Pathirage <lpsandaruwan@gmail.com>
 
 Depli is a free application: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 Depli is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.

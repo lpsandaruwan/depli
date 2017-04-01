@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.depli.DepliApplication.initializingFlag;
-import static com.depli.DepliApplication.nodeDataMap;
-import static com.depli.DepliApplication.rebootTrigger;
+import static com.depli.DepliApplication.*;
 
 /** DataInitializerService
  * Initialize node connections list and MX bean data objects
