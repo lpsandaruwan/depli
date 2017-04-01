@@ -40,16 +40,52 @@ depliFrontend
 
 
 depliFrontend
-    .controller("mainController", function ($http, $location, $mdDialog, $rootScope, $scope, jmxNodeService) {
+    .controller("mainController", function ($http, $interval, $location, $mdDialog, $rootScope, $scope, $window, jmxNodeService) {
         // page animation helper
         $scope.pageClass = 'page-dashboard';
 
+
+        // backend status
+        // -1 while rebooting, 0 while initializing data, 1 while running
+        $scope.backendStatus = 1;
 
         // set toolbar header
         var setToolbarHeader = function () {
             $rootScope.toolbarHeader = jmxNodeService.getNodeName();
         };
         setToolbarHeader();
+
+
+        // reload and reinitialize backend data and connections
+        $rootScope.reloadBackend = function () {
+            $http.get ("apptools/reboot")
+                .then (function onSuccess(response) {
+                    if (response.data === true) {
+                        $window.location.reload();
+                    }
+                })
+                .catch(function (response) {
+
+                })
+        };
+
+
+        // reload backend button controller
+        $scope.triggerReloadBackend = function (ev) {
+            var confirm = $mdDialog.confirm()
+                .title("Reload backend ?")
+                .textContent("Reinitializing and reloading backend data will take longer. ")
+                .ariaLabel('deleteNode')
+                .targetEvent(ev)
+                .ok("RELOAD")
+                .cancel("CANCEL");
+
+            $mdDialog.show(confirm)
+                .then(function () {
+                    $rootScope.reloadBackend();
+                })
+
+        };
 
 
         // jmx node list to help navigation though node views
@@ -95,6 +131,29 @@ depliFrontend
             $location.url("/settings");
         };
 
+
+        // get backend status to lock/unlock views
+        var getBackendStatus = function () {
+            $http.get ("apptools/stats")
+                .then (function onError(response) {
+                    $scope.backendStatus = response.data;
+                })
+        };
+        getBackendStatus();
+
+
+        // poll app status
+        var pollBackendStatus = function () {
+            $interval (function () {
+                getBackendStatus();
+            }, 1000)
+        };
+        pollBackendStatus();
+
+        // cancel sync on page exit
+        $scope.$on ('$destroy', function () {
+            $interval.cancel(pollBackendStatus);
+        });
     })
 
 

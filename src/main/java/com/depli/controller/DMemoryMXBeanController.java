@@ -1,8 +1,6 @@
 package com.depli.controller;
 
-import com.depli.data.object.ClassLoadingData;
 import com.depli.data.object.MemoryData;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

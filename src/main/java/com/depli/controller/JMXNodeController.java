@@ -1,8 +1,6 @@
 package com.depli.controller;
 
-import com.depli.entity.AuthData;
 import com.depli.entity.JMXNode;
-import com.depli.service.AuthDataService;
 import com.depli.service.JMXNodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,25 +19,23 @@ public class JMXNodeController {
     @Autowired
     private JMXNodeService jmxNodeService;
 
-    @Autowired
-    private AuthDataService authDataService;
-
     @RequestMapping(value = "/nodes", method = RequestMethod.GET)
     public List<JMXNode> getAllJMXNodes() {
+        if (jmxNodeService.findAll() == null) {
+            return null;
+        }
         return jmxNodeService.findAll();
     }
 
     @RequestMapping(value = "/nodes/{nodeId}", method = RequestMethod.GET)
     public JMXNode getByNodeId(@PathVariable long nodeId) {
+        if(jmxNodeService.findByNodeId(nodeId) == null) {
+            return null;
+        }
         return jmxNodeService.findByNodeId(nodeId);
     }
 
-    @RequestMapping(value = "/nodes/auth", method = RequestMethod.POST)
-    public AuthData saveAuthData(@RequestBody AuthData authData) {
-        return authDataService.save(authData);
-    }
-
-    @RequestMapping(value = "/nodes/new", method = RequestMethod.POST)
+    @RequestMapping(value = "/nodes/save", method = RequestMethod.POST)
     public JMXNode saveNodeData(@RequestBody JMXNode jmxNode) {
         return jmxNodeService.save(jmxNode);
     }

@@ -42,7 +42,7 @@
                         </md-menu-item>
 
                         <md-menu-item ng-repeat="jmxNode in jmxNodeList">
-                            <md-button ng-click="gotoInstanceView(jmxNode)">{{jmxNode.nodeName}} - {{jmxNode.hostname}}</md-button>
+                            <md-button ng-click="gotoInstanceView(jmxNode)">{{jmxNode.nodeName}}-{{jmxNode.hostname}}</md-button>
                         </md-menu-item>
                     </md-menu-content>
                 </md-menu>
@@ -56,10 +56,50 @@
                     <md-icon>settings</md-icon>
                 </md-button>
 
-                <md-button class="md-fab md-mini">
-                    <md-tooltip>Power</md-tooltip>
-                    <md-icon>settings_power</md-icon>
+                <md-button ng-click="triggerReloadBackend($event)" class="md-fab md-mini">
+                    <md-tooltip>Reload backend</md-tooltip>
+                    <md-icon>refresh</md-icon>
                 </md-button>
+            </div>
+        </div>
+
+        <div ng-if="backendStatus === -1">
+            <div layout="row">
+                <div flex="40"></div>
+
+                <md-card class="container" md-theme="customTheme" flex="20">
+                    <md-progress-linear md-mode="query"></md-progress-linear>
+
+                    <div class="bottom-block padding-20" layout="row">
+                        <div flex></div>
+
+                        <span>Reloading backend data...</span>
+
+                        <div flex></div>
+                    </div>
+                </md-card>
+
+                <div flex="40"></div>
+            </div>
+        </div>
+
+        <div ng-if="backendStatus === 0">
+            <div layout="row">
+                <div flex="40"></div>
+
+                <md-card class="container" md-theme="customTheme" flex="20">
+                    <md-progress-linear md-mode="query"></md-progress-linear>
+
+                    <div class="bottom-block padding-20" layout="row">
+                        <div flex></div>
+
+                        <span>Initializing backend data...</span>
+
+                        <div flex></div>
+                    </div>
+                </md-card>
+
+                <div flex="40"></div>
             </div>
         </div>
     </div>

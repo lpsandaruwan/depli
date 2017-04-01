@@ -33,8 +33,7 @@ public class TaskRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // Initialize node data map
-        dataInitializerService.initializeDJMXNodeConnections(jmxNodeService);
-        dataInitializerService.initializeMxBeanDataObjects();
+        dataInitializerService.pollInitializeData(jmxNodeService);
 
         // poll and refresh node data map
         dataRefreshService.iterateAndRefreshInstantNodeDataMap();

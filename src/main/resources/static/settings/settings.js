@@ -6,14 +6,15 @@ var settingsModule = angular.module("settingsModule", []);
 
 
 settingsModule
-    .controller("settingsModule", function ($http, $interval, $mdDialog, $rootScope, $scope, $timeout, jmxNodeService) {
+    .controller("settingsModule", function ($http, $interval, $mdDialog, $rootScope, $route, $scope, $timeout, jmxNodeService) {
         // page animation helper
         $scope.pageClass = "page-settings";
 
 
         // node list
         $scope.jmxNodeList = {};
-        $scope.jmxNodeList.isNull = true;
+        $scope.isNullList = true;
+        $scope.errorMsg = "";
 
 
         // set toolbar header
@@ -29,19 +30,20 @@ settingsModule
         var getJmxNodeList = function () {
             $http.get("nodes")
                 .then(function onSuccess(response) {
-                    if (response.data !== null) {
-                        $scope.jmxNodeList.isNull = false;
-                        $scope.jmxNodeList = response.data;
+                    $scope.jmxNodeList = response.data;
+
+                    if (response.data.length !== 0) {
+                        $scope.isNullList = false;
                     }
 
                     else {
-                        $scope.jmxNodeList.isNull = true;
-                        $scope.jmxNodeList.error = "Empty list";
+                        $scope.isNullList = true;
+                        $scope.errorMsg = "Empty list";
                     }
                 })
                 .catch(function onError(response) {
-                    $scope.jmxNodeList.isNull = true;
-                    $scope.error = "Connection error!, Status code: " + response.status;
+                    $scope.isNullList = true;
+                    $scope.errorMsg = "Connection error!, Status code: " + response.status;
                 })
         };
         getJmxNodeList();
@@ -51,13 +53,15 @@ settingsModule
         $scope.addNewNode = function (ev) {
             $mdDialog.show({
                 controller: addNodeController,
-                templateUrl: "settings/new_node.html",
+                templateUrl: "settings/node_data.html",
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true,
                 fullscreen: $scope.customFullscreen
             })
                 .then(function () {
+                    getJmxNodeList();
+                    $rootScope.reloadBackend();
                 })
         };
 
@@ -66,57 +70,139 @@ settingsModule
         var addNodeController = function ($http, $mdDialog, $scope, $timeout) {
             $scope.errorResponse = {};
             $scope.errorResponse.status = false;
+            $scope.inProgress = false;
 
             // new node data
-            $scope.authData = {};
             $scope.jmxNode = {};
-
-            $scope.authData.username = undefined;
-            $scope.authData.password = undefined;
 
             $scope.jmxNode.authId = undefined;
             $scope.jmxNode.nodeName = undefined;
             $scope.jmxNode.hostname = undefined;
             $scope.jmxNode.port = undefined;
-            $scope.jmxNode.authRequied = false;
+            $scope.jmxNode.authRequired = false;
             $scope.jmxNode.sslRequired = false;
+            $scope.jmxNode.username = null;
+            $scope.jmxNode.password = null;
 
             // close md dialog
             $scope.cancel = function() {
                 $mdDialog.cancel();
             };
 
-            // save and get auth data ids
-            var saveAuthData = function () {
-                $http.post("nodes/auth", $scope.authData)
-                    .then(function onSuccess(response) {
-                        $scope.jmxNode.authId = response.data;
-                    })
-                    .catch(function onError(response) {
-                        $scope.errorResponse.status = true;
-                        $scope.errorResponse.error = "error, response code: " + response.status;
-                    })
-            };
 
             // save node data
             var saveNodeData = function () {
-                $http.post("nodes/new", $scope.jmxNode)
+                $http.post("nodes/save", $scope.jmxNode)
                     .then(function onSuccess(response) {
+                        $scope.inProgress = false;
+                        $mdDialog.hide();
                     })
                     .catch(function onError(response) {
+                        $scope.inProgress = false;
                         $scope.errorResponse.status = true;
                         $scope.errorResponse.error = "error, response code: " + response.status;
                     })
             };
 
             $scope.saveData = function () {
-                if($scope.jmxNode.authRequied) {
-                    saveAuthData();
+                $scope.inProgress = true;
+                saveNodeData();
+            };
+        };
+
+
+        // edit node data function
+        $scope.editNewNode = function (ev, _jmxNodeId) {
+            $mdDialog.show({
+                controller: editNodeController,
+                templateUrl: "settings/node_data.html",
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: $scope.customFullscreen,
+                locals : {
+                    jmxNodeId : _jmxNodeId
+                }
+            })
+                .then(function () {
+                    getJmxNodeList();
+                    $rootScope.reloadBackend();
+                })
+        };
+
+
+        // edit node md dialog controller
+        var editNodeController = function ($http, $mdDialog, $scope, jmxNodeId) {
+            $scope.errorResponse = {};
+            $scope.errorResponse.status = false;
+            $scope.inProgress = false;
+
+            // get node data
+            var getJmxNodeData = function () {
+                $http.get("nodes/" + jmxNodeId)
+                    .then(function onSuccess(response) {
+                        $scope.jmxNode = response.data;
+                    })
+                    .catch(function onError() {
+                        $scope.errorResponse.status = false;
+                        $scope.errorResponse.error = "error getting node data, response code: " + response.status;
+                    })
+            };
+            getJmxNodeData();
+
+            // close md dialog
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+
+
+            // save node data
+            var saveNodeData = function () {
+                $http.post("nodes/save", $scope.jmxNode)
+                    .then(function onSuccess(response) {
+                        $scope.inProgress = false;
+                        $mdDialog.hide();
+                    })
+                    .catch(function onError(response) {
+                        $scope.inProgress = false;
+                        $scope.errorResponse.status = true;
+                        $scope.errorResponse.error = "error, response code: " + response.status;
+                    })
+            };
+
+            $scope.saveData = function () {
+                $scope.inProgress = true;
+                saveNodeData();
+            };
+        };
+
+
+        // delete a node
+        $scope.deleteNode = function (ev, jmxNodeId) {
+            var confirm = $mdDialog.confirm()
+                .title("Delete node ?")
+                .textContent("You won't be able to monitor the node after rebooting depli.")
+                .ariaLabel('deleteNode')
+                .targetEvent(ev)
+                .ok("Delete")
+                .cancel("Cancel");
+
+            $mdDialog.show(confirm)
+                .then(function () {
+                    $http.delete("nodes/" + jmxNodeId)
+                        .then(function onSuccess(response) {
+                            if(response.data === true) {
+                                $mdDialog.hide();
+                            }
+                        })
+                        .catch(function onError(response) {
+                        });
 
                     $timeout(function () {
-                        saveNodeData();
-                    }, 1000)
-                }
-            };
+                        getJmxNodeList();
+                        $rootScope.reloadBackend();
+                    }, 1000);
+                })
+
         };
     });

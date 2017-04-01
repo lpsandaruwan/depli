@@ -10,15 +10,23 @@ homeViewModule
     .controller("homeViewModule", function ($http, $interval, $rootScope, $scope, jmxNodeService) {
         // jmx node object
         $scope.jmxNodeList = [];
+        $scope.isNullList = true;
 
 
         // obtain jmx node list
         var getJmxNodeList = function () {
-            $http.get("nodes")
-                .then(function onSuccess(response) {
+            $http.get ("nodes")
+                .then (function onSuccess(response) {
                     $scope.jmxNodeList = response.data;
+
+                    if (response.data.length !== 0) {
+                        $scope.isNullList = false;
+                    }
+                    else {
+                        $scope.isNullList = true;
+                    }
                 })
-                .catch(function onError() {
+                .catch (function onError() {
                 });
         };
 
@@ -30,10 +38,10 @@ homeViewModule
         // refresh stat data
         var refreshStatisticsData = function () {
             $interval(function () {
-                angular.forEach($scope.jmxNodeList, function (jmxNode) {
-                    $http.get("stats/" + jmxNode.nodeId)
-                        .then(function onSuccess(response) {
-                            if(response.data !== null) {
+                angular.forEach ($scope.jmxNodeList, function (jmxNode) {
+                    $http.get ("stats/" + jmxNode.nodeId)
+                        .then (function onSuccess(response) {
+                            if (response.data !== null) {
                                 jmxNode.isInitialized = true;
 
                                 // cpu related data
@@ -74,7 +82,7 @@ homeViewModule
                             }
 
                         })
-                        .catch(function onError(response) {
+                        .catch (function onError(response) {
                             jmxNode.isInitialized = false;
                             jmxNode.error = "Status code: " + response.status;
                         });
@@ -100,7 +108,7 @@ homeViewModule
 
 
         // cancel sync on page exit
-        $scope.$on('$destroy', function () {
+        $scope.$on ('$destroy', function () {
             $interval.cancel(refreshStatisticsData);
         });
     });

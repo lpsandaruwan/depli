@@ -1,14 +1,13 @@
 package com.depli.remote;
 
-import com.depli.entity.AuthData;
 import com.depli.entity.JMXNode;
-import com.depli.service.AuthDataService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.management.MBeanServerConnection;
 import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
+import javax.rmi.ssl.SslRMIClientSocketFactory;
+import javax.rmi.ssl.SslRMIServerSocketFactory;
 import java.io.IOException;
 import java.util.Hashtable;
 
@@ -26,8 +25,6 @@ public class DJMXConnection {
     private JMXConnector jmxConnector;
     private MBeanServerConnection mBeanServerConnection;
 
-    @Autowired
-    private AuthDataService authDataService;
 
     public DJMXConnection(JMXNode jmxNode) {
         this.jmxNode = jmxNode;
@@ -50,14 +47,19 @@ public class DJMXConnection {
         // set JMX remote URL
         String serviceUrl = "service:jmx:rmi:///jndi/rmi://" + jmxNode.getHostname() + ":" + jmxNode.getPort() + "/jmxrmi";
         JMXServiceURL jmxServiceURL = new JMXServiceURL(serviceUrl);
+        Hashtable<String, Object> env = new Hashtable<String, Object>();
 
         // set credentials data if there exists
-        if(jmxNode.isAuthRequired()) {
-            AuthData authData = authDataService.findByAuthId(jmxNode.getAuthId());
-            String[] credentials = new String[] {authData.getUsername(), authData.getPassword()};
+        if(jmxNode.isAuthRequired() || jmxNode.isSslRequired()) {
+            if(jmxNode.isAuthRequired()) {
+                String[] credentials = new String[] {jmxNode.getUsername(), jmxNode.getPassword()};
+                env.put(JMXConnector.CREDENTIALS, credentials);
+            }
 
-            Hashtable<String, String[]> env = new Hashtable<String, String[]>();
-            env.put(JMXConnector.CREDENTIALS, credentials);
+            if(jmxNode.isSslRequired()) {
+                env.put("jmx.remote.rmi.client.socket.factory", new SslRMIClientSocketFactory());
+                env.put("jmx.remote.rmi.client.socket.factory", new SslRMIServerSocketFactory());
+            }
 
             jmxConnector = JMXConnectorFactory.connect(jmxServiceURL, env);
         }

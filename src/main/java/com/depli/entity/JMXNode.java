@@ -1,5 +1,7 @@
 package com.depli.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,9 +18,6 @@ public class JMXNode {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long nodeId;
-
-    @JoinColumn(name = "auth_id", nullable = true)
-    private Long authId;
 
     @Column(name = "node_name")
     @NotNull
@@ -42,6 +41,16 @@ public class JMXNode {
     @NotNull
     private boolean sslRequired;
 
+    @Column(name="username")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Size(max = 50)
+    private String username;
+
+    @Column(name="password")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Size(max = 50)
+    private String password;
+
     protected JMXNode() {}
 
     public JMXNode(String nodeName,
@@ -58,10 +67,6 @@ public class JMXNode {
 
     public long getNodeId() {
         return nodeId;
-    }
-
-    public Long getAuthId() {
-        return authId;
     }
 
     public String getNodeName() {
@@ -84,6 +89,14 @@ public class JMXNode {
         return sslRequired;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public void setNodeId(long nodeId) {
         this.nodeId = nodeId;
     }
@@ -96,7 +109,7 @@ public class JMXNode {
         this.hostname = hostname;
     }
 
-    public void setPort(Integer port) {
+    public void setPort(int port) {
         this.port = port;
     }
 
@@ -106,5 +119,13 @@ public class JMXNode {
 
     public void setSslRequired(boolean sslRequired) {
         this.sslRequired = sslRequired;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

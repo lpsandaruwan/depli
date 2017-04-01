@@ -15,6 +15,8 @@ import java.util.concurrent.Executor;
 public class DepliApplication extends AsyncConfigurerSupport {
 
 	public static NodeDataMap nodeDataMap = new NodeDataMap();
+	public static boolean initializingFlag = false;
+	public static boolean rebootTrigger = true;
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(DepliApplication.class, args);
