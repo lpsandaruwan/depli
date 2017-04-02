@@ -1,0 +1,281 @@
+---
+title: DEPLI
+layout: default
+---
+
+<div class="portfolio">
+    <div flex></div>
+
+    <div class="field">
+        <div layout-gt-sm="row">
+            <div flex="5"></div>
+
+            <div flex="90">
+                <div layout-gt-sm="row" layout-sm="column">
+                    <img class="main-image" src="img/depli_logo.png">
+
+                    <div layout="column">
+                        <div layout="row">
+                            <div flex="10"></div>
+
+                            <div flex="80">
+                                <div>
+                                    <div flex></div>
+
+                                    <h1 class="left-border no-left-padding">&nbsp;DEPLI</h1>
+
+                                    <div flex></div>
+                                </div>
+
+                                <h3>A HANDSOME JVM MONITORING DASHBOARD</h3>
+
+                                <p class="field-p">{{site.description}}</p>
+                            </div>
+
+                            <div flex="10"></div>
+                        </div>
+
+                        <div layout="row">
+                            <div flex></div>
+
+                            <md-button class="controller-btn" href="https://github.com/lpsandaruwan/depli">
+                                <md-icon>file_download</md-icon>
+
+                                <span>download DEPLI-v0.1.0</span>
+                            </md-button>
+
+                            <div flex></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div flex="5"></div>
+        </div>
+    </div>
+    <br>
+
+    <div class="field">
+        <div layout="row">
+            <div flex></div>
+
+            <h2>FEATURES</h2>
+
+            <div flex></div>
+        </div>
+
+        <div layout="row">
+            <div flex></div>
+
+            <p>To see upcoming features and more, visit <a href="https://github.com/lpsandaruwan/depli" target="_blank">Depli GitHub repository.</a></p>
+
+            <div flex></div>
+        </div>
+        <br>
+
+        <div>
+            <md-grid-list
+                    md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+                    md-row-height-gt-md="1:1" md-row-height="2:2"
+                    md-gutter="12px" md-gutter-gt-sm="8px" >
+                <md-grid-tile class="red" md-rowspan="2" md-colspan="2" md-colspan-md="2" md-rowspan-md="2" md-colspan-sm="1" md-rowspan-sm="1" md-colspan-xs="1" md-rowspan-xs="1">
+
+                    <div layout="row">
+                        <div flex="5"></div>
+
+                        <div>
+                            <md-tooltip md-direction="top">Click on image to view</md-tooltip>
+
+                            <img class="showcase-img" ng-click="showImage($event, 'img/nodes_view.png')"  src="img/nodes_view.png">
+                        </div>
+
+                        <div flex="5"></div>
+                    </div>
+
+
+                    <md-grid-tile-footer>
+                        <h3>Monitor multiple JVMs</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+
+                <md-grid-tile class="red" md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-rowspan-sm="1" md-colspan-xs="1" md-rowspan-xs="1">
+                    <div layout="row">
+                        <div flex="5"></div>
+
+                        <div>
+                            <md-tooltip md-direction="top">Click on image to view</md-tooltip>
+
+                            <img class="showcase-img" ng-click="showImage($event, 'img/stat_view.png')"  src="img/stat_view.png">
+                        </div>
+
+                        <div flex="5"></div>
+                    </div>
+
+                    <md-grid-tile-footer>
+                        <h3>JVM statistics</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+
+                <md-grid-tile class="red" md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-rowspan-sm="1" md-colspan-xs="1" md-rowspan-xs="1">
+                    <div layout="row">
+                        <div flex="5"></div>
+
+                        <div>
+                            <md-tooltip md-direction="top">Click on image to view</md-tooltip>
+
+                            <img class="showcase-img" ng-click="showImage($event, 'img/stacktrace_view.png')"  src="img/stacktrace_view.png">
+                        </div>
+
+                        <div flex="5"></div>
+                    </div>
+
+
+                    <md-grid-tile-footer>
+                        <h3>Threads and stacktrace search and lookup</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+
+                <md-grid-tile class="red" md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-rowspan-sm="1" md-colspan-xs="1" md-rowspan-xs="1">
+                    <div layout="row">
+                        <div flex="5"></div>
+
+                        <div>
+                            <md-tooltip md-direction="top">Click on image to view</md-tooltip>
+
+                            <img class="showcase-img" ng-click="showImage($event, 'img/classdata_view.png')"  src="img/classdata_view.png">
+                        </div>
+
+                        <div flex="5"></div>
+                    </div>
+
+                    <md-grid-tile-footer>
+                        <h3>Class paths and libraries search and lookup</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+
+                <md-grid-tile class="red" md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-rowspan-sm="1" md-colspan-xs="1" md-rowspan-xs="1">
+                    <div layout="row">
+                        <div flex="5"></div>
+
+                        <div>
+                            <md-tooltip md-direction="top">Click on image to view</md-tooltip>
+
+                            <img class="showcase-img" ng-click="showImage($event, 'img/settings_view.png')"  src="img/settings_view.png">
+                        </div>
+
+                        <div flex="5"></div>
+                    </div>
+
+                    <md-grid-tile-footer>
+                        <h3>Hotplug JMX remote connections and save connection data</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+
+            </md-grid-list>
+        </div>
+    </div>
+    <br>
+
+    <div class="field">
+        <div layout="row">
+            <div flex></div>
+
+            <h2>HOW TO</h2>
+
+            <div flex></div>
+        </div>
+        <br>
+
+        <div>
+            <h3>RUN DEPLI</h3>
+
+            Download the latest version, and extract it. For Windows use <code>start.bat</code> file and for unix just execute <code>start.sh</code> and log
+            in to <code>http://localhost:8080</code> using your web browser.
+        </div>
+        <br><br>
+
+        <div>
+            <h3>ADD NEW JMX REMOTE CONNECTION</h3>
+
+            Click <md-icon>settings</md-icon> (settings icon) in the top right corner of the dashboard to view the node management page.
+            From there click <md-icon>add</md-icon> (add button).
+        </div>
+        <br><br>
+
+        <div>
+            <h3>CHANGE DEFAULT PORT</h3>
+
+            Depli's is a Spring boot application and the default port is <strong>8080</strong>.To change it use <code>--server.port=CUSTOM_PORT</code><br>
+            Simply add a line at the end of the start script,
+            <br><br>
+            <pre>java -jar depli-*.jar --server.port=9000</pre>
+        </div>
+        <br>
+
+        <div>
+            <h3>CHANGE DEFAULT DATA SOURCE</h3>
+
+            Depli only supports h2 databases. Default name of the data source is depli and it is directed to the application's home directory. Ignore this if you want to use the default data source.<br>
+            To create a new data source and run Depli use,
+            <br><br>
+            <pre>
+java -jar depli-*.jar \
+--spring.datasource.url=jdbc:h2:file:./YOUR_DATA_SOURCE_NAME \
+--spring.jpa.hibernate.ddl-auto=create \
+--spring.datasource.initialize=true
+            </pre>
+
+            If you already have a h2 data source file,
+            <br><br>
+            <pre>java -jar depli-*.jar --spring.datasource.url=jdbc:h2:file:./PATH_TO_YOUR_DATA_SOURCE
+            </pre>
+        </div>
+        <br><br>
+
+        For more guides and information refer <a href="https://github.com/lpsandaruwan/depli/wiki" target="_blank">Depli wiki</a>.
+    </div>
+    <br>
+
+    <div class="field">
+        <div layout="row">
+            <div flex></div>
+
+            <h2>GET/CONTRIBUTE DEPLI</h2>
+
+            <div flex></div>
+        </div>
+
+        <div layout="row">
+            <div flex></div>
+
+            <p>Depli is a free and open source application, heartily appreciates any kind of contribution, suggestions/issues or pull requests.</p>
+
+            <div flex></div>
+        </div>
+
+        <div layout="row">
+            <div flex></div>
+
+            <div>
+                <md-button href="https://github.com/lpsandaruwan/depli/releases" class="controller-btn">
+                    <md-icon>file_download</md-icon>
+                    <span>RELEASES</span>
+                </md-button>
+
+                <md-button href="https://github.com/lpsandaruwan/depli" class="controller-btn">
+                    <md-icon>content_copy</md-icon>
+                    <span>SOURCE CODE</span>
+                </md-button>
+
+                <md-button href="https://github.com/lpsandaruwan/depli/issues/new" class="controller-btn">
+                    <md-icon>bug_report</md-icon>
+                    <span>ISSUE/SUGGESTION</span>
+                </md-button>
+            </div>
+
+            <div flex></div>
+        </div>
+    </div>
+    <br>
+
+</div>

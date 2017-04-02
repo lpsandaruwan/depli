@@ -1,0 +1,83 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ "/css/style.css" | prepend: site.baseurl }}">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-messages.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.min.js"></script>
+
+  <script>
+    var ngModule = angular.module('ngModule', ['ngAria', 'ngAnimate', 'ngMaterial', 'ngMessages']);
+
+    ngModule.controller("ngController", function ($mdDialog, $scope) {
+
+      $scope.showImage = function (ev, _src) {
+        $mdDialog.show({
+          controller: showImageController,
+          templateUrl: "showImage.tmpl.html",
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose: true,
+          fullscreen: $scope.customFullscreen,
+          locals: {
+            img_src: _src
+          }
+        })
+                .then(function () {
+                })
+      };
+
+      var showImageController = function ($mdDialog, $scope, img_src) {
+        $scope.image = img_src;
+
+        // close md dialog
+        $scope.cancel = function() {
+          $mdDialog.cancel();
+        };
+
+      };
+
+    }).config(function($mdThemingProvider) {
+      $mdThemingProvider.theme('customTheme')
+              .primaryPalette('red')
+              .accentPalette('red')
+              .warnPalette('red');
+    });
+  </script>
+
+
+  <script type="text/ng-template" id="showImage.tmpl.html">
+    <md-dialog aria-label="Mango (Fruit)">
+      <form>
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>Mango (Fruit)</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-dialog-content style="max-width:800px;max-height:810px; ">
+      </md-dialog-content>
+      </form>
+    </md-dialog>
+  </script>
+
+</head>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body ng-app="ngModule" ng-controller="ngController" ng-cloak>
+  <div>
+    <div>
+      <div>
+        {% include header.html %}
+      </div>
+
+      <div layout="row">
+        <div flex="5"></div>
+
+        <div class="body-content" flex="90">
+          {{ content }}
+        </div>
+
+        <div flex="5"></div>
+      </div>
+
+
+      <div>
+        {% include footer.html %}
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
