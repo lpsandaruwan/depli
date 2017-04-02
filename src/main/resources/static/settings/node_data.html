@@ -14,7 +14,7 @@
     <md-content class="padding-20">
         <form name="nodeData">
             <md-dialog-content>
-                <div>{{errorResponse.error}}</div>
+                <div class="error">{{errorResponse.error}}</div>
 
                 <md-input-container class="md-block">
                     <label>Name</label>
@@ -39,7 +39,7 @@
                 <md-input-container>
                     <label>Port</label>
 
-                    <input required="" name="port" ng-model="jmxNode.port">
+                    <input required="" name="port" ng-model="jmxNode.port" type="number">
 
                     <div ng-messages="nodeData.name.$error">
                         <div ng-message="required">This field is required.</div>

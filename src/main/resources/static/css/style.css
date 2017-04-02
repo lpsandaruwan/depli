@@ -115,6 +115,11 @@ body {
     color: #4e4e4e;
 }
 
+.error {
+    color: red;
+    font-size: 10px;
+}
+
 .padding-20 {
     padding: 20px 20px 20px 20px;
 }

@@ -33,8 +33,15 @@ public class DataRefreshService {
     public void iterateAndRefreshInstantNodeDataMap() throws InterruptedException {
         while (true) {
             for(Map.Entry<Long, NodeData> nodeDataEntry : nodeDataMap.getNodeDataMap().entrySet()) {
-                if(nodeDataEntry.getValue().isInitialized()) {
-                    this.refreshInstantNodeData(nodeDataEntry.getKey());
+                try {
+                    if(nodeDataEntry.getValue().isInitialized() && nodeDataEntry.getValue().isReachable()) {
+                        this.refreshInstantNodeData(nodeDataEntry.getKey());
+                    }
+                }
+
+                catch (Exception ex) {
+                    System.out.println("Seems like JMX connection on nodeId: " + nodeDataEntry.getValue().getDjmxConnection().getJmxNode().getNodeId() + "is dead.");
+                    nodeDataEntry.getValue().falseAllInitializedData();
                 }
             }
 

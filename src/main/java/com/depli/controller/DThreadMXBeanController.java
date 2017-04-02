@@ -20,7 +20,7 @@ public class DThreadMXBeanController {
 
     @RequestMapping(value = "/{nodeId}", method = RequestMethod.GET)
     public ThreadData findClassLoadingDataById(@PathVariable long nodeId) {
-        if(nodeDataMap.getByNodeId(nodeId).isInitialized()) {
+        if(nodeDataMap.getByNodeId(nodeId) != null && nodeDataMap.getByNodeId(nodeId).isInitialized()) {
             return nodeDataMap.getByNodeId(nodeId).getdThreadMXBean().getThreadData();
         }
 

@@ -15,6 +15,7 @@ public class NodeData {
     private StatisticsData statisticsData;
 
     private boolean isInitialized;
+    private boolean isReachable;
 
     // temp variable to keep timestamps
     private long previousJvmCpuTime;
@@ -32,6 +33,7 @@ public class NodeData {
         this.statisticsData = new StatisticsData();
 
         this.isInitialized = false;
+        this.isReachable = false;
 
         this.previousJvmCpuTime = 0;
         this.previousJvmUptime = 0;
@@ -42,6 +44,12 @@ public class NodeData {
         this.dRuntimeMXBean = new DRuntimeMXBean(djmxConnection);
         this.dpeOperatingSystemMXBean = new DPEOperatingSystemMXBean(djmxConnection);
         this.dThreadMXBean = new DThreadMXBean(djmxConnection);
+    }
+
+    // set false on isInitialized and isReachable values on connection failure, to check and reload connection
+    public void falseAllInitializedData() {
+        isReachable = false;
+        isInitialized = false;
     }
 
     public void refreshInstantData() {
@@ -71,6 +79,10 @@ public class NodeData {
         return isInitialized;
     }
 
+    public boolean isReachable() {
+        return isReachable;
+    }
+
     public DClassLoadingMXBean getdClassLoadingMXBean() {
         return dClassLoadingMXBean;
     }
@@ -97,6 +109,10 @@ public class NodeData {
 
     public void setInitialized(boolean initialized) {
         isInitialized = initialized;
+    }
+
+    public void setReachable(boolean reachable) {
+        isReachable = reachable;
     }
 
     // Get JVM CPU usage

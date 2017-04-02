@@ -94,8 +94,13 @@ settingsModule
             var saveNodeData = function () {
                 $http.post("nodes/save", $scope.jmxNode)
                     .then(function onSuccess(response) {
-                        $scope.inProgress = false;
-                        $mdDialog.hide();
+                        if(response.data.length === 0) {
+                            $scope.errorResponse.status = true;
+                            $scope.errorResponse.error = "Invalid data provided or connection not available.";
+                        } else {
+                            $scope.inProgress = false;
+                            $mdDialog.hide();
+                        }
                     })
                     .catch(function onError(response) {
                         $scope.inProgress = false;

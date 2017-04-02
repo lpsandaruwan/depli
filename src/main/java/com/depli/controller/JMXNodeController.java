@@ -1,10 +1,12 @@
 package com.depli.controller;
 
 import com.depli.entity.JMXNode;
+import com.depli.remote.DJMXConnection;
 import com.depli.service.JMXNodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /** JMXNodeController
@@ -37,6 +39,15 @@ public class JMXNodeController {
 
     @RequestMapping(value = "/nodes/save", method = RequestMethod.POST)
     public JMXNode saveNodeData(@RequestBody JMXNode jmxNode) {
+        // test whether the node data is valid
+        DJMXConnection djmxConnection = new DJMXConnection(jmxNode);
+        try {
+            djmxConnection.getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
         return jmxNodeService.save(jmxNode);
     }
 

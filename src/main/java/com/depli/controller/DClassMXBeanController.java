@@ -20,10 +20,10 @@ public class DClassMXBeanController {
 
     @RequestMapping(value = "/{nodeId}", method = RequestMethod.GET)
     public ClassLoadingData findClassLoadingDataById(@PathVariable long nodeId) {
-        if(nodeDataMap.getByNodeId(nodeId).isInitialized()) {
+        if(nodeDataMap.getByNodeId(nodeId) != null && nodeDataMap.getByNodeId(nodeId).isInitialized()) {
             return nodeDataMap.getByNodeId(nodeId).getdClassLoadingMXBean().getClassLoadingData();
         }
-
+;
         return null;
     }
 }

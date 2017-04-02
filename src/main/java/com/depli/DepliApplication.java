@@ -29,7 +29,7 @@ public class DepliApplication extends AsyncConfigurerSupport {
 		threadPoolTaskExecutor.setCorePoolSize(10);
 		threadPoolTaskExecutor.setMaxPoolSize(1000);
 		threadPoolTaskExecutor.setQueueCapacity(500);
-		threadPoolTaskExecutor.setThreadNamePrefix("JMX Connector look ups");
+		threadPoolTaskExecutor.setThreadNamePrefix("DEPLI_BG_TASK");
 		threadPoolTaskExecutor.initialize();
 
 		return threadPoolTaskExecutor;

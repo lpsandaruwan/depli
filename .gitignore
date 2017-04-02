@@ -30,3 +30,4 @@ nbdist/
 .directory
 
 
+Gemfile.lock
