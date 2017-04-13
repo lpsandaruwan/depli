@@ -40,6 +40,11 @@ dl, dd, ol, ul, figure {
     padding: 0;
 }
 
+h1, h2, h3, h4, h5, h6, p, a, li, ul, ol, time, .md-menu {
+  font-family: 'Cantarell', sans-serif !important;
+  font-weight: 500;
+}
+
 .no-left-padding {
   padding-left: 0;
 }
