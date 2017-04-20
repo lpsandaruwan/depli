@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lpsandaruwan/depli.png)](https://travis-ci.org/lpsandaruwan/depli) [![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.sonarqube.lpsandaruwan.depli)](https://sonarqube.com/dashboard/index/com.sonarqube.lpsandaruwan.depli:sonar-xanitizer-plugin)
+[![Build Status](https://travis-ci.org/lpsandaruwan/depli.png)](https://travis-ci.org/lpsandaruwan/depli) [![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.sonarqube.lpsandaruwan.depli)](https://sonarqube.com/dashboard/index/com.sonarqube.lpsandaruwan.depli)
 
 
 # DEPLI
