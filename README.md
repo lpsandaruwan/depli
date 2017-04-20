@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/lpsandaruwan/depli.png)](https://travis-ci.org/lpsandaruwan/depli)
+
 # DEPLI
 
 ###### A monitoring dashboard to indicate JVM performance using JMX remote connections.
