@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lpsandaruwan/depli.png)](https://travis-ci.org/lpsandaruwan/depli) [![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.sonarqube.lpsandaruwan.depli)](https://sonarqube.com/dashboard/index/com.sonarqube.lpsandaruwan.depli)
+[![Build Status](https://travis-ci.org/lpsandaruwan/depli.png)](https://travis-ci.org/lpsandaruwan/depli) [![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.sonarqube.lpsandaruwan.depli)](https://sonarqube.com/dashboard/index/com.sonarqube.lpsandaruwan.depli) [![Code Triagers Badge](https://www.codetriage.com/lpsandaruwan/depli/badges/users.svg)](https://www.codetriage.com/lpsandaruwan/depli)
 
 
 # DEPLI
@@ -63,6 +63,10 @@ java -jar depli-*.jar --server.port=9000
 - [ ] Performance statistics on user specific scenarios
 - [ ] Performance comparison between JVMs
 - [x] Threads/stacktrace search and lookup
+
+
+### Contributing
+Please refer [CONTRIBUTING.md](https://github.com/lpsandaruwan/depli/blob/master/CONTRIBUTING.md)
 
 
 ### License
