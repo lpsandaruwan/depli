@@ -21,10 +21,8 @@ import static com.depli.DepliApplication.*;
 @Service
 public class DataInitializerService {
 
-    public DataInitializerService() {}
-
     // Create object hash map filling it with NodeData objects
-    public void initializeDJMXNodeConnections(JMXNodeService jmxNodeService) throws InterruptedException, IOException {
+    public void initializeDJMXNodeConnections(JMXNodeService jmxNodeService) throws Exception {
         // initialize new node data resource
         nodeDataMap = new NodeDataMap();
 
@@ -40,7 +38,7 @@ public class DataInitializerService {
     }
 
     // Initialize MXBean data objects inside data objects
-    public void initializeMxBeanDataObjects() throws InterruptedException, IOException {
+    public void initializeMxBeanDataObjects() throws Exception {
         // Iterate node data map initialize MXBean data classes
         for(Map.Entry<Long, NodeData> nodeDataEntry : nodeDataMap.getNodeDataMap().entrySet()) {
 
@@ -82,7 +80,8 @@ public class DataInitializerService {
 
     // run data initializer methods in a loop considering triggers
     @Async
-    public void pollInitializeData(JMXNodeService jmxNodeService) throws IOException, InterruptedException {
+    public void pollInitializeData(JMXNodeService jmxNodeService) throws Exception {
+        // noinspection InfiniteLoopStatement
         while(true) {
             if(rebootTrigger) {
                 rebootTrigger = false;

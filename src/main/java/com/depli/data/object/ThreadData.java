@@ -12,6 +12,7 @@ public class ThreadData {
 
     private ThreadInfo[] threadInfos;
 
+    // default constructor
     public ThreadData() {}
 
     public void setData(ThreadInfo[] threadInfos) {

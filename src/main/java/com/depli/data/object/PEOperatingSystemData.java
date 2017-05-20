@@ -15,6 +15,7 @@ public class PEOperatingSystemData {
     private float totalPhysicalMemory;
     private float totalSwapSpace;
 
+    // default constructor
     public PEOperatingSystemData() {}
     
     public void setData(double hostCpuUsage,

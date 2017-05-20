@@ -31,6 +31,7 @@ public class DataRefreshService {
     // Iterate through data map and refresh instant data
     @Async
     public void iterateAndRefreshInstantNodeDataMap() throws InterruptedException {
+        //noinspection InfiniteLoopStatement
         while (true) {
             for(Map.Entry<Long, NodeData> nodeDataEntry : nodeDataMap.getNodeDataMap().entrySet()) {
                 if(nodeDataEntry.getValue().isInitialized()) {
@@ -45,6 +46,7 @@ public class DataRefreshService {
     // Iterate through data map and refresh rarely updated data
     @Async
     public void iterateAndRefreshNodeDataMap() throws InterruptedException {
+        //noinspection InfiniteLoopStatement
         while (true) {
             for(Map.Entry<Long, NodeData> nodeDataEntry : nodeDataMap.getNodeDataMap().entrySet()) {
                 if(nodeDataEntry.getValue().isInitialized()) {

@@ -15,6 +15,7 @@ public class DMemoryUsage {
     private float committed;
     private float max;
 
+    // default constructor
     public DMemoryUsage() {}
 
     public void setData(MemoryUsage memoryUsage) {

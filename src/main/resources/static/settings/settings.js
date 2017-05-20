@@ -49,25 +49,8 @@ settingsModule
         getJmxNodeList();
 
 
-        // add new node function
-        $scope.addNewNode = function (ev) {
-            $mdDialog.show({
-                controller: addNodeController,
-                templateUrl: "settings/node_data.html",
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: true,
-                fullscreen: $scope.customFullscreen
-            })
-                .then(function () {
-                    getJmxNodeList();
-                    $rootScope.reloadBackend();
-                })
-        };
-
-
         // add new node md dialog controller
-        var addNodeController = function ($http, $mdDialog, $scope, $timeout) {
+        var addNodeController = function ($http, $mdDialog, $scope) {
             $scope.errorResponse = {};
             $scope.errorResponse.status = false;
             $scope.inProgress = false;
@@ -90,10 +73,27 @@ settingsModule
             };
 
 
+            // add new node function
+            $scope.addNewNode = function (ev) {
+                $mdDialog.show({
+                    controller: addNodeController,
+                    templateUrl: "settings/node_data.html",
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: $scope.customFullscreen
+                })
+                    .then(function () {
+                        getJmxNodeList();
+                        $rootScope.reloadBackend();
+                    })
+            };
+
+
             // save node data
             var saveNodeData = function () {
                 $http.post("nodes/save", $scope.jmxNode)
-                    .then(function onSuccess(response) {
+                    .then(function onSuccess() {
                         $scope.inProgress = false;
                         $mdDialog.hide();
                     })
@@ -108,26 +108,6 @@ settingsModule
                 $scope.inProgress = true;
                 saveNodeData();
             };
-        };
-
-
-        // edit node data function
-        $scope.editNewNode = function (ev, _jmxNodeId) {
-            $mdDialog.show({
-                controller: editNodeController,
-                templateUrl: "settings/node_data.html",
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: true,
-                fullscreen: $scope.customFullscreen,
-                locals : {
-                    jmxNodeId : _jmxNodeId
-                }
-            })
-                .then(function () {
-                    getJmxNodeList();
-                    $rootScope.reloadBackend();
-                })
         };
 
 
@@ -156,10 +136,30 @@ settingsModule
             };
 
 
+            // edit node data function
+            $scope.editNewNode = function (ev, _jmxNodeId) {
+                $mdDialog.show({
+                    controller: editNodeController,
+                    templateUrl: "settings/node_data.html",
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: $scope.customFullscreen,
+                    locals : {
+                        jmxNodeId : _jmxNodeId
+                    }
+                })
+                    .then(function () {
+                        getJmxNodeList();
+                        $rootScope.reloadBackend();
+                    })
+            };
+
+
             // save node data
             var saveNodeData = function () {
                 $http.post("nodes/save", $scope.jmxNode)
-                    .then(function onSuccess(response) {
+                    .then(function onSuccess() {
                         $scope.inProgress = false;
                         $mdDialog.hide();
                     })
@@ -196,6 +196,7 @@ settingsModule
                             }
                         })
                         .catch(function onError(response) {
+                            $scope.errorResponse.error = "error, response code: " + response.status;
                         });
 
                     $timeout(function () {

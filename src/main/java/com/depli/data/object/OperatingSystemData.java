@@ -14,6 +14,7 @@ public class OperatingSystemData {
     private String operatingSystemName;
     private String operatingSystemVersion;
 
+    // default constructor
     public OperatingSystemData () {}
 
     public void setData(String architecture,

@@ -24,6 +24,7 @@ public class RuntimeData {
     private String jvmVendor;
     private String jvmVersion;
 
+    // default constructor
     public RuntimeData() {}
 
     public void setData(String bootstrapClassPath,

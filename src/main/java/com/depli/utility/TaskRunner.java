@@ -3,7 +3,6 @@ package com.depli.utility;
 import com.depli.service.DataInitializerService;
 import com.depli.service.DataRefreshService;
 import com.depli.service.JMXNodeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Component;
 public class TaskRunner implements CommandLineRunner {
 
     // JMXNode data from database
-    @Autowired
     private JMXNodeService jmxNodeService;
 
     private final DataInitializerService dataInitializerService;
