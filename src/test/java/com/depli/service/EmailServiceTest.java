@@ -20,7 +20,7 @@ public class EmailServiceTest {
     @Test
     public void testEmailService() {
         emailService.sendMail(
-                "lpsandaruwan@gmail.com",
+                "depli.monitor.app@gmail.com",
                 "Test mail from depli",
                 "Test mail from depli, Please ignore."
         );
