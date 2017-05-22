@@ -3,6 +3,7 @@ target/
 log.txt
 depli.mv.db
 depli.trace.db
+application.properties
 
 ### STS ###
 .apt_generated

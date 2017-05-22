@@ -72,24 +72,6 @@ settingsModule
                 $mdDialog.cancel();
             };
 
-
-            // add new node function
-            $scope.addNewNode = function (ev) {
-                $mdDialog.show({
-                    controller: addNodeController,
-                    templateUrl: "settings/node_data.html",
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: $scope.customFullscreen
-                })
-                    .then(function () {
-                        getJmxNodeList();
-                        $rootScope.reloadBackend();
-                    })
-            };
-
-
             // save node data
             var saveNodeData = function () {
                 $http.post("nodes/save", $scope.jmxNode)
@@ -108,6 +90,23 @@ settingsModule
                 $scope.inProgress = true;
                 saveNodeData();
             };
+        };
+
+
+        // add new node function
+        $scope.addNewNode = function (ev) {
+            $mdDialog.show({
+                controller: addNodeController,
+                templateUrl: "settings/node_data.html",
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: $scope.customFullscreen
+            })
+                .then(function () {
+                    getJmxNodeList();
+                    $rootScope.reloadBackend();
+                })
         };
 
 
@@ -135,27 +134,6 @@ settingsModule
                 $mdDialog.cancel();
             };
 
-
-            // edit node data function
-            $scope.editNewNode = function (ev, _jmxNodeId) {
-                $mdDialog.show({
-                    controller: editNodeController,
-                    templateUrl: "settings/node_data.html",
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: $scope.customFullscreen,
-                    locals : {
-                        jmxNodeId : _jmxNodeId
-                    }
-                })
-                    .then(function () {
-                        getJmxNodeList();
-                        $rootScope.reloadBackend();
-                    })
-            };
-
-
             // save node data
             var saveNodeData = function () {
                 $http.post("nodes/save", $scope.jmxNode)
@@ -177,11 +155,31 @@ settingsModule
         };
 
 
+        // edit node data function
+        $scope.editNewNode = function (ev, _jmxNodeId) {
+            $mdDialog.show({
+                controller: editNodeController,
+                templateUrl: "settings/node_data.html",
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: $scope.customFullscreen,
+                locals : {
+                    jmxNodeId : _jmxNodeId
+                }
+            })
+                .then(function () {
+                    getJmxNodeList();
+                    $rootScope.reloadBackend();
+                })
+        };
+
+
         // delete a node
         $scope.deleteNode = function (ev, jmxNodeId) {
             var confirm = $mdDialog.confirm()
                 .title("Delete node ?")
-                .textContent("You won't be able to monitor the node after rebooting depli.")
+                .textContent("You won't be able to monitor the node after rebooting depli backend.")
                 .ariaLabel('deleteNode')
                 .targetEvent(ev)
                 .ok("Delete")

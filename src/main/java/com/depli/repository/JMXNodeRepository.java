@@ -16,6 +16,8 @@ public interface JMXNodeRepository extends Repository<JMXNode, Long> {
     // Returns a list of JMXNode objects
     List<JMXNode> findAll();
 
+    JMXNode findByHostname(String hostname);
+
     // Find JMX node information by node id
     JMXNode findByNodeId(long nodeId);
 
