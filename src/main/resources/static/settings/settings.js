@@ -122,7 +122,7 @@ settingsModule
                     .then(function onSuccess(response) {
                         $scope.jmxNode = response.data;
                     })
-                    .catch(function onError() {
+                    .catch(function onError(response) {
                         $scope.errorResponse.status = false;
                         $scope.errorResponse.error = "error getting node data, response code: " + response.status;
                     })

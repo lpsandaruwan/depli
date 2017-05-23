@@ -15,8 +15,8 @@ import javax.validation.constraints.Size;
 public class JMXNode {
 
     @Column(name = "node_id")
-    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private long nodeId;
 
     @Column(name = "node_name")
