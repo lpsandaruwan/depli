@@ -1,3 +1,4 @@
+
 package com.depli.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 /**
  * Created by lpsandaruwan on 5/21/17.
  */
-
+/*
 @Service
 public class EmailService {
 
@@ -35,3 +36,4 @@ public class EmailService {
         javaMailSender.send(mailMessage);
     }
 }
+**/

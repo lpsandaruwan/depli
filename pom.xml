@@ -79,7 +79,7 @@
 			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
 
-		<!-- Angular frontend related dependencies -->
+		<!-- Frontend related dependencies -->
 		<dependency>
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>jQuery</artifactId>

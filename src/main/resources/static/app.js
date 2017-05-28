@@ -6,6 +6,7 @@ var depliFrontend = angular.module("depliFrontend", [
     "chart.js",
     "homeViewModule",
     "instanceViewModule",
+    "loginModule",
     'ngAnimate',
     "ngMessages",
     "ngMaterial",
@@ -28,6 +29,11 @@ depliFrontend
                 controller: "instanceViewModule"
             })
 
+            .when("/login", {
+                templateUrl: "login/login.html",
+                controller: "loginModule"
+            })
+
             .when("/settings", {
                 templateUrl: "settings/settings.html",
                 controller: "settingsModule"
@@ -35,6 +41,7 @@ depliFrontend
 
             .otherwise("/");
 
+        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
         $qProvider.errorOnUnhandledRejections(false);
     });
 
