@@ -6,7 +6,6 @@ var depliFrontend = angular.module("depliFrontend", [
     "chart.js",
     "homeViewModule",
     "instanceViewModule",
-    "loginModule",
     'ngAnimate',
     "ngMessages",
     "ngMaterial",
@@ -27,11 +26,6 @@ depliFrontend
             .when("/instance/", {
                 templateUrl: "instance/instance.html",
                 controller: "instanceViewModule"
-            })
-
-            .when("/login", {
-                templateUrl: "login/login.html",
-                controller: "loginModule"
             })
 
             .when("/settings", {
