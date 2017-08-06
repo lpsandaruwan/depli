@@ -49,7 +49,7 @@ settingsModule
         getJmxNodeList();
 
 
-        // add new node md dialog controller
+        // add new node md dialog controllers
         var addNodeController = function ($http, $mdDialog, $scope) {
             $scope.errorResponse = {};
             $scope.errorResponse.status = false;
@@ -68,7 +68,7 @@ settingsModule
             $scope.jmxNode.password = null;
 
             // close md dialog
-            $scope.cancel = function() {
+            $scope.cancel = function () {
                 $mdDialog.cancel();
             };
 
@@ -110,7 +110,7 @@ settingsModule
         };
 
 
-        // edit node md dialog controller
+        // edit node md dialog controllers
         var editNodeController = function ($http, $mdDialog, $scope, jmxNodeId) {
             $scope.errorResponse = {};
             $scope.errorResponse.status = false;
@@ -130,7 +130,7 @@ settingsModule
             getJmxNodeData();
 
             // close md dialog
-            $scope.cancel = function() {
+            $scope.cancel = function () {
                 $mdDialog.cancel();
             };
 
@@ -164,8 +164,8 @@ settingsModule
                 targetEvent: ev,
                 clickOutsideToClose: true,
                 fullscreen: $scope.customFullscreen,
-                locals : {
-                    jmxNodeId : _jmxNodeId
+                locals: {
+                    jmxNodeId: _jmxNodeId
                 }
             })
                 .then(function () {
@@ -189,7 +189,7 @@ settingsModule
                 .then(function () {
                     $http.delete("nodes/" + jmxNodeId)
                         .then(function onSuccess(response) {
-                            if(response.data === true) {
+                            if (response.data === true) {
                                 $mdDialog.hide();
                             }
                         })

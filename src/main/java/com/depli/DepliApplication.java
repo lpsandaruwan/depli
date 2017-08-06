@@ -14,24 +14,24 @@ import java.util.concurrent.Executor;
 @EnableAsync
 public class DepliApplication extends AsyncConfigurerSupport {
 
-	public static NodeDataMap nodeDataMap = new NodeDataMap();
-	public static boolean initializingFlag = false;
-	public static boolean rebootTrigger = true;
+    public static NodeDataMap nodeDataMap = new NodeDataMap();
+    public static boolean initializingFlag = false;
+    public static boolean rebootTrigger = true;
 
-	public static void main(String[] args) throws IOException {
-		SpringApplication.run(DepliApplication.class, args);
-	}
+    public static void main(String[] args) throws IOException {
+        SpringApplication.run(DepliApplication.class, args);
+    }
 
-	@Override
-	public Executor getAsyncExecutor() {
-		// Configure and initialize async thread data
-		ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
-		threadPoolTaskExecutor.setCorePoolSize(10);
-		threadPoolTaskExecutor.setMaxPoolSize(1000);
-		threadPoolTaskExecutor.setQueueCapacity(500);
-		threadPoolTaskExecutor.setThreadNamePrefix("JMX Connector look ups");
-		threadPoolTaskExecutor.initialize();
+    @Override
+    public Executor getAsyncExecutor() {
+        // Configure and initialize async thread data
+        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+        threadPoolTaskExecutor.setCorePoolSize(10);
+        threadPoolTaskExecutor.setMaxPoolSize(1000);
+        threadPoolTaskExecutor.setQueueCapacity(500);
+        threadPoolTaskExecutor.setThreadNamePrefix("JMX Connector look ups");
+        threadPoolTaskExecutor.initialize();
 
-		return threadPoolTaskExecutor;
-	}
+        return threadPoolTaskExecutor;
+    }
 }

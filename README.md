@@ -52,12 +52,11 @@ java -jar depli-*.jar --server.port=9000
 ### Depli's features and next
 - [x] Add/edit/remove connection data
 - [x] Class paths and artifacts search and lookup
-- [ ] Create JMX connections with SSL
 - [x] Create JMX connections with username/password authentication
 - [x] H2 file database/save connection data
 - [x] Hot plug and unplug JMX connections
 - [x] Multiple JMX connections
-- [ ] Notifications and mails on user specific triggers and events
+- [ ] Push notifications on user specific triggers and events
 - [ ] Notification bar
 - [ ] Notification mails
 - [ ] Performance statistics on user specific scenarios

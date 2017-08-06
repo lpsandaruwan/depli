@@ -12,12 +12,37 @@ When contributing to this repository, please first discuss the change you wish t
 
 * Please make sure to provide a detailed information on what you have done.
 
+### Depli code styling
+
+#### Java
+
+##### Package name
+
+* Name must be in lowercase.
+* Do not use hyphens or underscores, for word seperations use dots.
+* Use plurals whenever it is possible.
+
+##### Class name
+
+* Always start with a capital letter.
+* Use only camel case.
+* Do not use hyphens or underscores.
+
+##### Code
+
+* Indent size must be 4 spaces.
+* Continuation indent size must be 8 spaces.
+* Always use the style,
+```
+public class Rectangle {
+      . . .
+}
+```
+
 ### Wish list
 
-* Create JMX connections with SSL
-* Notifications and mails on user specific triggers and events
+* Push notifications on user specific triggers and events
 * Notification bar
-* Notification mails
 * Performance statistics on user specific scenarios
 * Performance comparison between JVMs
 

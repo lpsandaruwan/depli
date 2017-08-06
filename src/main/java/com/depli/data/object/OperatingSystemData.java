@@ -1,9 +1,10 @@
 package com.depli.data.object;
 
-/** OperatingSystemData
- *
+/**
+ * OperatingSystemDataObserver
+ * <p>
  * Keeps operating system MX Bean data
- *
+ * <p>
  * Created by lpsandaruwan on 3/24/17.
  */
 
@@ -15,7 +16,8 @@ public class OperatingSystemData {
     private String operatingSystemVersion;
 
     // default constructor
-    public OperatingSystemData () {}
+    public OperatingSystemData() {
+    }
 
     public void setData(String architecture,
                         int cpuCount,
@@ -31,28 +33,28 @@ public class OperatingSystemData {
         return architecture;
     }
 
-    public int getCpuCount() {
-        return cpuCount;
-    }
-
-    public String getOperatingSystemName() {
-        return operatingSystemName;
-    }
-
-    public String getOperatingSystemVersion() {
-        return operatingSystemVersion;
-    }
-
     public void setArchitecture(String architecture) {
         this.architecture = architecture;
+    }
+
+    public int getCpuCount() {
+        return cpuCount;
     }
 
     public void setCpuCount(int cpuCount) {
         this.cpuCount = cpuCount;
     }
 
+    public String getOperatingSystemName() {
+        return operatingSystemName;
+    }
+
     public void setOperatingSystemName(String operatingSystemName) {
         this.operatingSystemName = operatingSystemName;
+    }
+
+    public String getOperatingSystemVersion() {
+        return operatingSystemVersion;
     }
 
     public void setOperatingSystemVersion(String operatingSystemVersion) {

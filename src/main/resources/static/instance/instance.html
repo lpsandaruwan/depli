@@ -11,7 +11,8 @@
                             <h3>CPU</h3>
 
                             <canvas id="lineCpu" class="chart chart-line" chart-data="statsData"
-                                    chart-labels="cpuChartLabels" chart-series="cpuChartSeries" chart-options="{animation: false}"
+                                    chart-labels="cpuChartLabels" chart-series="cpuChartSeries"
+                                    chart-options="{animation: false}"
                                     chart-colors="cpuChartColor">
                             </canvas>
                         </section>
@@ -142,7 +143,8 @@
 
                             <div>
                                 <canvas id="lineClass" class="chart chart-line" chart-data="classChartData"
-                                        chart-labels="labelsClassChart" chart-series="seriesClassChart" chart-options="{animation: false}"
+                                        chart-labels="labelsClassChart" chart-series="seriesClassChart"
+                                        chart-options="{animation: false}"
                                         chart-colors="colorsClassChart">
                                 </canvas>
                             </div>
@@ -181,7 +183,8 @@
 
                             <div>
                                 <canvas id="barHost" class="chart chart-bar" chart-colors="colorsHostMemChart"
-                                        chart-data="hostMemChartData" chart-labels="labelsHostMemChart" chart-series="seriesHostMemChart">
+                                        chart-data="hostMemChartData" chart-labels="labelsHostMemChart"
+                                        chart-series="seriesHostMemChart">
                                 </canvas>
                             </div>
 
@@ -191,7 +194,9 @@
 
                                     <div flex></div>
 
-                                    <div>{{jmxNode.peosData.freePhysicalMemory}}MB/{{jmxNode.peosData.totalPhysicalMemory}}MB</div>
+                                    <div>
+                                        {{jmxNode.peosData.freePhysicalMemory}}MB/{{jmxNode.peosData.totalPhysicalMemory}}MB
+                                    </div>
                                 </div>
 
                                 <div layout="row">
@@ -199,7 +204,8 @@
 
                                     <div flex></div>
 
-                                    <div>{{jmxNode.peosData.freeSwapSpace}}MB/{{jmxNode.peosData.totalSwapSpace}}MB</div>
+                                    <div>{{jmxNode.peosData.freeSwapSpace}}MB/{{jmxNode.peosData.totalSwapSpace}}MB
+                                    </div>
                                 </div>
                             </div>
                         </section>
@@ -211,7 +217,8 @@
 
                             <div>
                                 <canvas id="barJVM" class="chart chart-bar"
-                                        chart-data="dataMemChart" chart-labels="labelsMemChart" chart-series="seriesMemChart">
+                                        chart-data="dataMemChart" chart-labels="labelsMemChart"
+                                        chart-series="seriesMemChart">
                                 </canvas>
                             </div>
 
@@ -312,28 +319,32 @@
 
                         <h4>Input Arguments</h4>
 
-                        <div class="text-stat" ng-repeat="classPath in jmxNode.runData.inputArguments | filter:searchPath">
+                        <div class="text-stat"
+                             ng-repeat="classPath in jmxNode.runData.inputArguments | filter:searchPath">
                             <p>{{classPath}}</p>
                         </div>
                         <br>
 
                         <h4>Library Path</h4>
 
-                        <div class="text-stat" ng-repeat="classPath in jmxNode.runData.javaLibraryPath | filter:searchPath">
+                        <div class="text-stat"
+                             ng-repeat="classPath in jmxNode.runData.javaLibraryPath | filter:searchPath">
                             <p>{{classPath}}</p>
                         </div>
                         <br>
 
                         <h4>Bootstrap Class Path</h4>
 
-                        <div class="text-stat" ng-repeat="classPath in jmxNode.runData.bootstrapClassPath | filter:searchPath">
+                        <div class="text-stat"
+                             ng-repeat="classPath in jmxNode.runData.bootstrapClassPath | filter:searchPath">
                             <p>{{classPath}}</p>
                         </div>
                         <br>
 
                         <h4>System Class Path</h4>
 
-                        <div class="text-stat" ng-repeat="classPath in jmxNode.runData.systemClassPath | filter:searchPath">
+                        <div class="text-stat"
+                             ng-repeat="classPath in jmxNode.runData.systemClassPath | filter:searchPath">
                             <p>{{classPath}}</p>
                         </div>
                     </md-card>

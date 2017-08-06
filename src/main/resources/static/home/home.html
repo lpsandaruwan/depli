@@ -1,13 +1,14 @@
 <div class="padding-20" ng-controller="homeViewModule">
     <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
                   md-row-height-gt-md="1:1" md-row-height="2:2"
-                  md-gutter="12px" md-gutter-gt-sm="8px" >
+                  md-gutter="12px" md-gutter-gt-sm="8px">
 
         <md-grid-tile class="gray" ng-if="isNullList" md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
             <h3>No node data available in the database</h3>
         </md-grid-tile>
 
-        <md-grid-tile class="gray" ng-repeat="jmxNode in jmxNodeList" md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
+        <md-grid-tile class="gray" ng-repeat="jmxNode in jmxNodeList" md-rowspan="2" md-colspan="2" md-colspan-sm="1"
+                      md-colspan-xs="1">
             <div ng-if="jmxNode.isInitialized" flex="100">
                 <div class="md-toolbar-tools">
                     <h2 class="color-main flex md-truncate">{{jmxNode.nodeName}}</h2>

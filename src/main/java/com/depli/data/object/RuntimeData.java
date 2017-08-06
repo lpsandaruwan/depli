@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Keeps runtime MX Bean data
- *
+ * <p>
  * Created by lpsandaruwan on 3/24/17.
  */
 
@@ -25,7 +25,8 @@ public class RuntimeData {
     private String jvmVersion;
 
     // default constructor
-    public RuntimeData() {}
+    public RuntimeData() {
+    }
 
     public void setData(String bootstrapClassPath,
                         String systemClassPath,
@@ -53,76 +54,76 @@ public class RuntimeData {
         return bootstrapClassPath;
     }
 
-    public String[] getSystemClassPath() {
-        return systemClassPath;
-    }
-
-    public List<String> getInputArguments() {
-        return inputArguments;
-    }
-
-    public String[] getJavaLibraryPath() {
-        return javaLibraryPath;
-    }
-
-    public String getManagementInterfaceVersion() {
-        return managementInterfaceVersion;
-    }
-
-    public String getRunningJvmName() {
-        return runningJvmName;
-    }
-
-    public String getJvmStartTime() {
-        return jvmStartTime;
-    }
-
-    public String getJvmName() {
-        return jvmName;
-    }
-
-    public String getJvmVendor() {
-        return jvmVendor;
-    }
-
-    public String getJvmVersion() {
-        return jvmVersion;
-    }
-
     public void setBootstrapClassPath(String[] bootstrapClassPath) {
         this.bootstrapClassPath = bootstrapClassPath;
+    }
+
+    public String[] getSystemClassPath() {
+        return systemClassPath;
     }
 
     public void setSystemClassPath(String[] systemClassPath) {
         this.systemClassPath = systemClassPath;
     }
 
+    public List<String> getInputArguments() {
+        return inputArguments;
+    }
+
     public void setInputArguments(List<String> inputArguments) {
         this.inputArguments = inputArguments;
+    }
+
+    public String[] getJavaLibraryPath() {
+        return javaLibraryPath;
     }
 
     public void setJavaLibraryPath(String[] javaLibraryPath) {
         this.javaLibraryPath = javaLibraryPath;
     }
 
+    public String getManagementInterfaceVersion() {
+        return managementInterfaceVersion;
+    }
+
     public void setManagementInterfaceVersion(String managementInterfaceVersion) {
         this.managementInterfaceVersion = managementInterfaceVersion;
+    }
+
+    public String getRunningJvmName() {
+        return runningJvmName;
     }
 
     public void setRunningJvmName(String runningJvmName) {
         this.runningJvmName = runningJvmName;
     }
 
+    public String getJvmStartTime() {
+        return jvmStartTime;
+    }
+
     public void setJvmStartTime(String jvmStartTime) {
         this.jvmStartTime = jvmStartTime;
+    }
+
+    public String getJvmName() {
+        return jvmName;
     }
 
     public void setJvmName(String jvmName) {
         this.jvmName = jvmName;
     }
 
+    public String getJvmVendor() {
+        return jvmVendor;
+    }
+
     public void setJvmVendor(String jvmVendor) {
         this.jvmVendor = jvmVendor;
+    }
+
+    public String getJvmVersion() {
+        return jvmVersion;
     }
 
     public void setJvmVersion(String jvmVersion) {

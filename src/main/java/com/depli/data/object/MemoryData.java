@@ -4,7 +4,7 @@ import java.lang.management.MemoryUsage;
 
 /**
  * Keeps memory MX Bean data
- *
+ * <p>
  * Created by lpsandaruwan on 3/24/17.
  */
 
