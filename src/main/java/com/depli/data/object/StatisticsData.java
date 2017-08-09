@@ -47,94 +47,68 @@ public class StatisticsData {
         return isConnected;
     }
 
+    public void setConnected(boolean connected) {
+        isConnected = connected;
+    }
+
     public int getLoadedClassCount() {
         return loadedClassCount;
-    }
-
-    public float getUsedHeapMemory() {
-        return usedHeapMemory;
-    }
-
-    public float getUsedNonHeapMemory() {
-        return usedNonHeapMemory;
-    }
-
-    public int getDaemonThreadCount() {
-        return daemonThreadCount;
-    }
-
-    public int getPeakThreadCount() {
-        return peakThreadCount;
-    }
-
-    public int getLiveThreadCount() {
-        return liveThreadCount;
-    }
-
-    public long getTotalStartedThreadCount() {
-        return totalStartedThreadCount;
-    }
-
-    public float getHostCpuUsage() {
-        return hostCpuUsage;
-    }
-
-    public float getHostFreePhysicalMemory() {
-        return hostFreePhysicalMemory;
-    }
-
-    public float getHostTotalPhysicalMemory() {
-        return hostTotalPhysicalMemory;
-    }
-
-    public String getJvmUptime() {
-        return jvmUptime;
-    }
-
-    public float getJvmCpuUsage() {
-        return jvmCpuUsage;
-    }
-
-    public float[] getJvmCpuUsageData() {
-        return JvmCpuUsageData;
-    }
-
-    public float[] getHostCpuUsageData() {
-        return hostCpuUsageData;
     }
 
     public void setLoadedClassCount(int loadedClassCount) {
         this.loadedClassCount = loadedClassCount;
     }
 
+    public float getUsedHeapMemory() {
+        return usedHeapMemory;
+    }
+
     public void setUsedHeapMemory(float usedHeapMemory) {
         this.usedHeapMemory = usedHeapMemory;
+    }
+
+    public float getUsedNonHeapMemory() {
+        return usedNonHeapMemory;
     }
 
     public void setUsedNonHeapMemory(float usedNonHeapMemory) {
         this.usedNonHeapMemory = usedNonHeapMemory;
     }
 
-    public void setJvmUptime(long jvmUptime) {
-        this.jvmUptime = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(jvmUptime),
-                TimeUnit.MILLISECONDS.toMinutes(jvmUptime) % TimeUnit.HOURS.toMinutes(1),
-                TimeUnit.MILLISECONDS.toSeconds(jvmUptime) % TimeUnit.MINUTES.toSeconds(1));
+    public int getDaemonThreadCount() {
+        return daemonThreadCount;
     }
 
     public void setDaemonThreadCount(int daemonThreadCount) {
         this.daemonThreadCount = daemonThreadCount;
     }
 
+    public int getPeakThreadCount() {
+        return peakThreadCount;
+    }
+
     public void setPeakThreadCount(int peakThreadCount) {
         this.peakThreadCount = peakThreadCount;
+    }
+
+    public int getLiveThreadCount() {
+        return liveThreadCount;
     }
 
     public void setLiveThreadCount(int liveThreadCount) {
         this.liveThreadCount = liveThreadCount;
     }
 
+    public long getTotalStartedThreadCount() {
+        return totalStartedThreadCount;
+    }
+
     public void setTotalStartedThreadCount(long totalStartedThreadCount) {
         this.totalStartedThreadCount = totalStartedThreadCount;
+    }
+
+    public float getHostCpuUsage() {
+        return hostCpuUsage;
     }
 
     public void setHostCpuUsage(float hostCpuUsage) {
@@ -144,23 +118,45 @@ public class StatisticsData {
         int index = 1;
 
         while (index < hostCpuUsageData.length) {
-            hostCpuUsageData[index -1] = hostCpuUsageData[index];
+            hostCpuUsageData[index - 1] = hostCpuUsageData[index];
             index++;
         }
 
         hostCpuUsageData[index - 1] = hostCpuUsage;
     }
 
+    public float getHostFreePhysicalMemory() {
+        return hostFreePhysicalMemory;
+    }
+
     public void setHostFreePhysicalMemory(float hostFreePhysicalMemory) {
         this.hostFreePhysicalMemory = hostFreePhysicalMemory;
+    }
+
+    public float getHostTotalPhysicalMemory() {
+        return hostTotalPhysicalMemory;
     }
 
     public void setHostTotalPhysicalMemory(float hostTotalPhysicalMemory) {
         this.hostTotalPhysicalMemory = hostTotalPhysicalMemory;
     }
 
-    public void setConnected(boolean connected) {
-        isConnected = connected;
+    public String getJvmUptime() {
+        return jvmUptime;
+    }
+
+    public void setJvmUptime(long jvmUptime) {
+        this.jvmUptime = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(jvmUptime),
+                TimeUnit.MILLISECONDS.toMinutes(jvmUptime) % TimeUnit.HOURS.toMinutes(1),
+                TimeUnit.MILLISECONDS.toSeconds(jvmUptime) % TimeUnit.MINUTES.toSeconds(1));
+    }
+
+    public float getJvmCpuUsage() {
+        return jvmCpuUsage;
+    }
+
+    public float[] getJvmCpuUsageData() {
+        return JvmCpuUsageData;
     }
 
     public void setJvmCpuUsageData(float jvmCpuUsage) {
@@ -175,5 +171,9 @@ public class StatisticsData {
         }
 
         JvmCpuUsageData[index - 1] = jvmCpuUsage;
+    }
+
+    public float[] getHostCpuUsageData() {
+        return hostCpuUsageData;
     }
 }

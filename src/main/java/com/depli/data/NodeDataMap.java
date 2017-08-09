@@ -3,9 +3,10 @@ package com.depli.data;
 import java.util.HashMap;
 import java.util.Map;
 
-/** NodeDataMap
- * remote object list.
- *
+/**
+ * NodeDataMap
+ * observers object list.
+ * <p>
  * Created by lpsandaruwan on 3/23/17.
  */
 

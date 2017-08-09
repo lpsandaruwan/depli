@@ -97,7 +97,6 @@ instanceViewModule
         $scope.seriesMemChart = ['init', 'used', 'committed', 'max'];
 
 
-
         // get platform extension operating system data
         var getPEOSInformation = function () {
             $http.get("peosdobjects/" + $scope.jmxNodeId)
@@ -120,8 +119,8 @@ instanceViewModule
 
         // get statistics data
         var getStatistics = function () {
-            $http.get ("stats/" + $scope.jmxNodeId)
-                .then (function onSuccess(response) {
+            $http.get("stats/" + $scope.jmxNodeId)
+                .then(function onSuccess(response) {
                     $scope.hostCpuUsage = response.data.hostCpuUsage;
                     $scope.jvmUptime = response.data.jvmUptime;
 
@@ -129,7 +128,7 @@ instanceViewModule
 
                     // set chart color
                     if (response.data.jvmCpuUsage < 33) {
-                        $scope.cpuChartColor = ['#868686', '#9E7A77' ];
+                        $scope.cpuChartColor = ['#868686', '#9E7A77'];
                     }
                     else if (response.data.jvmCpuUsage > 33 && response.data.cpuUsage < 66) {
                         $scope.cpuChartColor = ['#B05B4F', '#9E7A77'];
@@ -138,7 +137,7 @@ instanceViewModule
                         $scope.cpuChartColor = ['#FF220D', '#9E7A77'];
                     }
                 })
-                .catch (function onError() {
+                .catch(function onError() {
 
                 })
         };
@@ -153,7 +152,7 @@ instanceViewModule
 
         // poll data
         var pollData = function () {
-            $interval (function () {
+            $interval(function () {
                 getClassLoadingData();
                 getMemoryData();
                 getPEOSInformation();

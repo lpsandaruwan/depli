@@ -59,8 +59,8 @@ depliFrontend
 
         // reload and reinitialize backend data and connections
         $rootScope.reloadBackend = function () {
-            $http.get ("apptools/reboot")
-                .then (function onSuccess(response) {
+            $http.get("apptools/reboot")
+                .then(function onSuccess(response) {
                     if (response.data === true) {
                         $window.location.reload();
                     }
@@ -71,7 +71,7 @@ depliFrontend
         };
 
 
-        // reload backend button controller
+        // reload backend button controllers
         $scope.triggerReloadBackend = function (ev) {
             var confirm = $mdDialog.confirm()
                 .title("Reload backend ?")
@@ -135,8 +135,8 @@ depliFrontend
 
         // get backend status to lock/unlock views
         var getBackendStatus = function () {
-            $http.get ("apptools/stats")
-                .then (function onError(response) {
+            $http.get("apptools/stats")
+                .then(function onError(response) {
                     $scope.backendStatus = response.data;
                 })
         };
@@ -145,20 +145,20 @@ depliFrontend
 
         // poll app status
         var pollBackendStatus = function () {
-            $interval (function () {
+            $interval(function () {
                 getBackendStatus();
             }, 1000)
         };
         pollBackendStatus();
 
         // cancel sync on page exit
-        $scope.$on ('$destroy', function () {
+        $scope.$on('$destroy', function () {
             $interval.cancel(pollBackendStatus);
         });
     })
 
 
-    .config(function($mdThemingProvider) {
+    .config(function ($mdThemingProvider) {
         $mdThemingProvider.theme('customTheme')
             .primaryPalette('red')
             .accentPalette('red')
