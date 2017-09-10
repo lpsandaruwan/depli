@@ -1,143 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.depli</groupId>
-	<artifactId>depli</artifactId>
-	<version>0.2.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <groupId>com.depli</groupId>
+    <artifactId>depli</artifactId>
+    <version>0.2.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-	<name>Depli</name>
-	<description>A handsome JVM monitor</description>
+    <name>Depli</name>
+    <description>A handsome JVM monitor</description>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.3.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repositories -->
-	</parent>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.6.RELEASE</version>
+        <relativePath/> <!-- lookup parent frepositoryries -->
+    </parent>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <infinispan.starters.version>1.0.0.Alpha1</infinispan.starters.version>
+        <webjars.bower.angular.version>1.6.6</webjars.bower.angular.version>
+        <webjars.bower.angular-material.version>1.1.4</webjars.bower.angular-material.version>
+        <webjars.bower.angular-material-icons.version>0.7.1</webjars.bower.angular-material-icons.version>
+        <webjars.bower.angular-chartjs.version>1.1.1</webjars.bower.angular-chartjs.version>
+        <webjars.bower.chartjs.version>2.5.0</webjars.bower.chartjs.version>
+        <webjars.bower.jquery.version>3.2.1</webjars.bower.jquery.version>
+        <java.version>1.8</java.version>
+    </properties>
 
-	<developers>
-		<developer>
-			<name>Lahiru Pathirage</name>
-			<url>http://lahiru.site</url>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <name>Lahiru Pathirage</name>
+            <url>http://lahiru.site</url>
+        </developer>
+    </developers>
 
-	<licenses>
-		<license>
-			<name>Generic Public License</name>
-			<url>http://www.gnu.org/licenses</url>
-		</license>
-	</licenses>
+    <licenses>
+        <license>
+            <name>Generic Public License</name>
+            <url>http://www.gnu.org/licenses</url>
+        </license>
+    </licenses>
 
-	<dependencies>
-		<!-- database related dependencies -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+    <dependencies>
+        <!-- database related dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
-		<!-- spring boot related dependencies -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web-services</artifactId>
-		</dependency>
+        <!-- spring boot related dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web-services</artifactId>
+        </dependency>
 
-		<!-- Frontend related dependencies -->
-		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>jQuery</artifactId>
-			<version>3.2.1</version>
-		</dependency>
+        <!-- Infinispan key-value cache store related dependencies-->
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>inifinispan-spring-boot-starter</artifactId>
+            <version>${infinispan.starters.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-core</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>angular</artifactId>
-			<version>1.6.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>angular-animate</artifactId>
-			<version>1.6.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>angular-aria</artifactId>
-			<version>1.6.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>angular-messages</artifactId>
-			<version>1.6.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>angular-route</artifactId>
-			<version>1.6.4</version>
-		</dependency>
+        <!-- Frontend related dependencies -->
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>jQuery</artifactId>
+            <version>${webjars.bower.jquery.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>angular-material</artifactId>
-			<version>1.1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>angular-material-icons</artifactId>
-			<version>0.7.1</version>
-		</dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular</artifactId>
+            <version>${webjars.bower.angular.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-animate</artifactId>
+            <version>${webjars.bower.angular.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-aria</artifactId>
+            <version>${webjars.bower.angular.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-messages</artifactId>
+            <version>${webjars.bower.angular.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-route</artifactId>
+            <version>${webjars.bower.angular.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>chart.js</artifactId>
-			<version>2.5.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>angular-chart.js</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-material</artifactId>
+            <version>${webjars.bower.angular-material.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-material-icons</artifactId>
+            <version>${webjars.bower.angular-material-icons.version}</version>
+        </dependency>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>chart.js</artifactId>
+            <version>${webjars.bower.chartjs.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>angular-chart.js</artifactId>
+            <version>${webjars.bower.angular-chartjs.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

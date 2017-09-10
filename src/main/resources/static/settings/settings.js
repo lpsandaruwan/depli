@@ -49,13 +49,13 @@ settingsModule
         getJmxNodeList();
 
 
-        // add new node md dialog controllers
+        // add new node md dialog controller
         var addNodeController = function ($http, $mdDialog, $scope) {
             $scope.errorResponse = {};
             $scope.errorResponse.status = false;
             $scope.inProgress = false;
 
-            // new node data
+            // new node domain
             $scope.jmxNode = {};
 
             $scope.jmxNode.authId = undefined;
@@ -72,7 +72,7 @@ settingsModule
                 $mdDialog.cancel();
             };
 
-            // save node data
+            // save node domain
             var saveNodeData = function () {
                 $http.post("nodes/save", $scope.jmxNode)
                     .then(function onSuccess() {
@@ -110,13 +110,13 @@ settingsModule
         };
 
 
-        // edit node md dialog controllers
+        // edit node md dialog controller
         var editNodeController = function ($http, $mdDialog, $scope, jmxNodeId) {
             $scope.errorResponse = {};
             $scope.errorResponse.status = false;
             $scope.inProgress = false;
 
-            // get node data
+            // get node domain
             var getJmxNodeData = function () {
                 $http.get("nodes/" + jmxNodeId)
                     .then(function onSuccess(response) {
@@ -124,7 +124,7 @@ settingsModule
                     })
                     .catch(function onError(response) {
                         $scope.errorResponse.status = false;
-                        $scope.errorResponse.error = "error getting node data, response code: " + response.status;
+                        $scope.errorResponse.error = "error getting node domain, response code: " + response.status;
                     })
             };
             getJmxNodeData();
@@ -134,7 +134,7 @@ settingsModule
                 $mdDialog.cancel();
             };
 
-            // save node data
+            // save node domain
             var saveNodeData = function () {
                 $http.post("nodes/save", $scope.jmxNode)
                     .then(function onSuccess() {
@@ -155,7 +155,7 @@ settingsModule
         };
 
 
-        // edit node data function
+        // edit node domain function
         $scope.editNewNode = function (ev, _jmxNodeId) {
             $mdDialog.show({
                 controller: editNodeController,

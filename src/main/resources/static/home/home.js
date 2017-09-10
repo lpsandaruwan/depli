@@ -31,11 +31,11 @@ homeViewModule
         };
 
 
-        // obtain jmx node data
+        // obtain jmx node domain
         getJmxNodeList();
 
 
-        // refresh stat data
+        // refresh stat domain
         var refreshStatisticsData = function () {
             $interval(function () {
                 angular.forEach($scope.jmxNodeList, function (jmxNode) {
@@ -44,7 +44,7 @@ homeViewModule
                             if (response.data !== null) {
                                 jmxNode.isInitialized = true;
 
-                                // cpu related data
+                                // cpu related domain
                                 jmxNode.chartData = [response.data.jvmCpuUsageData, response.data.hostCpuUsageData];
                                 jmxNode.isConnected = response.data.connected;
                                 jmxNode.jvmCpuUsage = response.data.jvmCpuUsage;
@@ -61,17 +61,17 @@ homeViewModule
                                 }
 
 
-                                // class loading data
+                                // class loading domain
                                 jmxNode.loadedClassCount = response.data.loadedClassCount;
 
-                                // memory related data
+                                // memory related domain
                                 jmxNode.usedHeapMemory = response.data.usedHeapMemory;
                                 jmxNode.usedNonHeapMemory = response.data.usedNonHeapMemory;
 
-                                // thread loading data
+                                // thread loading domain
                                 jmxNode.liveThreadCount = response.data.liveThreadCount;
 
-                                // host operating system data
+                                // host operating system domain
                                 jmxNode.hostCpuUsage = response.data.hostCpuUsage;
                                 jmxNode.hostFreePhysicalMemory = response.data.hostFreePhysicalMemory;
                                 jmxNode.hostTotalPhysicalMemory = response.data.hostTotalPhysicalMemory;
@@ -100,7 +100,7 @@ homeViewModule
         };
 
 
-        // cpu chart data
+        // cpu chart domain
         $scope.chartLabels = [
             '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''
         ];

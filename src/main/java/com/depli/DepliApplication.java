@@ -1,6 +1,6 @@
 package com.depli;
 
-import com.depli.data.NodeDataMap;
+import com.depli.domain.holder.NodeDataMap;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.AsyncConfigurerSupport;
@@ -24,7 +24,7 @@ public class DepliApplication extends AsyncConfigurerSupport {
 
     @Override
     public Executor getAsyncExecutor() {
-        // Configure and initialize async thread data
+        // Configure and initialize async thread domain
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
         threadPoolTaskExecutor.setCorePoolSize(10);
         threadPoolTaskExecutor.setMaxPoolSize(1000);

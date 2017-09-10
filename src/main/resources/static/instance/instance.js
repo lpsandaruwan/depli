@@ -17,7 +17,7 @@ instanceViewModule
         $scope.jmxNode = [];
 
 
-        // get node meta data
+        // get node meta domain
         var getJmxNodeMetadata = function () {
             $http.get("nodes/" + $scope.jmxNodeId)
                 .then(function onSuccess(response) {
@@ -30,7 +30,7 @@ instanceViewModule
         getJmxNodeMetadata();
 
 
-        // get operating environment data
+        // get operating environment domain
         var getEnvironData = function () {
             $timeout(function () {
                 $http.get("osdobjects/" + $scope.jmxNodeId)
@@ -46,7 +46,7 @@ instanceViewModule
         getEnvironData();
 
 
-        // get runtime related data
+        // get runtime related domain
         var getRuntimeInformation = function () {
             $timeout(function () {
                 $http.get("rdobjects/" + $scope.jmxNodeId)
@@ -58,7 +58,7 @@ instanceViewModule
         getRuntimeInformation();
 
 
-        // get class loading data
+        // get class loading domain
         var getClassLoadingData = function () {
             $http.get("cdobjects/" + $scope.jmxNodeId)
                 .then(function onSuccess(response) {
@@ -76,7 +76,7 @@ instanceViewModule
         $scope.colorsClassChart = ['#FF220D'];
 
 
-        // get memory data
+        // get memory domain
         var getMemoryData = function () {
             $http.get("mdobjects/" + $scope.jmxNodeId)
                 .then(function onSuccess(response) {
@@ -97,7 +97,7 @@ instanceViewModule
         $scope.seriesMemChart = ['init', 'used', 'committed', 'max'];
 
 
-        // get platform extension operating system data
+        // get platform extension operating system domain
         var getPEOSInformation = function () {
             $http.get("peosdobjects/" + $scope.jmxNodeId)
                 .then(function onSuccess(response) {
@@ -117,7 +117,7 @@ instanceViewModule
         $scope.colorsHostMemChart = ['#B05B4F', '#9E7A77'];
 
 
-        // get statistics data
+        // get statistics domain
         var getStatistics = function () {
             $http.get("stats/" + $scope.jmxNodeId)
                 .then(function onSuccess(response) {
@@ -143,14 +143,14 @@ instanceViewModule
         };
         getStatistics();
 
-        // cpu chart data
+        // cpu chart domain
         $scope.cpuChartLabels = [
             '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''
         ];
         $scope.cpuChartSeries = ['JVM CPU', 'Host CPU'];
 
 
-        // poll data
+        // poll domain
         var pollData = function () {
             $interval(function () {
                 getClassLoadingData();
@@ -174,7 +174,7 @@ instanceViewModule
         $scope.jmxNodeId = jmxNodeService.getSelectedNode();
 
 
-        // get thread related data
+        // get thread related domain
         var getThreadInformation = function () {
             $http.get("tdobjects/" + $scope.jmxNodeId)
                 .then(function onSuccess(response) {
@@ -184,7 +184,7 @@ instanceViewModule
         getThreadInformation();
 
 
-        // poll threads related data
+        // poll threads related domain
         var pollThreadInformation = function () {
             $interval(function () {
                 getThreadInformation();

@@ -47,7 +47,7 @@ depliFrontend
 
 
         // backend status
-        // -1 while rebooting, 0 while initializing data, 1 while running
+        // -1 while rebooting, 0 while initializing domain, 1 while running
         $scope.backendStatus = 1;
 
         // set toolbar header
@@ -57,7 +57,7 @@ depliFrontend
         setToolbarHeader();
 
 
-        // reload and reinitialize backend data and connections
+        // reload and reinitialize backend domain and connections
         $rootScope.reloadBackend = function () {
             $http.get("apptools/reboot")
                 .then(function onSuccess(response) {
@@ -71,11 +71,11 @@ depliFrontend
         };
 
 
-        // reload backend button controllers
+        // reload backend button controller
         $scope.triggerReloadBackend = function (ev) {
             var confirm = $mdDialog.confirm()
                 .title("Reload backend ?")
-                .textContent("Reinitializing and reloading backend data will take longer. ")
+                .textContent("Reinitializing and reloading backend domain will take longer. ")
                 .ariaLabel('deleteNode')
                 .targetEvent(ev)
                 .ok("RELOAD")
@@ -102,7 +102,7 @@ depliFrontend
                 .catch(function onError() {
                 });
         };
-        // refresh scope data
+        // refresh scope domain
         getJmxNodeList();
 
 
