@@ -1,6 +1,6 @@
 package com.depli.service;
 
-import com.depli.service.store.persistent.impl.JMXNodeServiceImpl;
+import com.depli.store.persistent.service.impl.JMXNodeServiceImpl;
 import com.depli.utility.component.impl.DataInitializerComponentImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,6 +1,8 @@
 package com.depli.controller;
 
-import com.depli.store.cache.descriptor.ClassDescriptor;
+import com.depli.store.cache.descriptor.ClassLoadingDataDescriptor;
+import com.depli.store.cache.service.CacheManagerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,11 +21,13 @@ import static com.depli.DepliApplication.nodeDataMap;
 @RequestMapping("/cdobjects")
 public class ClassDataController {
 
+    @Autowired
+    private CacheManagerService cacheManagerService;
 
     @RequestMapping(value = "/{nodeId}", method = RequestMethod.GET)
-    public ClassDescriptor findClassLoadingDataById(@PathVariable long nodeId) {
+    public ClassLoadingDataDescriptor findClassLoadingDataById(@PathVariable long nodeId) {
         if (nodeDataMap.getByNodeId(nodeId).isInitialized()) {
-            return nodeDataMap.getByNodeId(nodeId).getClassLoadingDataObserver().getClassLoadingData();
+            return cacheManagerService.getClassLoadingDataDescriptorCache().get(nodeId);
         }
 
         return null;

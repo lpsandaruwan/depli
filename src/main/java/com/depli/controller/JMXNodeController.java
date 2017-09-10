@@ -1,6 +1,6 @@
 package com.depli.controller;
 
-import com.depli.service.store.persistent.impl.JMXNodeServiceImpl;
+import com.depli.store.persistent.service.impl.JMXNodeServiceImpl;
 import com.depli.store.persistent.entity.JMXNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

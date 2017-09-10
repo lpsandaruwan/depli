@@ -1,6 +1,8 @@
 package com.depli.utility.observer;
 
-import com.depli.store.cache.descriptor.ClassDescriptor;
+import com.depli.store.cache.descriptor.ClassLoadingDataDescriptor;
+import com.depli.store.cache.service.CacheManagerService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.lang.management.ClassLoadingMXBean;
@@ -17,21 +19,24 @@ import java.lang.management.ManagementFactory;
 
 public class ClassLoadingDataObserver {
 
+    @Autowired
+    private CacheManagerService cacheManagerService;
+
     private JMXConnectionObserver jmxConnectionObserver;
     private ClassLoadingMXBean classLoadingMXBean;
-    private ClassDescriptor classDescriptor;
+    private ClassLoadingDataDescriptor classLoadingDataDescriptor;
 
     public ClassLoadingDataObserver(JMXConnectionObserver jmxConnectionObserver) {
         this.jmxConnectionObserver = jmxConnectionObserver;
-        this.classDescriptor = new ClassDescriptor(jmxConnectionObserver.getJmxNode().getNodeId());
+        this.classLoadingDataDescriptor = new ClassLoadingDataDescriptor();
     }
 
     public ClassLoadingMXBean getClassLoadingMXBean() {
         return classLoadingMXBean;
     }
 
-    public ClassDescriptor getClassLoadingData() {
-        return classDescriptor;
+    public ClassLoadingDataDescriptor getClassLoadingData() {
+        return classLoadingDataDescriptor;
     }
 
     // Load observer ClassLoadingMXBean
@@ -46,12 +51,18 @@ public class ClassLoadingDataObserver {
     }
 
     // Refresh and get ClassObjectLoadingData
-    public ClassDescriptor refreshData() {
-        classDescriptor.setAllData(
+    public ClassLoadingDataDescriptor refreshData() {
+        classLoadingDataDescriptor.setAllData(
                 classLoadingMXBean.getLoadedClassCount(),
                 classLoadingMXBean.getTotalLoadedClassCount(),
                 classLoadingMXBean.getUnloadedClassCount()
         );
-        return classDescriptor;
+
+        try {
+            cacheManagerService.getClassLoadingDataDescriptorCache().put(jmxConnectionObserver.getJmxNode().getNodeId(), classLoadingDataDescriptor);
+        } catch (Exception e) {
+
+        }
+        return classLoadingDataDescriptor;
     }
 }

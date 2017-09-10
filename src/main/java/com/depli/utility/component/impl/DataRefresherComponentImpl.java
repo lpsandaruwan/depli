@@ -2,7 +2,9 @@ package com.depli.utility.component.impl;
 
 import com.depli.store.cache.holder.NodeData;
 import com.depli.store.cache.holder.NodeDataMap;
+import com.depli.store.cache.service.CacheManagerService;
 import com.depli.utility.component.DataRefresherComponent;
+import org.infinispan.spring.provider.SpringEmbeddedCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
