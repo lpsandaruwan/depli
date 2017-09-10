@@ -1,6 +1,6 @@
 package com.depli.controller;
 
-import com.depli.domain.descriptor.ClassLoadingData;
+import com.depli.store.cache.descriptor.ClassDescriptor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,8 +19,9 @@ import static com.depli.DepliApplication.nodeDataMap;
 @RequestMapping("/cdobjects")
 public class ClassDataController {
 
+
     @RequestMapping(value = "/{nodeId}", method = RequestMethod.GET)
-    public ClassLoadingData findClassLoadingDataById(@PathVariable long nodeId) {
+    public ClassDescriptor findClassLoadingDataById(@PathVariable long nodeId) {
         if (nodeDataMap.getByNodeId(nodeId).isInitialized()) {
             return nodeDataMap.getByNodeId(nodeId).getClassLoadingDataObserver().getClassLoadingData();
         }

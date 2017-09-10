@@ -1,12 +1,13 @@
 package com.depli.controller;
 
-import com.depli.domain.descriptor.OperatingSystemData;
+import com.depli.store.cache.descriptor.OperatingSystemData;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import static com.depli.DepliApplication.nodeDataMap;
+
 
 /**
  * DOperatingSystemMXBeanController

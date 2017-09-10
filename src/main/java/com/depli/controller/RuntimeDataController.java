@@ -1,6 +1,6 @@
 package com.depli.controller;
 
-import com.depli.domain.descriptor.RuntimeData;
+import com.depli.store.cache.descriptor.RuntimeData;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +21,7 @@ public class RuntimeDataController {
 
     @RequestMapping(value = "/{nodeId}", method = RequestMethod.GET)
     public RuntimeData findClassLoadingDataById(@PathVariable long nodeId) {
+
         if (nodeDataMap.getByNodeId(nodeId).isInitialized()) {
             return nodeDataMap.getByNodeId(nodeId).getRuntimeDataObserver().getRuntimeData();
         }

@@ -1,6 +1,6 @@
 package com.depli.controller;
 
-import com.depli.domain.descriptor.PEOperatingSystemData;
+import com.depli.store.cache.descriptor.PEOperatingSystemData;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

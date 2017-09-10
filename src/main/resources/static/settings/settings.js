@@ -55,7 +55,7 @@ settingsModule
             $scope.errorResponse.status = false;
             $scope.inProgress = false;
 
-            // new node domain
+            // new node store
             $scope.jmxNode = {};
 
             $scope.jmxNode.authId = undefined;
@@ -72,7 +72,7 @@ settingsModule
                 $mdDialog.cancel();
             };
 
-            // save node domain
+            // save node store
             var saveNodeData = function () {
                 $http.post("nodes/save", $scope.jmxNode)
                     .then(function onSuccess() {
@@ -116,7 +116,7 @@ settingsModule
             $scope.errorResponse.status = false;
             $scope.inProgress = false;
 
-            // get node domain
+            // get node store
             var getJmxNodeData = function () {
                 $http.get("nodes/" + jmxNodeId)
                     .then(function onSuccess(response) {
@@ -124,7 +124,7 @@ settingsModule
                     })
                     .catch(function onError(response) {
                         $scope.errorResponse.status = false;
-                        $scope.errorResponse.error = "error getting node domain, response code: " + response.status;
+                        $scope.errorResponse.error = "error getting node store, response code: " + response.status;
                     })
             };
             getJmxNodeData();
@@ -134,7 +134,7 @@ settingsModule
                 $mdDialog.cancel();
             };
 
-            // save node domain
+            // save node store
             var saveNodeData = function () {
                 $http.post("nodes/save", $scope.jmxNode)
                     .then(function onSuccess() {
@@ -155,7 +155,7 @@ settingsModule
         };
 
 
-        // edit node domain function
+        // edit node store function
         $scope.editNewNode = function (ev, _jmxNodeId) {
             $mdDialog.show({
                 controller: editNodeController,
