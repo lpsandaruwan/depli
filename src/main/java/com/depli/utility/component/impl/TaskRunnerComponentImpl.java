@@ -1,6 +1,6 @@
 package com.depli.utility.component.impl;
 
-import com.depli.store.persistent.service.JMXNodeService;
+import com.depli.service.store.persistent.JMXNodeService;
 import com.depli.utility.component.DataInitializerComponent;
 import com.depli.utility.component.DataRefresherComponent;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,11 +1,7 @@
 package com.depli;
 
-import com.depli.store.cache.descriptor.ClassLoadingDataDescriptor;
 import com.depli.store.cache.holder.NodeDataMap;
-import org.infinispan.Cache;
-import org.infinispan.spring.provider.SpringEmbeddedCacheManager;
 import org.infinispan.spring.provider.SpringEmbeddedCacheManagerFactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +10,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
-
 
 @SpringBootApplication
 @EnableAsync

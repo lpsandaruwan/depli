@@ -9,8 +9,8 @@ package com.depli.constant;
  */
 
 public enum CacheName {
-    NODE_DATA("nodeDataCache"),
     CLASS_LOADING_DATA("classLoadingDataCache"),
+    CONNECTORS_TREE("connectorsTree"),
     MEMORY_USAGE_DATA("memoryUsageDataCache"),
     OPERATING_SYSTEM_DATA("operatingSystemDataCache"),
     PLATFORM_SYSTEM_DATA("platformSystemDataCache"),

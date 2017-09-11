@@ -1,7 +1,7 @@
 package com.depli.utility.observer;
 
 import com.depli.store.cache.descriptor.ClassLoadingDataDescriptor;
-import com.depli.store.cache.service.CacheManagerService;
+import com.depli.service.store.cache.ClassLoadingDataDescriptorCacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
@@ -20,7 +20,7 @@ import java.lang.management.ManagementFactory;
 public class ClassLoadingDataObserver {
 
     @Autowired
-    private CacheManagerService cacheManagerService;
+    private ClassLoadingDataDescriptorCacheService classLoadingDataDescriptorCacheService;
 
     private JMXConnectionObserver jmxConnectionObserver;
     private ClassLoadingMXBean classLoadingMXBean;
@@ -59,7 +59,7 @@ public class ClassLoadingDataObserver {
         );
 
         try {
-            cacheManagerService.getClassLoadingDataDescriptorCache().put(jmxConnectionObserver.getJmxNode().getNodeId(), classLoadingDataDescriptor);
+            classLoadingDataDescriptorCacheService.getCache().put(jmxConnectionObserver.getJmxNode().getNodeId(), classLoadingDataDescriptor);
         } catch (Exception e) {
 
         }

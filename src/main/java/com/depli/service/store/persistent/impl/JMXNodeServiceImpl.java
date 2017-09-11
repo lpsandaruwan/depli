@@ -1,8 +1,8 @@
-package com.depli.store.persistent.service.impl;
+package com.depli.service.store.persistent.impl;
 
-import com.depli.store.persistent.service.JMXNodeService;
 import com.depli.store.persistent.entity.JMXNode;
 import com.depli.store.persistent.repository.JMXNodeRepository;
+import com.depli.service.store.persistent.JMXNodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,6 @@
 package com.depli.utility.component;
 
-import com.depli.store.persistent.service.JMXNodeService;
+import com.depli.service.store.persistent.JMXNodeService;
 
 /**
  * Created by Lahiru Pathirage on 8/6/2017.

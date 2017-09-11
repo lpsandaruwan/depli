@@ -1,4 +1,4 @@
-package com.depli.store.persistent.service;
+package com.depli.service.store.persistent;
 
 import com.depli.store.persistent.entity.JMXNode;
 
