@@ -1,14 +1,18 @@
 package com.depli.store.cache.descriptor;
 
+import java.lang.management.ManagementFactory;
+
 /**
- * OperatingSystemDataObserver
+ * Operating System Descriptor
  * <p>
- * Keeps operating system MX Bean store
- * <p>
- * Created by lpsandaruwan on 3/24/17.
+ * Entity to keep memory usage data observed from {@link ManagementFactory#getOperatingSystemMXBean} of appropriate
+ * remote JMX connection in runtime.
+ *
+ * @author lpsandaruwan
+ * @since 3/24/17
  */
 
-public class OperatingSystemData {
+public class OperatingSystemDescriptor {
 
     private String architecture;
     private int cpuCount;
@@ -16,7 +20,7 @@ public class OperatingSystemData {
     private String operatingSystemVersion;
 
     // default constructor
-    public OperatingSystemData() {
+    public OperatingSystemDescriptor() {
     }
 
     public void setData(String architecture,

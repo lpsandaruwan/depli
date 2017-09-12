@@ -1,7 +1,7 @@
 package com.depli.utility.observer;
 
 
-import com.depli.store.cache.descriptor.PEOperatingSystemData;
+import com.depli.store.cache.descriptor.PlatformSystemDescriptor;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
@@ -18,17 +18,17 @@ import java.lang.management.ManagementFactory;
 public class PlatformSystemDataObserver {
 
     private JMXConnectionObserver jmxConnectionObserver;
-    private PEOperatingSystemData peOperatingSystemData;
+    private PlatformSystemDescriptor platformSystemDescriptor;
 
     private com.sun.management.OperatingSystemMXBean peOperatingSystemMXBean;
 
     public PlatformSystemDataObserver(JMXConnectionObserver jmxConnectionObserver) {
         this.jmxConnectionObserver = jmxConnectionObserver;
-        this.peOperatingSystemData = new PEOperatingSystemData();
+        this.platformSystemDescriptor = new PlatformSystemDescriptor();
     }
 
-    public PEOperatingSystemData getPeOperatingSystemData() {
-        return peOperatingSystemData;
+    public PlatformSystemDescriptor getPlatformSystemDescriptor() {
+        return platformSystemDescriptor;
     }
 
     public com.sun.management.OperatingSystemMXBean getPeOperatingSystemMXBean() {
@@ -46,9 +46,9 @@ public class PlatformSystemDataObserver {
         return peOperatingSystemMXBean;
     }
 
-    // Refresh PEOperatingSystemData
-    public PEOperatingSystemData refreshData() {
-        peOperatingSystemData.setData(
+    // Refresh PlatformSystemDescriptor
+    public PlatformSystemDescriptor refreshData() {
+        platformSystemDescriptor.setData(
                 peOperatingSystemMXBean.getSystemCpuLoad(),
                 peOperatingSystemMXBean.getFreeSwapSpaceSize(),
                 peOperatingSystemMXBean.getFreePhysicalMemorySize(),
@@ -56,6 +56,6 @@ public class PlatformSystemDataObserver {
                 peOperatingSystemMXBean.getTotalPhysicalMemorySize(),
                 peOperatingSystemMXBean.getTotalSwapSpaceSize()
         );
-        return peOperatingSystemData;
+        return platformSystemDescriptor;
     }
 }

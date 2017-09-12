@@ -127,8 +127,8 @@ public class NodeData {
         statisticsData.setJvmCpuUsageData(getJvmCpuUsage());
 
         // set memory related store
-        statisticsData.setUsedHeapMemory(memoryDataObserver.getMemoryData().getHeapMemory().getUsed());
-        statisticsData.setUsedNonHeapMemory(memoryDataObserver.getMemoryData().getNonHeapMemory().getUsed());
+        statisticsData.setUsedHeapMemory(memoryDataObserver.getMemoryUsageDescriptor().getHeapMemory().getUsed());
+        statisticsData.setUsedNonHeapMemory(memoryDataObserver.getMemoryUsageDescriptor().getNonHeapMemory().getUsed());
 
         // set jvm uptime
         statisticsData.setJvmUptime(runtimeDataObserver.getRuntimeMXBean().getUptime());
@@ -140,8 +140,8 @@ public class NodeData {
         statisticsData.setTotalStartedThreadCount(threadDataObserver.getThreadMXBean().getTotalStartedThreadCount());
 
         // set host related store
-        statisticsData.setHostCpuUsage(platformSystemDataObserver.getPeOperatingSystemData().getHostCpuUsage());
-        statisticsData.setHostFreePhysicalMemory(platformSystemDataObserver.getPeOperatingSystemData().getFreePhysicalMemory());
-        statisticsData.setHostTotalPhysicalMemory(platformSystemDataObserver.getPeOperatingSystemData().getTotalPhysicalMemory());
+        statisticsData.setHostCpuUsage(platformSystemDataObserver.getPlatformSystemDescriptor().getHostCpuUsage());
+        statisticsData.setHostFreePhysicalMemory(platformSystemDataObserver.getPlatformSystemDescriptor().getFreePhysicalMemory());
+        statisticsData.setHostTotalPhysicalMemory(platformSystemDataObserver.getPlatformSystemDescriptor().getTotalPhysicalMemory());
     }
 }

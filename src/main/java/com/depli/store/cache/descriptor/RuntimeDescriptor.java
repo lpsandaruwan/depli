@@ -1,17 +1,22 @@
 package com.depli.store.cache.descriptor;
 
+import java.lang.management.ManagementFactory;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 
 /**
- * Keeps runtime MX Bean store
+ * Runtime Descriptor
+ *
+ * Blueprint to keep memory usage data observed from {@link ManagementFactory#getRuntimeMXBean} of appropriate
+ * remote JMX connection in runtime.
  * <p>
- * Created by lpsandaruwan on 3/24/17.
+ * @author lpsandaruwan
+ * @since 3/24/17
  */
 
-public class RuntimeData {
+public class RuntimeDescriptor {
 
     private String[] bootstrapClassPath;
     private String[] systemClassPath;
@@ -25,7 +30,7 @@ public class RuntimeData {
     private String jvmVersion;
 
     // default constructor
-    public RuntimeData() {
+    public RuntimeDescriptor() {
     }
 
     public void setData(String bootstrapClassPath,

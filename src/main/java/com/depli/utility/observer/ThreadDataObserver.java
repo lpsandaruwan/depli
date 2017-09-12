@@ -1,6 +1,6 @@
 package com.depli.utility.observer;
 
-import com.depli.store.cache.descriptor.ThreadData;
+import com.depli.store.cache.descriptor.ThreadDescriptor;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
@@ -19,19 +19,19 @@ public class ThreadDataObserver {
 
     private JMXConnectionObserver jmxConnectionObserver;
     private ThreadMXBean threadMXBean;
-    private ThreadData threadData;
+    private ThreadDescriptor threadDescriptor;
 
     public ThreadDataObserver(JMXConnectionObserver jmxConnectionObserver) {
         this.jmxConnectionObserver = jmxConnectionObserver;
-        this.threadData = new ThreadData();
+        this.threadDescriptor = new ThreadDescriptor();
     }
 
     public ThreadMXBean getThreadMXBean() {
         return threadMXBean;
     }
 
-    public ThreadData getThreadData() {
-        return threadData;
+    public ThreadDescriptor getThreadDescriptor() {
+        return threadDescriptor;
     }
 
     // Initialize observer ThreadMXBean
@@ -46,9 +46,9 @@ public class ThreadDataObserver {
     }
 
     // Refresh and get ThreadDataObserver object
-    public ThreadData refreshData() {
-        threadData.setData(threadMXBean.getThreadInfo(threadMXBean.getAllThreadIds(), Integer.MAX_VALUE));
+    public ThreadDescriptor refreshData() {
+        threadDescriptor.setData(threadMXBean.getThreadInfo(threadMXBean.getAllThreadIds(), Integer.MAX_VALUE));
 
-        return threadData;
+        return threadDescriptor;
     }
 }

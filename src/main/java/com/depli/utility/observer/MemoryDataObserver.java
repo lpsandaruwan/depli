@@ -1,6 +1,6 @@
 package com.depli.utility.observer;
 
-import com.depli.store.cache.descriptor.MemoryData;
+import com.depli.store.cache.descriptor.MemoryUsageDescriptor;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
@@ -19,19 +19,19 @@ public class MemoryDataObserver {
 
     private JMXConnectionObserver jmxConnectionObserver;
     private MemoryMXBean memoryMXBean;
-    private MemoryData memoryData;
+    private MemoryUsageDescriptor memoryUsageDescriptor;
 
     public MemoryDataObserver(JMXConnectionObserver jmxConnectionObserver) {
         this.jmxConnectionObserver = jmxConnectionObserver;
-        this.memoryData = new MemoryData();
+        this.memoryUsageDescriptor = new MemoryUsageDescriptor();
     }
 
     public MemoryMXBean getMemoryMXBean() {
         return memoryMXBean;
     }
 
-    public MemoryData getMemoryData() {
-        return memoryData;
+    public MemoryUsageDescriptor getMemoryUsageDescriptor() {
+        return memoryUsageDescriptor;
     }
 
     // Initialize observer MemoryMXBean
@@ -46,12 +46,12 @@ public class MemoryDataObserver {
     }
 
     // Refresh and get MemoryDataObserver
-    public MemoryData refreshData() {
-        memoryData.setData(
+    public MemoryUsageDescriptor refreshData() {
+        memoryUsageDescriptor.setData(
                 memoryMXBean.getHeapMemoryUsage(),
                 memoryMXBean.getNonHeapMemoryUsage(),
                 memoryMXBean.getObjectPendingFinalizationCount()
         );
-        return memoryData;
+        return memoryUsageDescriptor;
     }
 }

@@ -1,6 +1,6 @@
 package com.depli.utility.observer;
 
-import com.depli.store.cache.descriptor.OperatingSystemData;
+import com.depli.store.cache.descriptor.OperatingSystemDescriptor;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
@@ -19,19 +19,19 @@ public class OperatingSystemDataObserver {
 
     private JMXConnectionObserver jmxConnectionObserver;
     private OperatingSystemMXBean operatingSystemMXBean;
-    private OperatingSystemData operatingSystemData;
+    private OperatingSystemDescriptor operatingSystemDescriptor;
 
     public OperatingSystemDataObserver(JMXConnectionObserver jmxConnectionObserver) {
         this.jmxConnectionObserver = jmxConnectionObserver;
-        this.operatingSystemData = new OperatingSystemData();
+        this.operatingSystemDescriptor = new OperatingSystemDescriptor();
     }
 
     public OperatingSystemMXBean getOperatingSystemMXBean() {
         return operatingSystemMXBean;
     }
 
-    public OperatingSystemData getOperatingSystemData() {
-        return operatingSystemData;
+    public OperatingSystemDescriptor getOperatingSystemDescriptor() {
+        return operatingSystemDescriptor;
     }
 
     // Initialize observer OperatingSystemMXBean
@@ -46,13 +46,13 @@ public class OperatingSystemDataObserver {
     }
 
     // Refresh and get OperatingSystemDataObserver object
-    public OperatingSystemData refreshData() {
-        operatingSystemData.setData(
+    public OperatingSystemDescriptor refreshData() {
+        operatingSystemDescriptor.setData(
                 operatingSystemMXBean.getArch(),
                 operatingSystemMXBean.getAvailableProcessors(),
                 operatingSystemMXBean.getName(),
                 operatingSystemMXBean.getVersion()
         );
-        return operatingSystemData;
+        return operatingSystemDescriptor;
     }
 }

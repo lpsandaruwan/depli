@@ -1,6 +1,6 @@
 package com.depli.controller;
 
-import com.depli.store.cache.descriptor.ThreadData;
+import com.depli.store.cache.descriptor.ThreadDescriptor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,9 +21,9 @@ import static com.depli.DepliApplication.nodeDataMap;
 public class ThreadDataController {
 
     @RequestMapping(value = "/{nodeId}", method = RequestMethod.GET)
-    public ThreadData findClassLoadingDataById(@PathVariable long nodeId) {
+    public ThreadDescriptor findClassLoadingDataById(@PathVariable long nodeId) {
         if (nodeDataMap.getByNodeId(nodeId).isInitialized()) {
-            return nodeDataMap.getByNodeId(nodeId).getThreadDataObserver().getThreadData();
+            return nodeDataMap.getByNodeId(nodeId).getThreadDataObserver().getThreadDescriptor();
         }
 
         return null;

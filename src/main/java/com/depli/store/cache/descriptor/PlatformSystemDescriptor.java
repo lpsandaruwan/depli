@@ -1,13 +1,16 @@
 package com.depli.store.cache.descriptor;
 
 /**
- * PEOperatingSystemData
- * Platform extension operating system store. Keeps host operating system's statistics store.
+ * Platform Extension Operating System Descriptor
+ *
+ * Blueprint to keep memory usage data observed from com.sun.management.OperatingSystemMXBean of appropriate
+ * remote JMX connection in runtime.
  * <p>
- * Created by lpsandaruwan on 3/28/17.
+ * @author lpsandaruwan
+ * @since 3/28/17
  */
 
-public class PEOperatingSystemData {
+public class PlatformSystemDescriptor {
 
     private float hostCpuUsage;
     private float freePhysicalMemory;
@@ -17,7 +20,7 @@ public class PEOperatingSystemData {
     private float totalSwapSpace;
 
     // default constructor
-    public PEOperatingSystemData() {
+    public PlatformSystemDescriptor() {
     }
 
     public void setData(double hostCpuUsage,

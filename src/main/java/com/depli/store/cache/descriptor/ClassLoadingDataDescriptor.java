@@ -1,5 +1,6 @@
 package com.depli.store.cache.descriptor;
 
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +8,8 @@ import java.util.List;
 /**
  * Class Loading Data Descriptor
  * <p>
- * Entity to keep class loading data observed by a remote JMX connection in runtime.
+ * Blueprint to keep class loading data observed from {@link ManagementFactory#getClassLoadingMXBean} of appropriate
+ * remote JMX connection in runtime.
  *
  * @author Lahiru Pathirage
  * @since 3/22/17

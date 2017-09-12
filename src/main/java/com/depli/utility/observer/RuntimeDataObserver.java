@@ -1,6 +1,6 @@
 package com.depli.utility.observer;
 
-import com.depli.store.cache.descriptor.RuntimeData;
+import com.depli.store.cache.descriptor.RuntimeDescriptor;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
@@ -19,19 +19,19 @@ public class RuntimeDataObserver {
 
     private JMXConnectionObserver jmxConnectionObserver;
     private RuntimeMXBean runtimeMXBean;
-    private RuntimeData runtimeData;
+    private RuntimeDescriptor runtimeDescriptor;
 
     public RuntimeDataObserver(JMXConnectionObserver jmxConnectionObserver) {
         this.jmxConnectionObserver = jmxConnectionObserver;
-        this.runtimeData = new RuntimeData();
+        this.runtimeDescriptor = new RuntimeDescriptor();
     }
 
     public RuntimeMXBean getRuntimeMXBean() {
         return runtimeMXBean;
     }
 
-    public RuntimeData getRuntimeData() {
-        return runtimeData;
+    public RuntimeDescriptor getRuntimeDescriptor() {
+        return runtimeDescriptor;
     }
 
     // Initialize observer RuntimeMXBean
@@ -46,8 +46,8 @@ public class RuntimeDataObserver {
     }
 
     // Refresh and get RuntimeDataObserver object
-    public RuntimeData refreshData() {
-        runtimeData.setData(
+    public RuntimeDescriptor refreshData() {
+        runtimeDescriptor.setData(
                 runtimeMXBean.getBootClassPath(),
                 runtimeMXBean.getClassPath(),
                 runtimeMXBean.getInputArguments(),
@@ -59,6 +59,6 @@ public class RuntimeDataObserver {
                 runtimeMXBean.getVmVendor(),
                 runtimeMXBean.getVmVersion()
         );
-        return runtimeData;
+        return runtimeDescriptor;
     }
 }
