@@ -1,4 +1,4 @@
-package com.depli.store.cache.holder;
+package com.depli.store.cache.connector;
 
 import com.depli.store.cache.descriptor.StatisticsData;
 import com.depli.utility.observer.*;

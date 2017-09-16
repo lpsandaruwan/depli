@@ -1,6 +1,6 @@
 package com.depli.service.store.cache;
 
-import com.depli.store.cache.descriptor.ClassLoadingDataDescriptor;
+import com.depli.store.cache.descriptor.ClassLoadingDescriptor;
 import org.infinispan.Cache;
 
 /**
@@ -12,7 +12,7 @@ import org.infinispan.Cache;
  * @since 9/11/17
  */
 
-public interface ClassLoadingDataDescriptorCacheService {
+public interface ClassLoadingDescriptorCacheService {
 
     /**
      * Returns infinispan cache which uses to store and retrieve class loading data
@@ -21,7 +21,7 @@ public interface ClassLoadingDataDescriptorCacheService {
      *
      * @return class loading data descriptor cache
      */
-    public Cache<Long, ClassLoadingDataDescriptor> getCache();
+    public Cache<Long, ClassLoadingDescriptor> getCache();
 
     /**
      * Clears the cache which contains the map of Long values, node IDs related to

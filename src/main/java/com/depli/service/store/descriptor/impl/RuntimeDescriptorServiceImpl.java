@@ -1,7 +1,7 @@
 package com.depli.service.store.descriptor.impl;
 
 import com.depli.service.store.cache.RuntimeDescriptorCacheService;
-import com.depli.service.store.descriptor.RuntimeDescriptorDescriptorService;
+import com.depli.service.store.descriptor.RuntimeDescriptorService;
 import com.depli.store.cache.descriptor.RuntimeDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class RuntimeDescriptorServiceImpl implements RuntimeDescriptorDescriptorService {
+public class RuntimeDescriptorServiceImpl implements RuntimeDescriptorService {
 
     @Autowired
     private RuntimeDescriptorCacheService runtimeDescriptorCacheService;

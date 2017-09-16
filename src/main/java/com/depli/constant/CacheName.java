@@ -8,23 +8,15 @@ package com.depli.constant;
  * @since 9/10/17
  */
 
-public enum CacheName {
-    CLASS_LOADING_DATA("classLoadingDataCache"),
-    CONNECTORS_TREE("connectorsTree"),
-    MEMORY_USAGE("memoryUsageCache"),
-    OPERATING_SYSTEM("operatingSystemCache"),
-    PLATFORM_RESOURCES("platformResourcesCache"),
-    RUNTIME("runtimeCache"),
-    STATISTICS("statisticsCache"),
-    THREAD("threadCache");
+public class CacheName {
 
-    private String value;
+    public static final String CLASS_LOADING_DESCRIPTOR_CACHE = "classLoadingDescriptorCache";
+    public static final String CONNECTORS_TREE_CACHE = "connectorsTree";
+    public static final String MEMORY_USAGE_DESCRIPTOR_CACHE = "memoryUsageDescriptorCache";
+    public static final String OPERATING_SYSTEM_DESCRIPTOR_CACHE = "operatingSystemDescriptorCache";
+    public static final String PLATFORM_RESOURCES_DESCRIPTOR_CACHE = "platformResourcesDescriptorCache";
+    public static final String RUNTIME_DESCRIPTOR_CACHE = "runtimeDescriptorCache";
+    public static final String THREAD_DESCRIPTOR_CACHE = "threadDescriptorCache";
 
-    CacheName(String value) {
-        this.value = value;
-    }
-
-    public String getCacheName() {
-        return value;
-    }
+    private CacheName() {}
 }

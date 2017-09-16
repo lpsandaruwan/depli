@@ -48,48 +48,6 @@ public class PlatformResourcesDescriptor {
     public PlatformResourcesDescriptor() {
     }
 
-    public void setData(double hostCpuUsage,
-                        long freeSwapSpace,
-                        long freePhysicalMemory,
-                        double jvmCpuUsage,
-                        long totalPhysicalMemory,
-                        long totalSwapSpace) {
-        if (hostCpuUsage == -1) {
-            this.hostCpuUsage = -1;
-        } else {
-            this.hostCpuUsage = Math.round(hostCpuUsage * 100f * 10f) / 10f;
-        }
-
-        if (freeSwapSpace == -1) {
-            this.freeSwapSpace = -1;
-        } else {
-            this.freeSwapSpace = Math.round((freeSwapSpace / (1024f * 1024f)) * 10f) / 10f;
-        }
-
-        if (freePhysicalMemory == -1) {
-            this.freePhysicalMemory = -1;
-        } else {
-            this.freePhysicalMemory = Math.round((freePhysicalMemory / (1024f * 1024f)) * 10f) / 10f;
-        }
-
-        if (jvmCpuUsage == -1) {
-            this.jvmCpuUsage = -1;
-        } else {
-            this.jvmCpuUsage = Math.round(jvmCpuUsage * 10f) / 10f;
-        }
-
-        if (totalPhysicalMemory == -1) {
-            this.totalPhysicalMemory = -1;
-        } else {
-            this.totalPhysicalMemory = Math.round((totalPhysicalMemory / (1024f * 1024f)) * 10f) / 10f;
-        }
-
-        if (totalSwapSpace == -1) {
-            this.totalSwapSpace = -1;
-        } else {
-            this.totalSwapSpace = Math.round((totalSwapSpace / (1024f * 1024f)) * 10f) / 10f;
-        }
-    }
 
     /**
      * Returns CPU utilization percentage of the host machine where Java virtual machine runs.
@@ -197,6 +155,32 @@ public class PlatformResourcesDescriptor {
      * @param totalSwapSpace total swap memory amount
      */
     public void setTotalSwapSpace(float totalSwapSpace) {
+        this.totalSwapSpace = totalSwapSpace;
+    }
+
+    /**
+     * Sets variable data fields over time.
+     *
+     * @param freePhysicalMemory free amount of physical memory
+     * @param freeSwapSpace free swap memory amount
+     * @param hostCpuUsage host CPU utilization percentage
+     * @param jvmCpuUsage CPU usage percentage of java virtual machine
+     */
+    public void setDynamicData (float freePhysicalMemory, float freeSwapSpace, float hostCpuUsage, float jvmCpuUsage) {
+        this.freePhysicalMemory = freePhysicalMemory;
+        this.freeSwapSpace = freeSwapSpace;
+        this.hostCpuUsage = hostCpuUsage;
+        this.jvmCpuUsage = jvmCpuUsage;
+    }
+
+    /**
+     * Sets static data fields.
+     *
+     * @param totalPhysicalMemory total amount of physical memory
+     * @param totalSwapSpace total swap memory amount
+     */
+    public void setStaticData(float totalPhysicalMemory, float totalSwapSpace) {
+        this.totalPhysicalMemory = totalPhysicalMemory;
         this.totalSwapSpace = totalSwapSpace;
     }
 }

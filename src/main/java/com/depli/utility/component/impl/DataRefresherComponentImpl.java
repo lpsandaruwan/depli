@@ -1,6 +1,6 @@
 package com.depli.utility.component.impl;
 
-import com.depli.store.cache.holder.NodeData;
+import com.depli.store.cache.connector.NodeData;
 import com.depli.utility.component.DataRefresherComponent;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;

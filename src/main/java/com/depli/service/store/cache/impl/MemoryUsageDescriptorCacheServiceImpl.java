@@ -7,7 +7,7 @@ import org.infinispan.spring.provider.SpringEmbeddedCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static com.depli.constant.CacheName.MEMORY_USAGE;
+import static com.depli.constant.CacheName.MEMORY_USAGE_DESCRIPTOR_CACHE;
 
 /**
  * Memory usage descriptor cache service implementation.
@@ -24,11 +24,11 @@ public class MemoryUsageDescriptorCacheServiceImpl implements MemoryUsageDescrip
 
     @Override
     public Cache<Long, MemoryUsageDescriptor> getCache() {
-        return springEmbeddedCacheManager.getNativeCacheManager().getCache(MEMORY_USAGE.getCacheName());
+        return springEmbeddedCacheManager.getNativeCacheManager().getCache(MEMORY_USAGE_DESCRIPTOR_CACHE);
     }
 
     @Override
     public void clearCache() {
-        springEmbeddedCacheManager.getCache(MEMORY_USAGE.getCacheName()).clear();
+        springEmbeddedCacheManager.getCache(MEMORY_USAGE_DESCRIPTOR_CACHE).clear();
     }
 }

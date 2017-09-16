@@ -1,6 +1,6 @@
 package com.depli.service.store.descriptor;
 
-import com.depli.store.cache.descriptor.ClassLoadingDataDescriptor;
+import com.depli.store.cache.descriptor.ClassLoadingDescriptor;
 
 /**
  * Class Loading Data Descriptor Service
@@ -12,7 +12,7 @@ import com.depli.store.cache.descriptor.ClassLoadingDataDescriptor;
  * @since 9/11/17
  */
 
-public interface ClassLoadingDataDescriptorService {
+public interface ClassLoadingDescriptorService {
 
     /**
      * Retrieves class loading data descriptor object from class loading data descriptor cache
@@ -22,7 +22,7 @@ public interface ClassLoadingDataDescriptorService {
      * @param nodeId node ID of the JMX remote connection
      * @return class loading data descriptor for particular node ID
      */
-    public ClassLoadingDataDescriptor getByNodeId(Long nodeId);
+    public ClassLoadingDescriptor getByNodeId(Long nodeId);
 
     /**
      * Stores class loading data descriptor object in class loading data descriptor cache
@@ -30,7 +30,7 @@ public interface ClassLoadingDataDescriptorService {
      * connection node's metadata.
      *
      * @param nodeId                     node ID of the JMX remote connection
-     * @param classLoadingDataDescriptor class loading data descriptor for particular node ID
+     * @param classLoadingDescriptor class loading data descriptor for particular node ID
      */
-    public void save(Long nodeId, ClassLoadingDataDescriptor classLoadingDataDescriptor);
+    public void save(Long nodeId, ClassLoadingDescriptor classLoadingDescriptor);
 }

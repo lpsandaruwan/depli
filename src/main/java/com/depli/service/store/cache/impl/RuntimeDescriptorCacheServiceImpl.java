@@ -7,7 +7,7 @@ import org.infinispan.spring.provider.SpringEmbeddedCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static com.depli.constant.CacheName.RUNTIME;
+import static com.depli.constant.CacheName.RUNTIME_DESCRIPTOR_CACHE;
 
 /**
  * Runtime descriptor cache service implementation.
@@ -24,11 +24,11 @@ public class RuntimeDescriptorCacheServiceImpl implements RuntimeDescriptorCache
 
     @Override
     public Cache<Long, RuntimeDescriptor> getCache() {
-        return springEmbeddedCacheManager.getNativeCacheManager().getCache(RUNTIME.getCacheName());
+        return springEmbeddedCacheManager.getNativeCacheManager().getCache(RUNTIME_DESCRIPTOR_CACHE);
     }
 
     @Override
     public void clearCache() {
-        springEmbeddedCacheManager.getCache(RUNTIME.getCacheName()).clear();
+        springEmbeddedCacheManager.getCache(RUNTIME_DESCRIPTOR_CACHE).clear();
     }
 }

@@ -19,13 +19,13 @@ public class MemoryUsageDescriptor {
      * Memory usage details about runtime data area from which memory for all class instances and
      * arrays are allocated.
      */
-    private final DMemoryUsage heapMemory;
+    private final MemoryUsageData heapMemory;
 
     /*
      * Memory usage details about stored per-class structures such as a runtime constant pool,
      * field and method data, and the code for methods and constructors.
      */
-    private final DMemoryUsage nonHeapMemory;
+    private final MemoryUsageData nonHeapMemory;
 
     /*
      * The approximate number of objects for which finalization is pending.
@@ -33,14 +33,8 @@ public class MemoryUsageDescriptor {
     private int awaitFinalizationObjectCount;
 
     public MemoryUsageDescriptor() {
-        heapMemory = new DMemoryUsage();
-        nonHeapMemory = new DMemoryUsage();
-    }
-
-    public void setData(MemoryUsage heapMemory, MemoryUsage nonHeapMemory, int awaitFinalizationObjectCount) {
-        this.heapMemory.setData(heapMemory);
-        this.nonHeapMemory.setData(nonHeapMemory);
-        this.awaitFinalizationObjectCount = awaitFinalizationObjectCount;
+        heapMemory = new MemoryUsageData();
+        nonHeapMemory = new MemoryUsageData();
     }
 
     /**
@@ -48,7 +42,7 @@ public class MemoryUsageDescriptor {
      *
      * @return MemoryUsage object representing the heap memory usage
      */
-    public DMemoryUsage getHeapMemory() {
+    public MemoryUsageData getHeapMemory() {
         return heapMemory;
     }
 
@@ -57,7 +51,7 @@ public class MemoryUsageDescriptor {
      *
      * @return MemoryUsage object representing the non-heap memory usage.
      */
-    public DMemoryUsage getNonHeapMemory() {
+    public MemoryUsageData getNonHeapMemory() {
         return nonHeapMemory;
     }
 
@@ -67,6 +61,12 @@ public class MemoryUsageDescriptor {
     }
 
     public void setAwaitFinalizationObjectCount(int awaitFinalizationObjectCount) {
+        this.awaitFinalizationObjectCount = awaitFinalizationObjectCount;
+    }
+
+    public void setDynamicData(MemoryUsage heapMemory, MemoryUsage nonHeapMemory, int awaitFinalizationObjectCount) {
+        this.heapMemory.setDynamicData(heapMemory);
+        this.nonHeapMemory.setDynamicData(nonHeapMemory);
         this.awaitFinalizationObjectCount = awaitFinalizationObjectCount;
     }
 }

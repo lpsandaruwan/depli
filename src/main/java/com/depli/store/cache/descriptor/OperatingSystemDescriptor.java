@@ -39,10 +39,12 @@ public class OperatingSystemDescriptor {
     public OperatingSystemDescriptor() {
     }
 
-    public void setData(String architecture,
-                        int cpuCount,
-                        String operatingSystemName,
-                        String operatingSystemVersion) {
+    public void setStaticData(
+            String architecture,
+            int cpuCount,
+            String operatingSystemName,
+            String operatingSystemVersion
+    ) {
         this.architecture = architecture;
         this.cpuCount = cpuCount;
         this.operatingSystemName = operatingSystemName;

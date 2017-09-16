@@ -12,7 +12,7 @@ import com.depli.store.cache.descriptor.RuntimeDescriptor;
  * @since 9/16/17
  */
 
-public interface RuntimeDescriptorDescriptorService {
+public interface RuntimeDescriptorService {
 
     /**
      * Retrieves memory usage descriptor object from memory usage descriptor cache

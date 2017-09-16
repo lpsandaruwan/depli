@@ -1,4 +1,4 @@
-package com.depli.store.cache.holder;
+package com.depli.store.cache.connector;
 
 import java.util.HashMap;
 import java.util.Map;

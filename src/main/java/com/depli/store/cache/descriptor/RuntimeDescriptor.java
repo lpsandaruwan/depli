@@ -72,31 +72,12 @@ public class RuntimeDescriptor {
      */
     private String jvmVersion;
 
-    // default constructor
-    public RuntimeDescriptor() {
-    }
+    /*
+     * The uptime of the Java virtual machine.
+     */
+    private String uptime;
 
-    public void setData(String bootstrapClassPath,
-                        String systemClassPath,
-                        List<String> inputArguments,
-                        String javaLibraryPath,
-                        String managementInterfaceVersion,
-                        String runningJvmName,
-                        long jvmStartTime,
-                        String jvmName,
-                        String jvmVendor,
-                        String jvmVersion) {
-        this.bootstrapClassPath = bootstrapClassPath.split(":", -1);
-        this.systemClassPath = systemClassPath.split(":", -1);
-        this.inputArguments = inputArguments;
-        this.javaLibraryPath = javaLibraryPath.split("::", -1);
-        this.managementInterfaceVersion = managementInterfaceVersion;
-        this.runningJvmName = runningJvmName;
-        this.jvmStartTime = String.valueOf(LocalDateTime.ofInstant(
-                Instant.ofEpochMilli(jvmStartTime), ZoneId.systemDefault())).replace("T", " ");
-        this.jvmName = jvmName;
-        this.jvmVendor = jvmVendor;
-        this.jvmVersion = jvmVersion;
+    public RuntimeDescriptor() {
     }
 
     /**
@@ -285,6 +266,78 @@ public class RuntimeDescriptor {
      * @param jvmVersion the Java virtual machine implementation version
      */
     public void setJvmVersion(String jvmVersion) {
+        this.jvmVersion = jvmVersion;
+    }
+
+    /**
+     * Returns the uptime of the Java virtual machine.
+     *
+     * @return JVM uptime
+     */
+    public String getUptime() {
+        return uptime;
+    }
+
+    /**
+     * Sets the uptime of the Java virtual machine.
+     *
+     * @param uptime JVM uptime
+     */
+    public void setUptime(String uptime) {
+        this.uptime = uptime;
+    }
+
+    /**
+     * Sets dynamic data fields.
+     *
+     * @param uptime JVM uptime
+     */
+    public void setDynamicData(String uptime) {
+        this.uptime = uptime;
+    }
+
+    /**
+     * Sets class paths, inputs arguments, etc.
+     * @param bootstrapClassPath the boot class path
+     * @param systemClassPath Java system class paths as a list
+     * @param inputArguments input arguments to the application main method as a list
+     * @param javaLibraryPath java libraries path as a list
+     */
+    public void setPathInfoData(
+            String[] bootstrapClassPath,
+            String[] systemClassPath,
+            List<String> inputArguments,
+            String[] javaLibraryPath
+    ) {
+        this.bootstrapClassPath = bootstrapClassPath;
+        this.systemClassPath = systemClassPath;
+        this.inputArguments = inputArguments;
+        this.javaLibraryPath = javaLibraryPath;
+    }
+
+    /**
+     * Sets Java virtual machine specific metadata.
+     *
+     * @param jvmVersion the Java virtual machine implementation version
+     * @param jvmName the Java virtual machine name
+     * @param jvmStartTime start time of the Java virtual machine
+     * @param jvmVendor the Java virtual machine implementation vendor
+     * @param managementInterfaceVersion the Java virtual machine specification version
+     * @param runningJvmName the name representing the running Java virtual machine
+     */
+    public void setJvmMetadata(
+            String managementInterfaceVersion,
+            String runningJvmName,
+            String jvmStartTime,
+            String jvmName,
+            String jvmVendor,
+            String jvmVersion
+    ) {
+        this.managementInterfaceVersion = managementInterfaceVersion;
+        this.runningJvmName = runningJvmName;
+        this.jvmStartTime = jvmStartTime;
+        this.jvmName = jvmName;
+        this.jvmVendor = jvmVendor;
         this.jvmVersion = jvmVersion;
     }
 }

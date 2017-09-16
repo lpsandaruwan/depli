@@ -1,9 +1,6 @@
 package com.depli.store.cache.descriptor;
 
 import java.lang.management.ManagementFactory;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Class Loading Data Descriptor
@@ -15,7 +12,7 @@ import java.util.List;
  * @since 3/22/17
  */
 
-public class ClassLoadingDataDescriptor {
+public class ClassLoadingDescriptor {
 
     /*
      * Number of classes that are currently loaded in the Java virtual machine.
@@ -34,16 +31,7 @@ public class ClassLoadingDataDescriptor {
      */
     private long unloadedClassCount;
 
-    /*
-    * Array of number of classes that are currently loaded in the Java virtual machine
-    * at number of particular intervals.
-    */
-    private ArrayList<Integer> loadedClassCountGraphData;
-
-    public ClassLoadingDataDescriptor() {
-        this.loadedClassCountGraphData = new ArrayList<>(Arrays.asList(
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ));
+    public ClassLoadingDescriptor() {
         this.loadedClassCount = 0;
         this.totalLoadedClassCount = 0;
         this.unloadedClassCount = 0;
@@ -63,7 +51,7 @@ public class ClassLoadingDataDescriptor {
      * Sets the number of classes that are currently loaded in the
      * Java virtual machine.
      *
-     * @param loadedClassCount the number of currently loaded classes.
+     * @param loadedClassCount the number of currently loaded classes
      */
     public void setLoadedClassCount(int loadedClassCount) {
         this.loadedClassCount = loadedClassCount;
@@ -73,7 +61,7 @@ public class ClassLoadingDataDescriptor {
      * Returns the total number of classes that have been loaded since
      * the Java virtual machine has started execution.
      *
-     * @return the total number of classes loaded.
+     * @return the total number of classes loaded
      */
     public long getTotalLoadedClassCount() {
         return totalLoadedClassCount;
@@ -103,41 +91,23 @@ public class ClassLoadingDataDescriptor {
      * Sets the total number of classes unloaded since the Java virtual machine
      * has started execution.
      *
-     * @param unloadedClassCount the total number of unloaded classes.
+     * @param unloadedClassCount the total number of unloaded classes
      */
     public void setUnloadedClassCount(long unloadedClassCount) {
         this.unloadedClassCount = unloadedClassCount;
     }
 
-    /**
-     * Returns the list of number of classes in a particular number of time
-     * intervals that are currently loaded in the Java virtual machine for
-     * the purpose of graphing.
-     *
-     * @return the list of number of currently loaded classes in a particular
-     * number of time intervals.
-     */
-    public List<Integer> getLoadedClassCountGraphData() {
-        return loadedClassCountGraphData;
-    }
 
     /**
-     * Sets the last value of the list of number of classes in a particular number
-     * of time intervals that are currently loaded in the Java virtual machine for
-     * the purpose of graphing.
+     * Sets the dynamic data fields.
      *
-     * @param loadedClassCountGraphDataValue the latest value of number of currently loaded classes
-     *                                       in the latest time interval.
+     * @param loadedClassCount the number of currently loaded classes
+     * @param totalLoadedClassCount the total number of classes loaded
+     * @param unloadedClassCount the total number of unloaded classes
      */
-    public void setLoadedClassCountGraphData(int loadedClassCountGraphDataValue) {
-        this.loadedClassCountGraphData.remove(0);
-        this.loadedClassCountGraphData.add(loadedClassCountGraphDataValue);
-    }
-
-    public void setAllData(int loadedClassCount, long totalLoadedClassCount, long unloadedClassCount) {
-        this.setLoadedClassCount(loadedClassCount);
-        this.setTotalLoadedClassCount(totalLoadedClassCount);
-        this.setUnloadedClassCount(unloadedClassCount);
-        this.setLoadedClassCountGraphData(loadedClassCount);
+    public void setDynamicData(int loadedClassCount, long totalLoadedClassCount, long unloadedClassCount) {
+        this.loadedClassCount = loadedClassCount;
+        this.totalLoadedClassCount = totalLoadedClassCount;
+        this.unloadedClassCount = unloadedClassCount;
     }
 }

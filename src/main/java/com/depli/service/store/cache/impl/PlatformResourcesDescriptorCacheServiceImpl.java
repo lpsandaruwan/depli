@@ -7,7 +7,7 @@ import org.infinispan.spring.provider.SpringEmbeddedCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static com.depli.constant.CacheName.PLATFORM_RESOURCES;
+import static com.depli.constant.CacheName.PLATFORM_RESOURCES_DESCRIPTOR_CACHE;
 
 /**
  * Platform resources descriptor cache service implementation.
@@ -24,11 +24,11 @@ public class PlatformResourcesDescriptorCacheServiceImpl implements PlatformReso
 
     @Override
     public Cache<Long, PlatformResourcesDescriptor> getCache() {
-        return springEmbeddedCacheManager.getNativeCacheManager().getCache(PLATFORM_RESOURCES.getCacheName());
+        return springEmbeddedCacheManager.getNativeCacheManager().getCache(PLATFORM_RESOURCES_DESCRIPTOR_CACHE);
     }
 
     @Override
     public void clearCache() {
-        springEmbeddedCacheManager.getCache(PLATFORM_RESOURCES.getCacheName()).clear();
+        springEmbeddedCacheManager.getCache(PLATFORM_RESOURCES_DESCRIPTOR_CACHE).clear();
     }
 }

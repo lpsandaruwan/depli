@@ -1,6 +1,6 @@
 package com.depli;
 
-import com.depli.store.cache.holder.NodeDataMap;
+import com.depli.store.cache.connector.NodeDataMap;
 import org.infinispan.spring.provider.SpringEmbeddedCacheManagerFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

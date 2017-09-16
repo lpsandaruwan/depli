@@ -7,7 +7,7 @@ import org.infinispan.spring.provider.SpringEmbeddedCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static com.depli.constant.CacheName.THREAD;
+import static com.depli.constant.CacheName.THREAD_DESCRIPTOR_CACHE;
 
 /**
  * Thread descriptor cache service implementation.
@@ -24,11 +24,11 @@ public class ThreadDescriptorCacheServiceImpl implements ThreadDescriptorCacheSe
 
     @Override
     public Cache<Long, ThreadDescriptor> getCache() {
-        return springEmbeddedCacheManager.getNativeCacheManager().getCache(THREAD.getCacheName());
+        return springEmbeddedCacheManager.getNativeCacheManager().getCache(THREAD_DESCRIPTOR_CACHE);
     }
 
     @Override
     public void clearCache() {
-        springEmbeddedCacheManager.getCache(THREAD.getCacheName()).clear();
+        springEmbeddedCacheManager.getCache(THREAD_DESCRIPTOR_CACHE).clear();
     }
 }

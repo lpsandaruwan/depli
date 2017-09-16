@@ -47,7 +47,7 @@ public class MemoryDataObserver {
 
     // Refresh and get MemoryDataObserver
     public MemoryUsageDescriptor refreshData() {
-        memoryUsageDescriptor.setData(
+        memoryUsageDescriptor.setDynamicData(
                 memoryMXBean.getHeapMemoryUsage(),
                 memoryMXBean.getNonHeapMemoryUsage(),
                 memoryMXBean.getObjectPendingFinalizationCount()

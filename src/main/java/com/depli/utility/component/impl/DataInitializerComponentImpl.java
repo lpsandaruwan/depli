@@ -1,7 +1,7 @@
 package com.depli.utility.component.impl;
 
-import com.depli.store.cache.holder.NodeData;
-import com.depli.service.store.cache.ClassLoadingDataDescriptorCacheService;
+import com.depli.store.cache.connector.NodeData;
+import com.depli.service.store.cache.ClassLoadingDescriptorCacheService;
 import com.depli.store.persistent.entity.JMXNode;
 import com.depli.service.store.persistent.JMXNodeService;
 import com.depli.utility.component.DataInitializerComponent;
@@ -25,7 +25,7 @@ import static com.depli.DepliApplication.*;
 public class DataInitializerComponentImpl implements DataInitializerComponent {
 
     @Autowired
-    private ClassLoadingDataDescriptorCacheService classLoadingDataDescriptorCacheService;
+    private ClassLoadingDescriptorCacheService classLoadingDescriptorCacheService;
 
     // Create object hash map filling it with NodeData objects
     public void initializeDJMXNodeConnections(JMXNodeService jmxNodeService) throws Exception {
@@ -52,7 +52,7 @@ public class DataInitializerComponentImpl implements DataInitializerComponent {
             nodeDataEntry.getValue().getClassLoadingDataObserver().initialize();
             nodeDataEntry.getValue().getClassLoadingDataObserver().refreshData();
 
-            classLoadingDataDescriptorCacheService.getCache().put(nodeDataEntry.getKey(), nodeDataEntry.getValue().getClassLoadingDataObserver().getClassLoadingData());
+            classLoadingDescriptorCacheService.getCache().put(nodeDataEntry.getKey(), nodeDataEntry.getValue().getClassLoadingDataObserver().getClassLoadingData());
 
             // Initialize observer Memory MX bean store
             nodeDataEntry.getValue().getMemoryDataObserver().initialize();
