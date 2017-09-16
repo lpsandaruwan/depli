@@ -5,7 +5,7 @@ import java.lang.management.ThreadInfo;
 
 /**
  * Thread Descriptor
- *
+ * <p>
  * Entity to keep memory usage data observed from {@link ManagementFactory#getThreadMXBean} of appropriate
  * remote JMX connection in runtime.
  *
@@ -15,21 +15,34 @@ import java.lang.management.ThreadInfo;
 
 public class ThreadDescriptor {
 
-    private ThreadInfo[] threadInfos;
+    /*
+     * The list of thread info for each thread with of stack trace elements.
+     */
+    private ThreadInfo[] threadInfoList;
 
     // default constructor
     public ThreadDescriptor() {
     }
 
-    public void setData(ThreadInfo[] threadInfos) {
-        this.threadInfos = threadInfos;
+    public void setData(ThreadInfo[] threadInfoList) {
+        this.threadInfoList = threadInfoList;
     }
 
-    public ThreadInfo[] getThreadInfos() {
-        return threadInfos;
+    /**
+     * Returns the list of thread info for each thread with of stack trace elements.
+     *
+     * @return a the list of thread info
+     */
+    public ThreadInfo[] getThreadInfoList() {
+        return threadInfoList;
     }
 
-    public void setThreadInfos(ThreadInfo[] threadInfos) {
-        this.threadInfos = threadInfos;
+    /**
+     * Sets the list of thread info for each thread with of stack trace elements.
+     *
+     * @param threadInfoList a the list of thread info
+     */
+    public void setThreadInfoList(ThreadInfo[] threadInfoList) {
+        this.threadInfoList = threadInfoList;
     }
 }

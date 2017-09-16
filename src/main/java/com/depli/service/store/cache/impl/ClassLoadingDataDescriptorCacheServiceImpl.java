@@ -1,7 +1,7 @@
 package com.depli.service.store.cache.impl;
 
-import com.depli.store.cache.descriptor.ClassLoadingDataDescriptor;
 import com.depli.service.store.cache.ClassLoadingDataDescriptorCacheService;
+import com.depli.store.cache.descriptor.ClassLoadingDataDescriptor;
 import org.infinispan.Cache;
 import org.infinispan.spring.provider.SpringEmbeddedCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import static com.depli.constant.CacheName.CLASS_LOADING_DATA;
 
 /**
- * Class loading data descriptor cache Service Implementation.
+ * Class loading data descriptor cache service implementation.
  *
  * @author lpsandaruwan
  * @since 9/11/17

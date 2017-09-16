@@ -67,8 +67,8 @@ public class DataInitializerComponentImpl implements DataInitializerComponent {
             nodeDataEntry.getValue().getRuntimeDataObserver().refreshData();
 
             // Initialize observer sun OperatingSystem MX bean
-            nodeDataEntry.getValue().getPlatformSystemDataObserver().initialize();
-            nodeDataEntry.getValue().getPlatformSystemDataObserver().refreshData();
+            nodeDataEntry.getValue().getPlatformResourceDataObserver().initialize();
+            nodeDataEntry.getValue().getPlatformResourceDataObserver().refreshData();
 
             // Initialize observer Thread MX bean
             nodeDataEntry.getValue().getThreadDataObserver().initialize();

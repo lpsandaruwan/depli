@@ -11,12 +11,12 @@ package com.depli.constant;
 public enum CacheName {
     CLASS_LOADING_DATA("classLoadingDataCache"),
     CONNECTORS_TREE("connectorsTree"),
-    MEMORY_USAGE_DATA("memoryUsageDataCache"),
-    OPERATING_SYSTEM_DATA("operatingSystemDataCache"),
-    PLATFORM_SYSTEM_DATA("platformSystemDataCache"),
-    RUNTIME_DATA("runtimeDataCache"),
-    STATISTICS_DATA("statisticsDataCache"),
-    THREAD_DATA("threadDataCache");
+    MEMORY_USAGE("memoryUsageCache"),
+    OPERATING_SYSTEM("operatingSystemCache"),
+    PLATFORM_RESOURCES("platformResourcesCache"),
+    RUNTIME("runtimeCache"),
+    STATISTICS("statisticsCache"),
+    THREAD("threadCache");
 
     private String value;
 

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class ClassLoadingDataDescriptorServiceImpl implements ClassLoadingDataDescriptorService{
+public class ClassLoadingDataDescriptorServiceImpl implements ClassLoadingDataDescriptorService {
 
     @Autowired
     private ClassLoadingDataDescriptorCacheService classLoadingDataDescriptorCacheService;

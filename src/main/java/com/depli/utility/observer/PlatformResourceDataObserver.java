@@ -1,7 +1,7 @@
 package com.depli.utility.observer;
 
 
-import com.depli.store.cache.descriptor.PlatformSystemDescriptor;
+import com.depli.store.cache.descriptor.PlatformResourcesDescriptor;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
@@ -15,20 +15,20 @@ import java.lang.management.ManagementFactory;
  * Created by lpsandaruwan on 3/26/17.
  */
 
-public class PlatformSystemDataObserver {
+public class PlatformResourceDataObserver {
 
     private JMXConnectionObserver jmxConnectionObserver;
-    private PlatformSystemDescriptor platformSystemDescriptor;
+    private PlatformResourcesDescriptor platformResourcesDescriptor;
 
     private com.sun.management.OperatingSystemMXBean peOperatingSystemMXBean;
 
-    public PlatformSystemDataObserver(JMXConnectionObserver jmxConnectionObserver) {
+    public PlatformResourceDataObserver(JMXConnectionObserver jmxConnectionObserver) {
         this.jmxConnectionObserver = jmxConnectionObserver;
-        this.platformSystemDescriptor = new PlatformSystemDescriptor();
+        this.platformResourcesDescriptor = new PlatformResourcesDescriptor();
     }
 
-    public PlatformSystemDescriptor getPlatformSystemDescriptor() {
-        return platformSystemDescriptor;
+    public PlatformResourcesDescriptor getPlatformResourcesDescriptor() {
+        return platformResourcesDescriptor;
     }
 
     public com.sun.management.OperatingSystemMXBean getPeOperatingSystemMXBean() {
@@ -46,9 +46,9 @@ public class PlatformSystemDataObserver {
         return peOperatingSystemMXBean;
     }
 
-    // Refresh PlatformSystemDescriptor
-    public PlatformSystemDescriptor refreshData() {
-        platformSystemDescriptor.setData(
+    // Refresh PlatformResourcesDescriptor
+    public PlatformResourcesDescriptor refreshData() {
+        platformResourcesDescriptor.setData(
                 peOperatingSystemMXBean.getSystemCpuLoad(),
                 peOperatingSystemMXBean.getFreeSwapSpaceSize(),
                 peOperatingSystemMXBean.getFreePhysicalMemorySize(),
@@ -56,6 +56,6 @@ public class PlatformSystemDataObserver {
                 peOperatingSystemMXBean.getTotalPhysicalMemorySize(),
                 peOperatingSystemMXBean.getTotalSwapSpaceSize()
         );
-        return platformSystemDescriptor;
+        return platformResourcesDescriptor;
     }
 }

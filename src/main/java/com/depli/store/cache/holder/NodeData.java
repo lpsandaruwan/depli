@@ -17,7 +17,7 @@ public class NodeData {
     private final MemoryDataObserver memoryDataObserver;
     private final OperatingSystemDataObserver operatingSystemDataObserver;
     private final RuntimeDataObserver runtimeDataObserver;
-    private final PlatformSystemDataObserver platformSystemDataObserver;
+    private final PlatformResourceDataObserver platformResourceDataObserver;
     private final ThreadDataObserver threadDataObserver;
     private StatisticsData statisticsData;
     private boolean isInitialized;
@@ -38,7 +38,7 @@ public class NodeData {
         this.memoryDataObserver = new MemoryDataObserver(jmxConnectionObserver);
         this.operatingSystemDataObserver = new OperatingSystemDataObserver(jmxConnectionObserver);
         this.runtimeDataObserver = new RuntimeDataObserver(jmxConnectionObserver);
-        this.platformSystemDataObserver = new PlatformSystemDataObserver(jmxConnectionObserver);
+        this.platformResourceDataObserver = new PlatformResourceDataObserver(jmxConnectionObserver);
         this.threadDataObserver = new ThreadDataObserver(jmxConnectionObserver);
     }
 
@@ -46,7 +46,7 @@ public class NodeData {
         classLoadingDataObserver.refreshData();
         memoryDataObserver.refreshData();
         operatingSystemDataObserver.refreshData();
-        platformSystemDataObserver.refreshData();
+        platformResourceDataObserver.refreshData();
 
         // Update statistics store
         updateStatisticsData();
@@ -89,8 +89,8 @@ public class NodeData {
         return runtimeDataObserver;
     }
 
-    public PlatformSystemDataObserver getPlatformSystemDataObserver() {
-        return platformSystemDataObserver;
+    public PlatformResourceDataObserver getPlatformResourceDataObserver() {
+        return platformResourceDataObserver;
     }
 
     public ThreadDataObserver getThreadDataObserver() {
@@ -99,9 +99,9 @@ public class NodeData {
 
     // Get JVM CPU usage
     public float getJvmCpuUsage() {
-        if (platformSystemDataObserver.getPeOperatingSystemMXBean() != null) {
+        if (platformResourceDataObserver.getPeOperatingSystemMXBean() != null) {
             float cpuUsage = (
-                    platformSystemDataObserver.getPeOperatingSystemMXBean().getProcessCpuTime() - previousJvmCpuTime
+                    platformResourceDataObserver.getPeOperatingSystemMXBean().getProcessCpuTime() - previousJvmCpuTime
             ) / (
                     (
                             runtimeDataObserver.getRuntimeMXBean().getUptime() - previousJvmUptime
@@ -109,7 +109,7 @@ public class NodeData {
             );
 
             // Set old timestamp values
-            previousJvmCpuTime = platformSystemDataObserver.getPeOperatingSystemMXBean().getProcessCpuTime();
+            previousJvmCpuTime = platformResourceDataObserver.getPeOperatingSystemMXBean().getProcessCpuTime();
             previousJvmUptime = runtimeDataObserver.getRuntimeMXBean().getUptime();
 
             return (float) Math.round((cpuUsage * 10)) / 10;
@@ -140,8 +140,8 @@ public class NodeData {
         statisticsData.setTotalStartedThreadCount(threadDataObserver.getThreadMXBean().getTotalStartedThreadCount());
 
         // set host related store
-        statisticsData.setHostCpuUsage(platformSystemDataObserver.getPlatformSystemDescriptor().getHostCpuUsage());
-        statisticsData.setHostFreePhysicalMemory(platformSystemDataObserver.getPlatformSystemDescriptor().getFreePhysicalMemory());
-        statisticsData.setHostTotalPhysicalMemory(platformSystemDataObserver.getPlatformSystemDescriptor().getTotalPhysicalMemory());
+        statisticsData.setHostCpuUsage(platformResourceDataObserver.getPlatformResourcesDescriptor().getHostCpuUsage());
+        statisticsData.setHostFreePhysicalMemory(platformResourceDataObserver.getPlatformResourcesDescriptor().getFreePhysicalMemory());
+        statisticsData.setHostTotalPhysicalMemory(platformResourceDataObserver.getPlatformResourcesDescriptor().getTotalPhysicalMemory());
     }
 }

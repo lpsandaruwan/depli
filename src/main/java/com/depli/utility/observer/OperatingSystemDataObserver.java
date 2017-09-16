@@ -9,10 +9,11 @@ import java.lang.management.OperatingSystemMXBean;
 /**
  * OperatingSystemDataObserver
  * <p>
- * Depli implementation for initializing observer OperatingSystemMxBean
- * Load operating system monitoring interface of the observer
+ * The blueprint of descriptor which contains information for the operating system on which
+ * the Java virtual machine is running.
  * <p>
- * Created by lpsandaruwan on 3/23/17.
+ * @author lpsandaruwan
+ * @since 3/23/17
  */
 
 public class OperatingSystemDataObserver {

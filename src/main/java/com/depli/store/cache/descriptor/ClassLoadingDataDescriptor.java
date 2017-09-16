@@ -83,8 +83,7 @@ public class ClassLoadingDataDescriptor {
      * Sets the total number of classes that have been loaded since
      * the Java virtual machine has started execution.
      *
-     * @param  totalLoadedClassCount the total number of classes loaded.
-     *
+     * @param totalLoadedClassCount the total number of classes loaded.
      */
     public void setTotalLoadedClassCount(long totalLoadedClassCount) {
         this.totalLoadedClassCount = totalLoadedClassCount;
