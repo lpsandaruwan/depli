@@ -44,8 +44,13 @@ public class PlatformResourcesDescriptor {
      */
     private float totalSwapSpace;
 
-    // default constructor
     public PlatformResourcesDescriptor() {
+        hostCpuUsage = -1;
+        freePhysicalMemory = -1;
+        freeSwapSpace = -1;
+        jvmCpuUsage = -1;
+        totalPhysicalMemory = -1;
+        totalSwapSpace = -1;
     }
 
 

@@ -1,7 +1,7 @@
 package com.depli.service.store.cache.descriptor.impl;
 
 import com.depli.service.store.cache.descriptor.MemoryDescriptorCacheService;
-import com.depli.store.cache.descriptor.MemoryUsageDescriptor;
+import com.depli.store.cache.descriptor.MemoryDescriptor;
 import org.infinispan.Cache;
 import org.infinispan.spring.provider.SpringEmbeddedCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class MemoryDescriptorCacheServiceImpl implements MemoryDescriptorCacheSe
     private SpringEmbeddedCacheManager springEmbeddedCacheManager;
 
     @Override
-    public Cache<Long, MemoryUsageDescriptor> getCache() {
+    public Cache<Long, MemoryDescriptor> getCache() {
         return springEmbeddedCacheManager.getNativeCacheManager().getCache(MEMORY_USAGE_DESCRIPTOR_CACHE);
     }
 

@@ -35,8 +35,8 @@ public class OperatingSystemDescriptor {
      */
     private String operatingSystemVersion;
 
-    // default constructor
     public OperatingSystemDescriptor() {
+        cpuCount = -1;
     }
 
     public void setStaticData(

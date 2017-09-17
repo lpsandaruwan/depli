@@ -13,7 +13,7 @@ import java.lang.management.MemoryUsage;
  * @since 3/24/17
  */
 
-public class MemoryUsageDescriptor {
+public class MemoryDescriptor {
 
     /*
      * Memory usage details about runtime data area from which memory for all class instances and
@@ -32,9 +32,10 @@ public class MemoryUsageDescriptor {
      */
     private int awaitFinalizationObjectCount;
 
-    public MemoryUsageDescriptor() {
+    public MemoryDescriptor() {
         heapMemory = new MemoryUsageData();
         nonHeapMemory = new MemoryUsageData();
+        awaitFinalizationObjectCount = 0;
     }
 
     /**

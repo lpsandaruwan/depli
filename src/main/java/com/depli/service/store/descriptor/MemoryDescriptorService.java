@@ -1,6 +1,6 @@
 package com.depli.service.store.descriptor;
 
-import com.depli.store.cache.descriptor.MemoryUsageDescriptor;
+import com.depli.store.cache.descriptor.MemoryDescriptor;
 
 /**
  * Memory Usage Descriptor Service
@@ -22,7 +22,7 @@ public interface MemoryDescriptorService {
      * @param nodeId node ID of the JMX remote connection
      * @return memory usage descriptor for particular node ID
      */
-    public MemoryUsageDescriptor getByNodeId(Long nodeId);
+    public MemoryDescriptor getByNodeId(Long nodeId);
 
     /**
      * Stores memory usage descriptor object in memory usage descriptor cache
@@ -30,7 +30,7 @@ public interface MemoryDescriptorService {
      * connection node's metadata.
      *
      * @param nodeId                node ID of the JMX remote connection
-     * @param memoryUsageDescriptor memory usage descriptor for particular node ID
+     * @param memoryDescriptor memory usage descriptor for particular node ID
      */
-    public void save(Long nodeId, MemoryUsageDescriptor memoryUsageDescriptor);
+    public void save(Long nodeId, MemoryDescriptor memoryDescriptor);
 }

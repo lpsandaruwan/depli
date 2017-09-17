@@ -1,6 +1,6 @@
 package com.depli.service.store.cache.descriptor;
 
-import com.depli.store.cache.descriptor.MemoryUsageDescriptor;
+import com.depli.store.cache.descriptor.MemoryDescriptor;
 import org.infinispan.Cache;
 
 /**
@@ -21,7 +21,7 @@ public interface MemoryDescriptorCacheService {
      *
      * @return memory usage descriptor cache
      */
-    public Cache<Long, MemoryUsageDescriptor> getCache();
+    public Cache<Long, MemoryDescriptor> getCache();
 
     /**
      * Clears the cache which contains the map of Long values, node IDs related to

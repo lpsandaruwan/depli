@@ -24,9 +24,6 @@ import java.lang.management.*;
 public class ConnectionTreeBuilderServiceImpl implements ConnectionTreeBuilderService {
 
     @Autowired
-    private JMXNodeService jmxNodeService;
-
-    @Autowired
     private ManagementBeanServerConnector managementBeanServerConnector;
 
     @Autowired
@@ -47,8 +44,8 @@ public class ConnectionTreeBuilderServiceImpl implements ConnectionTreeBuilderSe
     @Autowired
     private ThreadMXBeanProxyConnector threadMXBeanProxyConnector;
 
-    public ConnectionTree getTree(Long nodeId) throws IOException {
-        JMXNode jmxNode = jmxNodeService.findByNodeId(nodeId);
+    @Override
+    public ConnectionTree getTree(JMXNode jmxNode) throws IOException {
         MainConnector mainConnector = managementBeanServerConnector.getConnection(jmxNode);
         mainConnector.openConnection();
         ClassLoadingMXBean classLoadingMXBean = classLoadingMXBeanProxyConnector.getConnection(mainConnector.getServerConnection());

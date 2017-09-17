@@ -75,6 +75,7 @@ public class RuntimeDescriptor {
     private String uptime;
 
     public RuntimeDescriptor() {
+        uptime = "00:00:00";
     }
 
     /**
@@ -196,7 +197,7 @@ public class RuntimeDescriptor {
     /**
      * Returns the approximate time when the Java virtual machine started.
      *
-     * @return start time of the Java virtual machine
+     * @return mediate time of the Java virtual machine
      */
     public String getJvmStartTime() {
         return jvmStartTime;
@@ -205,7 +206,7 @@ public class RuntimeDescriptor {
     /**
      * Sets the approximate time when the Java virtual machine started.
      *
-     * @param jvmStartTime start time of the Java virtual machine
+     * @param jvmStartTime mediate time of the Java virtual machine
      */
     public void setJvmStartTime(String jvmStartTime) {
         this.jvmStartTime = jvmStartTime;
@@ -318,7 +319,7 @@ public class RuntimeDescriptor {
      *
      * @param jvmVersion                 the Java virtual machine implementation version
      * @param jvmName                    the Java virtual machine name
-     * @param jvmStartTime               start time of the Java virtual machine
+     * @param jvmStartTime               mediate time of the Java virtual machine
      * @param jvmVendor                  the Java virtual machine implementation vendor
      * @param managementInterfaceVersion the Java virtual machine specification version
      * @param runningJvmName             the name representing the running Java virtual machine

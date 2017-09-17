@@ -2,7 +2,7 @@ package com.depli.service.store.descriptor.impl;
 
 import com.depli.service.store.cache.descriptor.MemoryDescriptorCacheService;
 import com.depli.service.store.descriptor.MemoryDescriptorService;
-import com.depli.store.cache.descriptor.MemoryUsageDescriptor;
+import com.depli.store.cache.descriptor.MemoryDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +20,12 @@ public class MemoryDescriptorServiceImpl implements MemoryDescriptorService {
     private MemoryDescriptorCacheService memoryDescriptorCacheService;
 
     @Override
-    public MemoryUsageDescriptor getByNodeId(Long nodeId) {
+    public MemoryDescriptor getByNodeId(Long nodeId) {
         return memoryDescriptorCacheService.getCache().get(nodeId);
     }
 
     @Override
-    public void save(Long nodeId, MemoryUsageDescriptor memoryUsageDescriptor) {
-        memoryDescriptorCacheService.getCache().put(nodeId, memoryUsageDescriptor);
+    public void save(Long nodeId, MemoryDescriptor memoryDescriptor) {
+        memoryDescriptorCacheService.getCache().put(nodeId, memoryDescriptor);
     }
 }

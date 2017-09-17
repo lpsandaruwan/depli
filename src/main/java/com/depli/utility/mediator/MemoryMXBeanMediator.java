@@ -7,7 +7,7 @@ import java.lang.management.MemoryMXBean;
  * Memory MXBean Mediator
  * <p>
  * Converts/mediates data observed from MemoryUsageMXBeans for storing data in
- * MemoryUsageDescriptor objects.
+ * MemoryDescriptor objects.
  *
  * @author lpsandaruwan
  * @since 9/16/17
@@ -17,7 +17,7 @@ public interface MemoryMXBeanMediator {
 
     /**
      * Mediates consumed dynamic data from {@link ManagementFactory#getMemoryMXBean} to
-     * MemoryUsageDescriptor object which represents the JMX node Id.
+     * MemoryDescriptor object which represents the JMX node Id.
      *
      * @param nodeId       node Id of the JMX remote connection
      * @param memoryMXBean memory management bean for appropriate nodeId
