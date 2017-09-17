@@ -1,6 +1,6 @@
 package com.depli.service.store.descriptor.impl;
 
-import com.depli.service.store.cache.PlatformResourcesDescriptorCacheService;
+import com.depli.service.store.cache.descriptor.PlatformResourcesDescriptorCacheService;
 import com.depli.service.store.descriptor.PlatformResourcesDescriptorService;
 import com.depli.store.cache.descriptor.PlatformResourcesDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;

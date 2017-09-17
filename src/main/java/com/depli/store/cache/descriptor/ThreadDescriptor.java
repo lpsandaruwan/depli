@@ -92,7 +92,7 @@ public class ThreadDescriptor {
     /**
      * Sets the current number of live threads including both daemon and non-daemon threads.
      *
-     * @param liveThreadCount  the current number of live threads
+     * @param liveThreadCount the current number of live threads
      */
     public void setLiveThreadCount(int liveThreadCount) {
         this.liveThreadCount = liveThreadCount;

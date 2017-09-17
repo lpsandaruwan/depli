@@ -1,6 +1,5 @@
 package com.depli.utility.component.impl;
 
-import com.depli.store.cache.connector.NodeData;
 import com.depli.utility.component.DataRefresherComponent;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -35,7 +34,7 @@ public class DataRefresherComponentImpl implements DataRefresherComponent {
     public void iterateAndRefreshInstantNodeDataMap() throws InterruptedException {
         //noinspection InfiniteLoopStatement
         while (true) {
-            if(nodeDataMap.getNodeDataMap() == null) {
+            if (nodeDataMap.getNodeDataMap() == null) {
                 continue;
             }
             for (Map.Entry<Long, NodeData> nodeDataEntry : nodeDataMap.getNodeDataMap().entrySet()) {
@@ -53,7 +52,7 @@ public class DataRefresherComponentImpl implements DataRefresherComponent {
     public void iterateAndRefreshNodeDataMap() throws InterruptedException {
         //noinspection InfiniteLoopStatement
         while (true) {
-            if(nodeDataMap.getNodeDataMap().entrySet() == null) {
+            if (nodeDataMap.getNodeDataMap().entrySet() == null) {
                 continue;
             }
             for (Map.Entry<Long, NodeData> nodeDataEntry : nodeDataMap.getNodeDataMap().entrySet()) {

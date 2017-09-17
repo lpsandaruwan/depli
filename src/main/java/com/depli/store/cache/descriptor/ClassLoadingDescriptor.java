@@ -101,9 +101,9 @@ public class ClassLoadingDescriptor {
     /**
      * Sets the dynamic data fields.
      *
-     * @param loadedClassCount the number of currently loaded classes
+     * @param loadedClassCount      the number of currently loaded classes
      * @param totalLoadedClassCount the total number of classes loaded
-     * @param unloadedClassCount the total number of unloaded classes
+     * @param unloadedClassCount    the total number of unloaded classes
      */
     public void setDynamicData(int loadedClassCount, long totalLoadedClassCount, long unloadedClassCount) {
         this.loadedClassCount = loadedClassCount;

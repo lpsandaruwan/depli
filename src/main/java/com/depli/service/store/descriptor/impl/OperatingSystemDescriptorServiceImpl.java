@@ -1,6 +1,6 @@
 package com.depli.service.store.descriptor.impl;
 
-import com.depli.service.store.cache.OperatingSystemDescriptorCacheService;
+import com.depli.service.store.cache.descriptor.OperatingSystemDescriptorCacheService;
 import com.depli.service.store.descriptor.OperatingSystemDescriptorService;
 import com.depli.store.cache.descriptor.OperatingSystemDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;

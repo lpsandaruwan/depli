@@ -1,9 +1,8 @@
 package com.depli.utility.component.impl;
 
-import com.depli.store.cache.connector.NodeData;
-import com.depli.service.store.cache.ClassLoadingDescriptorCacheService;
-import com.depli.store.persistent.entity.JMXNode;
+import com.depli.service.store.cache.descriptor.ClassLoadingDescriptorCacheService;
 import com.depli.service.store.persistent.JMXNodeService;
+import com.depli.store.persistent.entity.JMXNode;
 import com.depli.utility.component.DataInitializerComponent;
 import com.depli.utility.observer.JMXConnectionObserver;
 import org.springframework.beans.factory.annotation.Autowired;

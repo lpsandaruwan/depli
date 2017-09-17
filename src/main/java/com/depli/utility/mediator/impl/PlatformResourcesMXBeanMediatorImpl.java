@@ -20,6 +20,26 @@ public class PlatformResourcesMXBeanMediatorImpl implements PlatformResourcesMXB
     @Autowired
     private PlatformResourcesDescriptorService platformResourcesDescriptorService;
 
+    /**
+     * Convert average value to a percentage.
+     */
+    private static float toFloat(double value) {
+        if (value == -1) {
+            return -1;
+        }
+        return Math.round(value * 1000f) / 10f;
+    }
+
+    /**
+     * Converts bytes value to Mega bytes.
+     */
+    private static float toFloat(long value) {
+        if (value == -1) {
+            return -1;
+        }
+        return Math.round((value / (1024f * 1024f)) * 10f) / 10f;
+    }
+
     @Async
     @Override
     public void mediateDynamicData(Long nodeId, OperatingSystemMXBean platformResourcesMXBean) {
@@ -37,25 +57,5 @@ public class PlatformResourcesMXBeanMediatorImpl implements PlatformResourcesMXB
                 toFloat(platformResourcesMXBean.getTotalPhysicalMemorySize()),
                 toFloat(platformResourcesMXBean.getTotalSwapSpaceSize())
         );
-    }
-
-    /**
-     * Convert average value to a percentage.
-     */
-    private static float toFloat(double value) {
-        if(value == -1) {
-            return -1;
-        }
-        return Math.round(value * 1000f) / 10f;
-    }
-
-    /**
-     * Converts bytes value to Mega bytes.
-     */
-    private static float toFloat(long value) {
-        if(value == -1) {
-            return -1;
-        }
-        return Math.round((value / (1024f * 1024f)) * 10f) / 10f;
     }
 }

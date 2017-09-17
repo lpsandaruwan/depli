@@ -1,9 +1,6 @@
 package com.depli.store.cache.descriptor;
 
 import java.lang.management.ManagementFactory;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 
 /**
@@ -298,10 +295,11 @@ public class RuntimeDescriptor {
 
     /**
      * Sets class paths, inputs arguments, etc.
+     *
      * @param bootstrapClassPath the boot class path
-     * @param systemClassPath Java system class paths as a list
-     * @param inputArguments input arguments to the application main method as a list
-     * @param javaLibraryPath java libraries path as a list
+     * @param systemClassPath    Java system class paths as a list
+     * @param inputArguments     input arguments to the application main method as a list
+     * @param javaLibraryPath    java libraries path as a list
      */
     public void setPathInfoData(
             String[] bootstrapClassPath,
@@ -318,12 +316,12 @@ public class RuntimeDescriptor {
     /**
      * Sets Java virtual machine specific metadata.
      *
-     * @param jvmVersion the Java virtual machine implementation version
-     * @param jvmName the Java virtual machine name
-     * @param jvmStartTime start time of the Java virtual machine
-     * @param jvmVendor the Java virtual machine implementation vendor
+     * @param jvmVersion                 the Java virtual machine implementation version
+     * @param jvmName                    the Java virtual machine name
+     * @param jvmStartTime               start time of the Java virtual machine
+     * @param jvmVendor                  the Java virtual machine implementation vendor
      * @param managementInterfaceVersion the Java virtual machine specification version
-     * @param runningJvmName the name representing the running Java virtual machine
+     * @param runningJvmName             the name representing the running Java virtual machine
      */
     public void setJvmMetadata(
             String managementInterfaceVersion,

@@ -1,6 +1,6 @@
 package com.depli.service.store.descriptor.impl;
 
-import com.depli.service.store.cache.ThreadDescriptorCacheService;
+import com.depli.service.store.cache.descriptor.ThreadDescriptorCacheService;
 import com.depli.service.store.descriptor.ThreadDescriptorService;
 import com.depli.store.cache.descriptor.ThreadDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;

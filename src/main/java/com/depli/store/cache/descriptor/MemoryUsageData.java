@@ -5,7 +5,7 @@ import java.lang.management.MemoryUsage;
 
 /**
  * Memory Usage Data
- *
+ * <p>
  * Representation of {@link ManagementFactory#getMemoryMXBean#MemoryUsage} class data in mega bytes.
  *
  * @author Lahiru Pathirage
@@ -24,6 +24,14 @@ public class MemoryUsageData {
         this.used = -1;
         this.committed = -1;
         this.max = -1;
+    }
+
+    private static float toFloat(long value) {
+        if (value == -1) {
+            return value;
+        }
+
+        return Math.round((value / (1024f * 1024f)) * 10f) / 10f;
     }
 
     public float getCommitted() {
@@ -63,13 +71,5 @@ public class MemoryUsageData {
         this.used = toFloat(memoryUsage.getUsed());
         this.committed = toFloat(memoryUsage.getCommitted());
         this.max = toFloat(memoryUsage.getMax());
-    }
-
-    private static float toFloat(long value) {
-        if(value == -1) {
-            return value;
-        }
-
-        return Math.round((value / (1024f * 1024f)) * 10f) / 10f;
     }
 }

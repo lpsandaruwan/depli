@@ -1,6 +1,5 @@
 package com.depli;
 
-import com.depli.store.cache.connector.NodeDataMap;
 import org.infinispan.spring.provider.SpringEmbeddedCacheManagerFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,18 +14,16 @@ import java.util.concurrent.Executor;
 @EnableAsync
 public class DepliApplication extends AsyncConfigurerSupport {
 
-    @Bean
-    public SpringEmbeddedCacheManagerFactoryBean springCache() {
-        return new SpringEmbeddedCacheManagerFactoryBean();
-    }
-
-    public static NodeDataMap nodeDataMap = new NodeDataMap();
-
     public static boolean initializingFlag = false;
     public static boolean rebootTrigger = true;
 
     public static void main(String[] args) {
         SpringApplication.run(DepliApplication.class, args);
+    }
+
+    @Bean
+    public SpringEmbeddedCacheManagerFactoryBean springCache() {
+        return new SpringEmbeddedCacheManagerFactoryBean();
     }
 
     @Override

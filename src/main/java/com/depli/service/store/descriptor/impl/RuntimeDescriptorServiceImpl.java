@@ -1,6 +1,6 @@
 package com.depli.service.store.descriptor.impl;
 
-import com.depli.service.store.cache.RuntimeDescriptorCacheService;
+import com.depli.service.store.cache.descriptor.RuntimeDescriptorCacheService;
 import com.depli.service.store.descriptor.RuntimeDescriptorService;
 import com.depli.store.cache.descriptor.RuntimeDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;

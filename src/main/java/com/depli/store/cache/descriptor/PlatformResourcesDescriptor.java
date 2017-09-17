@@ -162,11 +162,11 @@ public class PlatformResourcesDescriptor {
      * Sets variable data fields over time.
      *
      * @param freePhysicalMemory free amount of physical memory
-     * @param freeSwapSpace free swap memory amount
-     * @param hostCpuUsage host CPU utilization percentage
-     * @param jvmCpuUsage CPU usage percentage of java virtual machine
+     * @param freeSwapSpace      free swap memory amount
+     * @param hostCpuUsage       host CPU utilization percentage
+     * @param jvmCpuUsage        CPU usage percentage of java virtual machine
      */
-    public void setDynamicData (float freePhysicalMemory, float freeSwapSpace, float hostCpuUsage, float jvmCpuUsage) {
+    public void setDynamicData(float freePhysicalMemory, float freeSwapSpace, float hostCpuUsage, float jvmCpuUsage) {
         this.freePhysicalMemory = freePhysicalMemory;
         this.freeSwapSpace = freeSwapSpace;
         this.hostCpuUsage = hostCpuUsage;
@@ -177,7 +177,7 @@ public class PlatformResourcesDescriptor {
      * Sets static data fields.
      *
      * @param totalPhysicalMemory total amount of physical memory
-     * @param totalSwapSpace total swap memory amount
+     * @param totalSwapSpace      total swap memory amount
      */
     public void setStaticData(float totalPhysicalMemory, float totalSwapSpace) {
         this.totalPhysicalMemory = totalPhysicalMemory;

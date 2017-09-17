@@ -1,6 +1,6 @@
 package com.depli.service.store.descriptor.impl;
 
-import com.depli.service.store.cache.ClassLoadingDescriptorCacheService;
+import com.depli.service.store.cache.descriptor.ClassLoadingDescriptorCacheService;
 import com.depli.service.store.descriptor.ClassLoadingDescriptorService;
 import com.depli.store.cache.descriptor.ClassLoadingDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
