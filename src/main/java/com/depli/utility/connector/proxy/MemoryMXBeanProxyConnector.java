@@ -1,8 +1,8 @@
 package com.depli.utility.connector.proxy;
 
-import javax.management.MBeanServerConnection;
 import java.io.IOException;
 import java.lang.management.MemoryMXBean;
+import javax.management.MBeanServerConnection;
 
 /**
  * Memory MXBean proxy connector implementation
@@ -15,11 +15,11 @@ import java.lang.management.MemoryMXBean;
 
 public interface MemoryMXBeanProxyConnector {
 
-    /**
-     * Returns memory management extension bean for appropriate management bean server connection.
-     *
-     * @param serverConnection management bean server connection of appropriate java virtual machine
-     * @return memory management extension bean
-     */
-    public MemoryMXBean getConnection(MBeanServerConnection serverConnection) throws IOException;
+  /**
+   * Returns memory management extension bean for appropriate management bean server connection.
+   *
+   * @param serverConnection management bean server connection of appropriate java virtual machine
+   * @return memory management extension bean
+   */
+  public MemoryMXBean getConnection(MBeanServerConnection serverConnection) throws IOException;
 }

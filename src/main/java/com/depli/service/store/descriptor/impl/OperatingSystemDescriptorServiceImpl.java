@@ -16,16 +16,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class OperatingSystemDescriptorServiceImpl implements OperatingSystemDescriptorService {
 
-    @Autowired
-    private OperatingSystemDescriptorCacheService operatingSystemDescriptorCacheService;
+  @Autowired
+  private OperatingSystemDescriptorCacheService operatingSystemDescriptorCacheService;
 
-    @Override
-    public OperatingSystemDescriptor getByNodeId(Long nodeId) {
-        return operatingSystemDescriptorCacheService.getCache().get(nodeId);
-    }
+  @Override
+  public OperatingSystemDescriptor getByNodeId(Long nodeId) {
+    return operatingSystemDescriptorCacheService.getCache().get(nodeId);
+  }
 
-    @Override
-    public void save(Long nodeId, OperatingSystemDescriptor operatingSystemDescriptor) {
-        operatingSystemDescriptorCacheService.getCache().put(nodeId, operatingSystemDescriptor);
-    }
+  @Override
+  public void save(Long nodeId, OperatingSystemDescriptor operatingSystemDescriptor) {
+    operatingSystemDescriptorCacheService.getCache().put(nodeId, operatingSystemDescriptor);
+  }
 }

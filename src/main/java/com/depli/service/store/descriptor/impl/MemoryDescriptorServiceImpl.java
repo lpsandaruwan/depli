@@ -16,16 +16,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemoryDescriptorServiceImpl implements MemoryDescriptorService {
 
-    @Autowired
-    private MemoryDescriptorCacheService memoryDescriptorCacheService;
+  @Autowired
+  private MemoryDescriptorCacheService memoryDescriptorCacheService;
 
-    @Override
-    public MemoryDescriptor getByNodeId(Long nodeId) {
-        return memoryDescriptorCacheService.getCache().get(nodeId);
-    }
+  @Override
+  public MemoryDescriptor getByNodeId(Long nodeId) {
+    return memoryDescriptorCacheService.getCache().get(nodeId);
+  }
 
-    @Override
-    public void save(Long nodeId, MemoryDescriptor memoryDescriptor) {
-        memoryDescriptorCacheService.getCache().put(nodeId, memoryDescriptor);
-    }
+  @Override
+  public void save(Long nodeId, MemoryDescriptor memoryDescriptor) {
+    memoryDescriptorCacheService.getCache().put(nodeId, memoryDescriptor);
+  }
 }

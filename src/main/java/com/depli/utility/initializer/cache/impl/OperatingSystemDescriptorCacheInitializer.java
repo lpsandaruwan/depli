@@ -5,10 +5,9 @@ import com.depli.service.store.descriptor.OperatingSystemDescriptorService;
 import com.depli.store.cache.descriptor.OperatingSystemDescriptor;
 import com.depli.utility.initializer.cache.CacheInitializer;
 import com.depli.utility.mediator.OperatingSystemMXBeanMediator;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 /**
  * Operating System Descriptor Cache Initializer implementation
@@ -22,23 +21,23 @@ import java.io.IOException;
 @Component
 public class OperatingSystemDescriptorCacheInitializer implements CacheInitializer {
 
-    @Autowired
-    private OperatingSystemDescriptorService operatingSystemDescriptorService;
+  @Autowired
+  private OperatingSystemDescriptorService operatingSystemDescriptorService;
 
-    @Autowired
-    private OperatingSystemMXBeanMediator operatingSystemMXBeanMediator;
+  @Autowired
+  private OperatingSystemMXBeanMediator operatingSystemMXBeanMediator;
 
-    @Autowired
-    private ConnectionTreeService connectionTreeService;
+  @Autowired
+  private ConnectionTreeService connectionTreeService;
 
-    @Override
-    public void initialize(Long nodeId) throws IOException {
-        operatingSystemDescriptorService.save(nodeId, new OperatingSystemDescriptor());
+  @Override
+  public void initialize(Long nodeId) throws IOException {
+    operatingSystemDescriptorService.save(nodeId, new OperatingSystemDescriptor());
 
         /* Mediate static data from OperatingSystemMXBean to operating system descriptor in cache */
-        operatingSystemMXBeanMediator.mediateStaticData(
-                nodeId,
-                connectionTreeService.getByNodeId(nodeId).getOperatingSystemMXBean()
-        );
-    }
+    operatingSystemMXBeanMediator.mediateStaticData(
+        nodeId,
+        connectionTreeService.getByNodeId(nodeId).getOperatingSystemMXBean()
+    );
+  }
 }

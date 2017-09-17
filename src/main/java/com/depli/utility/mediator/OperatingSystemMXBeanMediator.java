@@ -15,12 +15,12 @@ import java.lang.management.OperatingSystemMXBean;
 
 public interface OperatingSystemMXBeanMediator {
 
-    /**
-     * Mediates consumed static data from {@link ManagementFactory#getOperatingSystemMXBean} to
-     * OperatingSystemDescriptor object which represents the JMX node Id.
-     *
-     * @param nodeId                node ID of the JMX remote connection
-     * @param operatingSystemMXBean operating system management bean for appropriate nodeId
-     */
-    public void mediateStaticData(Long nodeId, OperatingSystemMXBean operatingSystemMXBean);
+  /**
+   * Mediates consumed static data from {@link ManagementFactory#getOperatingSystemMXBean} to
+   * OperatingSystemDescriptor object which represents the JMX node Id.
+   *
+   * @param nodeId node ID of the JMX remote connection
+   * @param operatingSystemMXBean operating system management bean for appropriate nodeId
+   */
+  public void mediateStaticData(Long nodeId, OperatingSystemMXBean operatingSystemMXBean);
 }

@@ -14,62 +14,62 @@ import java.lang.management.MemoryUsage;
 
 public class MemoryUsageData {
 
-    private float init;
-    private float used;
-    private float committed;
-    private float max;
+  private float init;
+  private float used;
+  private float committed;
+  private float max;
 
-    public MemoryUsageData() {
-        this.init = -1;
-        this.used = -1;
-        this.committed = -1;
-        this.max = -1;
+  public MemoryUsageData() {
+    this.init = -1;
+    this.used = -1;
+    this.committed = -1;
+    this.max = -1;
+  }
+
+  private static float toFloat(long value) {
+    if (value == -1) {
+      return value;
     }
 
-    private static float toFloat(long value) {
-        if (value == -1) {
-            return value;
-        }
+    return Math.round((value / (1024f * 1024f)) * 10f) / 10f;
+  }
 
-        return Math.round((value / (1024f * 1024f)) * 10f) / 10f;
-    }
+  public float getCommitted() {
+    return committed;
+  }
 
-    public float getCommitted() {
-        return committed;
-    }
+  public void setCommitted(float committed) {
+    this.committed = committed;
+  }
 
-    public void setCommitted(float committed) {
-        this.committed = committed;
-    }
+  public float getInit() {
+    return init;
+  }
 
-    public float getInit() {
-        return init;
-    }
+  public void setInit(float init) {
+    this.init = init;
+  }
 
-    public void setInit(float init) {
-        this.init = init;
-    }
+  public float getMax() {
+    return max;
+  }
 
-    public float getMax() {
-        return max;
-    }
+  public void setMax(float max) {
+    this.max = max;
+  }
 
-    public void setMax(float max) {
-        this.max = max;
-    }
+  public float getUsed() {
+    return used;
+  }
 
-    public float getUsed() {
-        return used;
-    }
+  public void setUsed(float used) {
+    this.used = used;
+  }
 
-    public void setUsed(float used) {
-        this.used = used;
-    }
-
-    public void setDynamicData(MemoryUsage memoryUsage) {
-        this.init = toFloat(memoryUsage.getInit());
-        this.used = toFloat(memoryUsage.getUsed());
-        this.committed = toFloat(memoryUsage.getCommitted());
-        this.max = toFloat(memoryUsage.getMax());
-    }
+  public void setDynamicData(MemoryUsage memoryUsage) {
+    this.init = toFloat(memoryUsage.getInit());
+    this.used = toFloat(memoryUsage.getUsed());
+    this.committed = toFloat(memoryUsage.getCommitted());
+    this.max = toFloat(memoryUsage.getMax());
+  }
 }

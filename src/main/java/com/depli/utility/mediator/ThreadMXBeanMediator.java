@@ -15,12 +15,12 @@ import java.lang.management.ThreadMXBean;
 
 public interface ThreadMXBeanMediator {
 
-    /**
-     * Mediates consumed dynamic data from {@link ManagementFactory#getThreadMXBean} to
-     * ThreadDescriptor object which represents the JMX node Id.
-     *
-     * @param nodeId       node Id of the JMX remote connection
-     * @param threadMXBean thread management bean for appropriate nodeId
-     */
-    public void mediateDynamicData(Long nodeId, ThreadMXBean threadMXBean);
+  /**
+   * Mediates consumed dynamic data from {@link ManagementFactory#getThreadMXBean} to
+   * ThreadDescriptor object which represents the JMX node Id.
+   *
+   * @param nodeId node Id of the JMX remote connection
+   * @param threadMXBean thread management bean for appropriate nodeId
+   */
+  public void mediateDynamicData(Long nodeId, ThreadMXBean threadMXBean);
 }

@@ -5,10 +5,9 @@ import com.depli.service.store.descriptor.RuntimeDescriptorService;
 import com.depli.store.cache.descriptor.RuntimeDescriptor;
 import com.depli.utility.initializer.cache.CacheInitializer;
 import com.depli.utility.mediator.RuntimeMXBeanMediator;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 /**
  * Runtime Descriptor Cache Initializer implementation
@@ -22,23 +21,23 @@ import java.io.IOException;
 @Component
 public class RuntimeDescriptorCacheInitializer implements CacheInitializer {
 
-    @Autowired
-    private RuntimeDescriptorService runtimeDescriptorService;
+  @Autowired
+  private RuntimeDescriptorService runtimeDescriptorService;
 
-    @Autowired
-    private RuntimeMXBeanMediator runtimeMXBeanMediator;
+  @Autowired
+  private RuntimeMXBeanMediator runtimeMXBeanMediator;
 
-    @Autowired
-    private ConnectionTreeService connectionTreeService;
+  @Autowired
+  private ConnectionTreeService connectionTreeService;
 
-    @Override
-    public void initialize(Long nodeId) throws IOException {
-        runtimeDescriptorService.save(nodeId, new RuntimeDescriptor());
+  @Override
+  public void initialize(Long nodeId) throws IOException {
+    runtimeDescriptorService.save(nodeId, new RuntimeDescriptor());
 
         /* Mediate static data from RuntimeMXBean to runtime descriptor in cache */
-        runtimeMXBeanMediator.mediateStaticData(
-                nodeId,
-                connectionTreeService.getByNodeId(nodeId).getRuntimeMXBean()
-        );
-    }
+    runtimeMXBeanMediator.mediateStaticData(
+        nodeId,
+        connectionTreeService.getByNodeId(nodeId).getRuntimeMXBean()
+    );
+  }
 }

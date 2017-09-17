@@ -15,12 +15,12 @@ import java.lang.management.MemoryMXBean;
 
 public interface MemoryMXBeanMediator {
 
-    /**
-     * Mediates consumed dynamic data from {@link ManagementFactory#getMemoryMXBean} to
-     * MemoryDescriptor object which represents the JMX node Id.
-     *
-     * @param nodeId       node Id of the JMX remote connection
-     * @param memoryMXBean memory management bean for appropriate nodeId
-     */
-    public void mediateDynamicData(Long nodeId, MemoryMXBean memoryMXBean);
+  /**
+   * Mediates consumed dynamic data from {@link ManagementFactory#getMemoryMXBean} to
+   * MemoryDescriptor object which represents the JMX node Id.
+   *
+   * @param nodeId node Id of the JMX remote connection
+   * @param memoryMXBean memory management bean for appropriate nodeId
+   */
+  public void mediateDynamicData(Long nodeId, MemoryMXBean memoryMXBean);
 }

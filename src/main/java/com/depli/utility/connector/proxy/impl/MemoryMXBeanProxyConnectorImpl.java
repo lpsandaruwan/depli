@@ -1,12 +1,11 @@
 package com.depli.utility.connector.proxy.impl;
 
 import com.depli.utility.connector.proxy.MemoryMXBeanProxyConnector;
-import org.springframework.stereotype.Component;
-
-import javax.management.MBeanServerConnection;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
+import javax.management.MBeanServerConnection;
+import org.springframework.stereotype.Component;
 
 /**
  * Memory MXBean proxy connector implementation
@@ -20,12 +19,12 @@ import java.lang.management.MemoryMXBean;
 @Component
 public class MemoryMXBeanProxyConnectorImpl implements MemoryMXBeanProxyConnector {
 
-    @Override
-    public MemoryMXBean getConnection(MBeanServerConnection serverConnection) throws IOException {
-        return ManagementFactory.newPlatformMXBeanProxy(
-                serverConnection,
-                ManagementFactory.MEMORY_MXBEAN_NAME,
-                MemoryMXBean.class
-        );
-    }
+  @Override
+  public MemoryMXBean getConnection(MBeanServerConnection serverConnection) throws IOException {
+    return ManagementFactory.newPlatformMXBeanProxy(
+        serverConnection,
+        ManagementFactory.MEMORY_MXBEAN_NAME,
+        MemoryMXBean.class
+    );
+  }
 }

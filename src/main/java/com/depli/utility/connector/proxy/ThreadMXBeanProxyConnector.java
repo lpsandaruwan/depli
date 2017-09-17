@@ -1,8 +1,8 @@
 package com.depli.utility.connector.proxy;
 
-import javax.management.MBeanServerConnection;
 import java.io.IOException;
 import java.lang.management.ThreadMXBean;
+import javax.management.MBeanServerConnection;
 
 /**
  * Thread MXBean proxy connector
@@ -15,11 +15,12 @@ import java.lang.management.ThreadMXBean;
 
 public interface ThreadMXBeanProxyConnector {
 
-    /**
-     * Returns thread management extension bean for appropriate management bean server connection.
-     *
-     * @param serverConnection management bean server connection for appropriate remote java virtual machine
-     * @return thread management extension bean
-     */
-    public ThreadMXBean getConnection(MBeanServerConnection serverConnection) throws IOException;
+  /**
+   * Returns thread management extension bean for appropriate management bean server connection.
+   *
+   * @param serverConnection management bean server connection for appropriate remote java virtual
+   * machine
+   * @return thread management extension bean
+   */
+  public ThreadMXBean getConnection(MBeanServerConnection serverConnection) throws IOException;
 }

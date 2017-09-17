@@ -3,10 +3,9 @@ package com.depli.utility.initializer.cache.impl;
 import com.depli.service.store.descriptor.MemoryDescriptorService;
 import com.depli.store.cache.descriptor.MemoryDescriptor;
 import com.depli.utility.initializer.cache.CacheInitializer;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 /**
  * Memory Descriptor Cache Initializer implementation
@@ -20,11 +19,11 @@ import java.io.IOException;
 @Component
 public class MemoryDescriptorCacheInitializer implements CacheInitializer {
 
-    @Autowired
-    private MemoryDescriptorService memoryDescriptorService;
+  @Autowired
+  private MemoryDescriptorService memoryDescriptorService;
 
-    @Override
-    public void initialize(Long nodeId) throws IOException {
-        memoryDescriptorService.save(nodeId, new MemoryDescriptor());
-    }
+  @Override
+  public void initialize(Long nodeId) throws IOException {
+    memoryDescriptorService.save(nodeId, new MemoryDescriptor());
+  }
 }

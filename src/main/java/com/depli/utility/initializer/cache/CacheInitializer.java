@@ -13,10 +13,10 @@ import java.io.IOException;
 
 public interface CacheInitializer {
 
-    /**
-     * Initializes elements and store them in appropriate cache store for given JMXNode entity Id.
-     *
-     * @param nodeId nodeId of JMXNode entity
-     */
-    public void initialize(Long nodeId) throws IOException;
+  /**
+   * Initializes elements and store them in appropriate cache store for given JMXNode entity Id.
+   *
+   * @param nodeId nodeId of JMXNode entity
+   */
+  public void initialize(Long nodeId) throws IOException;
 }

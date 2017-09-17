@@ -1,91 +1,91 @@
 <md-dialog aria-label="nodeData" md-theme="customTheme">
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>JMX NODE DATA</h2>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>JMX NODE DATA</h2>
 
-            <span flex></span>
+      <span flex></span>
 
-            <md-button class="md-icon-button" ng-click="cancel()">
-                <md-icon aria-label="Close dialog" class="close-dialog-icon">close</md-icon>
-            </md-button>
-        </div>
-    </md-toolbar>
+      <md-button class="md-icon-button" ng-click="cancel()">
+        <md-icon aria-label="Close dialog" class="close-dialog-icon">close</md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
 
-    <md-content class="padding-20">
-        <form name="nodeData">
-            <md-dialog-content>
-                <div>{{errorResponse.error}}</div>
+  <md-content class="padding-20">
+    <form name="nodeData">
+      <md-dialog-content>
+        <div>{{errorResponse.error}}</div>
 
-                <md-input-container class="md-block">
-                    <label>Name</label>
+        <md-input-container class="md-block">
+          <label>Name</label>
 
-                    <input required="" name="name" ng-model="jmxNode.nodeName">
+          <input required="" name="name" ng-model="jmxNode.nodeName">
 
-                    <div ng-messages="nodeData.name.$error">
-                        <div ng-message="required">This field is required.</div>
-                    </div>
-                </md-input-container>
+          <div ng-messages="nodeData.name.$error">
+            <div ng-message="required">This field is required.</div>
+          </div>
+        </md-input-container>
 
-                <md-input-container>
-                    <label>Hostname</label>
+        <md-input-container>
+          <label>Hostname</label>
 
-                    <input required="" name="hostname" ng-model="jmxNode.hostname">
+          <input required="" name="hostname" ng-model="jmxNode.hostname">
 
-                    <div ng-messages="nodeData.name.$error">
-                        <div ng-message="required">This field is required.</div>
-                    </div>
-                </md-input-container>
+          <div ng-messages="nodeData.name.$error">
+            <div ng-message="required">This field is required.</div>
+          </div>
+        </md-input-container>
 
-                <md-input-container>
-                    <label>Port</label>
+        <md-input-container>
+          <label>Port</label>
 
-                    <input required="" name="port" ng-model="jmxNode.port">
+          <input required="" name="port" ng-model="jmxNode.port">
 
-                    <div ng-messages="nodeData.name.$error">
-                        <div ng-message="required">This field is required.</div>
-                    </div>
-                </md-input-container>
+          <div ng-messages="nodeData.name.$error">
+            <div ng-message="required">This field is required.</div>
+          </div>
+        </md-input-container>
 
-                <md-switch ng-model="jmxNode.authRequired" aria-label="auth">
-                    Authentication:
+        <md-switch ng-model="jmxNode.authRequired" aria-label="auth">
+          Authentication:
 
-                    <span ng-if="!jmxNode.authRequired">Off</span>
+          <span ng-if="!jmxNode.authRequired">Off</span>
 
-                    <span ng-if="jmxNode.authRequired">On</span>
-                </md-switch>
+          <span ng-if="jmxNode.authRequired">On</span>
+        </md-switch>
 
-                <md-switch ng-model="jmxNode.sslRequired" aria-label="ssl">
-                    SSL:
+        <md-switch ng-model="jmxNode.sslRequired" aria-label="ssl">
+          SSL:
 
-                    <span ng-if="!jmxNode.sslRequired">Off</span>
+          <span ng-if="!jmxNode.sslRequired">Off</span>
 
-                    <span ng-if="jmxNode.sslRequired">On</span>
-                </md-switch>
+          <span ng-if="jmxNode.sslRequired">On</span>
+        </md-switch>
 
-                <md-input-container ng-if="jmxNode.authRequired">
-                    <label>Username</label>
+        <md-input-container ng-if="jmxNode.authRequired">
+          <label>Username</label>
 
-                    <input required="" name="username" ng-model="jmxNode.username">
+          <input required="" name="username" ng-model="jmxNode.username">
 
-                    <div ng-messages="nodeData.username.$error">
-                        <div ng-message="required">This field is required.</div>
-                    </div>
-                </md-input-container>
+          <div ng-messages="nodeData.username.$error">
+            <div ng-message="required">This field is required.</div>
+          </div>
+        </md-input-container>
 
-                <md-input-container ng-if="jmxNode.authRequired">
-                    <label>Password</label>
+        <md-input-container ng-if="jmxNode.authRequired">
+          <label>Password</label>
 
-                    <input required="" name="password" ng-model="jmxNode.password">
+          <input required="" name="password" ng-model="jmxNode.password">
 
-                    <div ng-messages="nodeData.password.$error">
-                        <div ng-message="required">This field is required.</div>
-                    </div>
-                </md-input-container>
-            </md-dialog-content>
+          <div ng-messages="nodeData.password.$error">
+            <div ng-message="required">This field is required.</div>
+          </div>
+        </md-input-container>
+      </md-dialog-content>
 
-            <md-dialog-actions>
-                <md-button ng-click="saveData()" ng-disabled="nodeData.$invalid">SAVE</md-button>
-            </md-dialog-actions>
-        </form>
-    </md-content>
+      <md-dialog-actions>
+        <md-button ng-click="saveData()" ng-disabled="nodeData.$invalid">SAVE</md-button>
+      </md-dialog-actions>
+    </form>
+  </md-content>
 </md-dialog>

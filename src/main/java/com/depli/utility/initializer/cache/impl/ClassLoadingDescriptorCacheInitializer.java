@@ -3,10 +3,9 @@ package com.depli.utility.initializer.cache.impl;
 import com.depli.service.store.descriptor.ClassLoadingDescriptorService;
 import com.depli.store.cache.descriptor.ClassLoadingDescriptor;
 import com.depli.utility.initializer.cache.CacheInitializer;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 /**
  * Class Loading Descriptor Cache Initializer implementation
@@ -20,11 +19,11 @@ import java.io.IOException;
 @Component
 public class ClassLoadingDescriptorCacheInitializer implements CacheInitializer {
 
-    @Autowired
-    private ClassLoadingDescriptorService classLoadingDescriptorService;
+  @Autowired
+  private ClassLoadingDescriptorService classLoadingDescriptorService;
 
-    @Override
-    public void initialize(Long nodeId) throws IOException {
-        classLoadingDescriptorService.save(nodeId, new ClassLoadingDescriptor());
-    }
+  @Override
+  public void initialize(Long nodeId) throws IOException {
+    classLoadingDescriptorService.save(nodeId, new ClassLoadingDescriptor());
+  }
 }

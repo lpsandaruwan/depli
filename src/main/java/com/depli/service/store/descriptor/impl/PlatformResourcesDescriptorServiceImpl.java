@@ -16,16 +16,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class PlatformResourcesDescriptorServiceImpl implements PlatformResourcesDescriptorService {
 
-    @Autowired
-    private PlatformResourcesDescriptorCacheService platformResourcesDescriptorCacheService;
+  @Autowired
+  private PlatformResourcesDescriptorCacheService platformResourcesDescriptorCacheService;
 
-    @Override
-    public PlatformResourcesDescriptor getByNodeId(Long nodeId) {
-        return platformResourcesDescriptorCacheService.getCache().get(nodeId);
-    }
+  @Override
+  public PlatformResourcesDescriptor getByNodeId(Long nodeId) {
+    return platformResourcesDescriptorCacheService.getCache().get(nodeId);
+  }
 
-    @Override
-    public void save(Long nodeId, PlatformResourcesDescriptor platformResourcesDescriptor) {
-        platformResourcesDescriptorCacheService.getCache().put(nodeId, platformResourcesDescriptor);
-    }
+  @Override
+  public void save(Long nodeId, PlatformResourcesDescriptor platformResourcesDescriptor) {
+    platformResourcesDescriptorCacheService.getCache().put(nodeId, platformResourcesDescriptor);
+  }
 }

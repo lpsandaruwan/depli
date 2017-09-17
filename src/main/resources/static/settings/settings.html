@@ -1,52 +1,52 @@
 <div ng-controller="settingsModule">
-    <div layout="row">
-        <div flex="10"></div>
+  <div layout="row">
+    <div flex="10"></div>
 
-        <md-card flex="80">
-            <div class="md-toolbar-tools">
-                <h2 class="flex md-truncate">ALL NODES</h2>
+    <md-card flex="80">
+      <div class="md-toolbar-tools">
+        <h2 class="flex md-truncate">ALL NODES</h2>
 
-                <div flex></div>
+        <div flex></div>
 
-                <md-button class="md-fab md-mini" ng-click="addNewNode($event)" md-theme="customTheme">
-                    <md-tooltip>Add New Node</md-tooltip>
-                    <md-icon>add</md-icon>
-                </md-button>
-            </div>
-            <br>
+        <md-button class="md-fab md-mini" ng-click="addNewNode($event)" md-theme="customTheme">
+          <md-tooltip>Add New Node</md-tooltip>
+          <md-icon>add</md-icon>
+        </md-button>
+      </div>
+      <br>
 
-            <div>
-                <div ng-if="isNullList" class="padding-20">
-                    <h4>
-                        There is no data available in the database, {{errorMsg}}
-                    </h4>
-                </div>
+      <div>
+        <div ng-if="isNullList" class="padding-20">
+          <h4>
+            There is no data available in the database, {{errorMsg}}
+          </h4>
+        </div>
 
-                <md-list flex>
-                    <div ng-repeat="jmxNode in jmxNodeList">
-                        <md-list-item>
-                            <div class="md-list-item-text">
-                                <h3>{{jmxNode.nodeName | uppercase}}</h3>
-                                <h4>{{jmxNode.hostname}}:{{jmxNode.port}}</h4>
-                                <p class="text-stat">SSL: {{jmxNode.sslRequired}}, Auth required:
-                                    {{jmxNode.authRequired}}</p>
-                            </div>
+        <md-list flex>
+          <div ng-repeat="jmxNode in jmxNodeList">
+            <md-list-item>
+              <div class="md-list-item-text">
+                <h3>{{jmxNode.nodeName | uppercase}}</h3>
+                <h4>{{jmxNode.hostname}}:{{jmxNode.port}}</h4>
+                <p class="text-stat">SSL: {{jmxNode.sslRequired}}, Auth required:
+                  {{jmxNode.authRequired}}</p>
+              </div>
 
-                            <div flex></div>
+              <div flex></div>
 
-                            <div>
-                                <md-button ng-click="editNewNode($event, jmxNode.nodeId)">EDIT</md-button>
+              <div>
+                <md-button ng-click="editNewNode($event, jmxNode.nodeId)">EDIT</md-button>
 
-                                <md-button ng-click="deleteNode($event, jmxNode.nodeId)">REMOVE</md-button>
-                            </div>
-                        </md-list-item>
+                <md-button ng-click="deleteNode($event, jmxNode.nodeId)">REMOVE</md-button>
+              </div>
+            </md-list-item>
 
-                        <md-divider layout-padding></md-divider>
-                    </div>
-                </md-list>
-            </div>
-        </md-card>
+            <md-divider layout-padding></md-divider>
+          </div>
+        </md-list>
+      </div>
+    </md-card>
 
-        <div flex="10"></div>
-    </div>
+    <div flex="10"></div>
+  </div>
 </div>

@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class TaskRunnerComponent implements CommandLineRunner {
 
-    @Autowired
-    private InitializerFactory initializerFactory;
+  @Autowired
+  private InitializerFactory initializerFactory;
 
-    @Override
-    public void run(String... strings) throws Exception {
-        initializerFactory.initialize();
-    }
+  @Override
+  public void run(String... strings) throws Exception {
+    initializerFactory.initialize();
+  }
 }

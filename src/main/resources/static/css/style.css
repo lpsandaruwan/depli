@@ -6,43 +6,43 @@
 
 /** Page layout **/
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    -webkit-user-select: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
 }
 
 *:after,
 *:before {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *:focus {
-    outline: 0 !important;
+  outline: 0 !important;
 }
 
 .body-content {
-    padding: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
 }
 
 .site-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .site-header {
-    flex: 0 0 auto;
+  flex: 0 0 auto;
 }
 
 .site-content {
-    overflow-y: auto;
-    padding-top: 15px;
+  overflow-y: auto;
+  padding-top: 15px;
 }
 
 .site-footer {
-    flex: 0 0 auto;
+  flex: 0 0 auto;
 }
 
 /* Material design styling */
@@ -62,145 +62,145 @@
 */
 
 md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
-    color: red !important;
-    background-color: red !important;
+  color: red !important;
+  background-color: red !important;
 }
 
 md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {
-    color: #6e6e6e !important;
+  color: #6e6e6e !important;
 }
 
 .md-button {
-    color: #212121 !important;
+  color: #212121 !important;
 }
 
 .md-button:hover {
-    color: red !important;
+  color: red !important;
 }
 
 md-input-container:not(.md-input-invalid).md-input-focused .md-input {
-    border-color: #464646;
+  border-color: #464646;
 }
 
 md-input-container:not(.md-input-invalid).md-input-focused label {
-    color: #3d3d3d;
+  color: #3d3d3d;
 }
 
 .gray {
-    background: #f5f5f5;
+  background: #f5f5f5;
 }
 
 /** navbar header **/
 .header-bar {
-    color: white;
-    background-color: #343434;
-    padding: 5px 5px 5px 5px;
+  color: white;
+  background-color: #343434;
+  padding: 5px 5px 5px 5px;
 }
 
 /** body styling **/
 body {
-    color: #525252;
+  color: #525252;
 }
 
 /** styling commons **/
 
 .color-main {
-    color: #212121;
+  color: #212121;
 }
 
 .color-submain {
-    color: #4e4e4e;
+  color: #4e4e4e;
 }
 
 .padding-20 {
-    padding: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
 }
 
 .padding-40 {
-    padding: 40px 40px 40px 40px;
+  padding: 40px 40px 40px 40px;
 }
 
 .padding-right-10 {
-    padding-right: 10px;
+  padding-right: 10px;
 }
 
 .padding-right-30 {
-    padding-right: 30px;
+  padding-right: 30px;
 }
 
 .padding-bottom-5 {
-    padding-bottom: 5px;
+  padding-bottom: 5px;
 }
 
 .text-stat {
-    font-size: 13px;
-    padding-bottom: 1px;
+  font-size: 13px;
+  padding-bottom: 1px;
 }
 
 h3 {
-    font-weight: 500;
-    padding-bottom: 8px;
+  font-weight: 500;
+  padding-bottom: 8px;
 }
 
 h4 {
-    font-weight: 500;
-    padding-bottom: 6px;
+  font-weight: 500;
+  padding-bottom: 6px;
 }
 
 h5 {
-    font-weight: 500;
-    padding-bottom: 4px;
+  font-weight: 500;
+  padding-bottom: 4px;
 }
 
 /* page animations */
 @keyframes fadeOut {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .ng-enter {
-    animation: fadeIn 0.5s both ease-in;
-    z-index: 8888;
+  animation: fadeIn 0.5s both ease-in;
+  z-index: 8888;
 }
 
 .ng-leave {
-    animation: fadeOut 0.01s both ease-in;
-    z-index: 9999;
+  animation: fadeOut 0.01s both ease-in;
+  z-index: 9999;
 }
 
 .page-dashboard.ng-enter {
-    animation: fadeIn 0.5s both ease-in;
+  animation: fadeIn 0.5s both ease-in;
 }
 
 .page-dashboard.ng-leave {
-    animation: fadeOut 0.01s both ease-in;
+  animation: fadeOut 0.01s both ease-in;
 }
 
 .page-instance.ng-enter {
-    animation: fadeIn 0.5s both ease-in;
+  animation: fadeIn 0.5s both ease-in;
 }
 
 .page-instance.ng-leave {
-    animation: fadeOut .01s both ease-in;
+  animation: fadeOut .01s both ease-in;
 }
 
 .page-settings.ng-enter {
-    animation: fadeIn 0.5s both ease-in;
+  animation: fadeIn 0.5s both ease-in;
 }
 
 .page-settings.ng-leave {
-    animation: fadeOut .01s both ease-in;
+  animation: fadeOut .01s both ease-in;
 }

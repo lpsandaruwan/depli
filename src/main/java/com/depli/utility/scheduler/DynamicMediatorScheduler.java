@@ -19,16 +19,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class DynamicMediatorScheduler {
 
-    @Autowired
-    private JMXNodeService jmxNodeService;
+  @Autowired
+  private JMXNodeService jmxNodeService;
 
-    @Autowired
-    private DynamicDataMediatorFactory dynamicDataMediatorFactory;
+  @Autowired
+  private DynamicDataMediatorFactory dynamicDataMediatorFactory;
 
-    @Scheduled(cron = "*/2 * * * * *")
-    public void run() {
-        for (JMXNode jmxNode: jmxNodeService.findAll()) {
-            dynamicDataMediatorFactory.mediate(jmxNode.getNodeId());
-        }
+  @Scheduled(cron = "*/2 * * * * *")
+  public void run() {
+    for (JMXNode jmxNode : jmxNodeService.findAll()) {
+      dynamicDataMediatorFactory.mediate(jmxNode.getNodeId());
     }
+  }
 }

@@ -1,134 +1,138 @@
 <div class="padding-20" ng-controller="homeViewModule">
-    <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
-                  md-row-height-gt-md="1:1" md-row-height="2:2"
-                  md-gutter="12px" md-gutter-gt-sm="8px">
+  <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+                md-row-height-gt-md="1:1" md-row-height="2:2"
+                md-gutter="12px" md-gutter-gt-sm="8px">
 
-        <md-grid-tile class="gray" ng-if="isNullList" md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
-            <h3>No node data available in the database</h3>
-        </md-grid-tile>
+    <md-grid-tile class="gray" ng-if="isNullList" md-rowspan="2" md-colspan="2" md-colspan-sm="1"
+                  md-colspan-xs="1">
+      <h3>No node data available in the database</h3>
+    </md-grid-tile>
 
-        <md-grid-tile class="gray" ng-repeat="jmxNode in jmxNodeList" md-rowspan="2" md-colspan="2" md-colspan-sm="1"
-                      md-colspan-xs="1">
-            <div ng-if="jmxNode.isInitialized" flex="100">
-                <div class="md-toolbar-tools">
-                    <h2 class="color-main flex md-truncate">{{jmxNode.nodeName}}</h2>
+    <md-grid-tile class="gray" ng-repeat="jmxNode in jmxNodeList" md-rowspan="2" md-colspan="2"
+                  md-colspan-sm="1"
+                  md-colspan-xs="1">
+      <div ng-if="jmxNode.isInitialized" flex="100">
+        <div class="md-toolbar-tools">
+          <h2 class="color-main flex md-truncate">{{jmxNode.nodeName}}</h2>
 
-                    <div layout="row">
-                        <md-button md-theme="customTheme" class="md-fab md-mini" ng-click="gotoInstanceView(jmxNode)">
-                            <md-icon>open_in_browser</md-icon>
-                        </md-button>
+          <div layout="row">
+            <md-button md-theme="customTheme" class="md-fab md-mini"
+                       ng-click="gotoInstanceView(jmxNode)">
+              <md-icon>open_in_browser</md-icon>
+            </md-button>
 
-                        <!--
-                        <md-button md-theme="customTheme" class="md-fab md-mini">
-                            <md-icon>settings</md-icon>
-                        </md-button>
-                        -->
-                    </div>
-                </div>
+            <!--
+            <md-button md-theme="customTheme" class="md-fab md-mini">
+                <md-icon>settings</md-icon>
+            </md-button>
+            -->
+          </div>
+        </div>
+
+        <div flex></div>
+
+        <div class="padding-20">
+          <div class="padding-20">
+            <canvas id="line" class="chart chart-line" chart-data="jmxNode.chartData"
+                    chart-labels="chartLabels" chart-series="chartSeries"
+                    chart-options="{animation: false}"
+                    chart-colors="jmxNode.chartColor">
+            </canvas>
+          </div>
+
+          <div class="text-stat" layout="row">
+            <div layout="column" flex="45">
+              <div layout="row">
+                <div>JVM on host CPU</div>
 
                 <div flex></div>
 
-                <div class="padding-20">
-                    <div class="padding-20">
-                        <canvas id="line" class="chart chart-line" chart-data="jmxNode.chartData"
-                                chart-labels="chartLabels" chart-series="chartSeries" chart-options="{animation: false}"
-                                chart-colors="jmxNode.chartColor">
-                        </canvas>
-                    </div>
+                <div>{{jmxNode.jvmCpuUsage}}%</div>
+              </div>
 
-                    <div class="text-stat" layout="row">
-                        <div layout="column" flex="45">
-                            <div layout="row">
-                                <div>JVM on host CPU</div>
+              <div layout="row">
+                <div>Host CPU</div>
 
-                                <div flex></div>
+                <div flex></div>
 
-                                <div>{{jmxNode.jvmCpuUsage}}%</div>
-                            </div>
+                <div>{{jmxNode.hostCpuUsage}}%</div>
+              </div>
 
-                            <div layout="row">
-                                <div>Host CPU</div>
+              <div layout="row">
+                <div>Loaded classes</div>
 
-                                <div flex></div>
+                <div flex></div>
 
-                                <div>{{jmxNode.hostCpuUsage}}%</div>
-                            </div>
+                <div>{{jmxNode.loadedClassCount}}</div>
+              </div>
 
-                            <div layout="row">
-                                <div>Loaded classes</div>
+              <div layout="row">
+                <div>Live threads</div>
 
-                                <div flex></div>
+                <div flex></div>
 
-                                <div>{{jmxNode.loadedClassCount}}</div>
-                            </div>
-
-                            <div layout="row">
-                                <div>Live threads</div>
-
-                                <div flex></div>
-
-                                <div>{{jmxNode.liveThreadCount}}</div>
-                            </div>
-                        </div>
-
-                        <div flex="10"></div>
-
-                        <div layout="column" flex="45">
-                            <div layout="row">
-                                <div>Heap mem</div>
-
-                                <div flex></div>
-
-                                <div>{{jmxNode.usedHeapMemory}}MB</div>
-                            </div>
-
-                            <div layout="row">
-                                <div>Non heap mem</div>
-
-                                <div flex></div>
-
-                                <div>{{jmxNode.usedNonHeapMemory}}MB</div>
-                            </div>
-
-
-                            <div layout="row">
-                                <div>Host free mem</div>
-
-                                <div flex></div>
-
-                                <div>{{jmxNode.hostFreePhysicalMemory}}MB</div>
-                            </div>
-
-                            <div layout="row">
-                                <div>Host total mem</div>
-
-                                <div flex></div>
-
-                                <div>{{jmxNode.hostTotalPhysicalMemory}}MB</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <md-grid-tile-footer>
-                    <div layout="row">
-                        <div class="padding-right-10"></div>
-
-                        <div class="color-submain">hostname: {{jmxNode.hostname}}</div>
-
-                        <div class="padding-right-30"></div>
-
-                        <div class="color-submain">port: {{jmxNode.port}}</div>
-
-                        <div class="padding-right-10"></div>
-                    </div>
-                </md-grid-tile-footer>
+                <div>{{jmxNode.liveThreadCount}}</div>
+              </div>
             </div>
 
-            <div ng-if="!jmxNode.isInitialized">
-                <h3>Connection failed on {{jmxNode.nodeName}} @ {{jmxNode.hostname}}:{{jmxNode.port}}</h3>
-                <h3>{{jmxNode.error}}</h3>
+            <div flex="10"></div>
+
+            <div layout="column" flex="45">
+              <div layout="row">
+                <div>Heap mem</div>
+
+                <div flex></div>
+
+                <div>{{jmxNode.usedHeapMemory}}MB</div>
+              </div>
+
+              <div layout="row">
+                <div>Non heap mem</div>
+
+                <div flex></div>
+
+                <div>{{jmxNode.usedNonHeapMemory}}MB</div>
+              </div>
+
+
+              <div layout="row">
+                <div>Host free mem</div>
+
+                <div flex></div>
+
+                <div>{{jmxNode.hostFreePhysicalMemory}}MB</div>
+              </div>
+
+              <div layout="row">
+                <div>Host total mem</div>
+
+                <div flex></div>
+
+                <div>{{jmxNode.hostTotalPhysicalMemory}}MB</div>
+              </div>
             </div>
-        </md-grid-tile>
-    </md-grid-list>
+          </div>
+        </div>
+
+        <md-grid-tile-footer>
+          <div layout="row">
+            <div class="padding-right-10"></div>
+
+            <div class="color-submain">hostname: {{jmxNode.hostname}}</div>
+
+            <div class="padding-right-30"></div>
+
+            <div class="color-submain">port: {{jmxNode.port}}</div>
+
+            <div class="padding-right-10"></div>
+          </div>
+        </md-grid-tile-footer>
+      </div>
+
+      <div ng-if="!jmxNode.isInitialized">
+        <h3>Connection failed on {{jmxNode.nodeName}} @ {{jmxNode.hostname}}:{{jmxNode.port}}</h3>
+        <h3>{{jmxNode.error}}</h3>
+      </div>
+    </md-grid-tile>
+  </md-grid-list>
 </div>

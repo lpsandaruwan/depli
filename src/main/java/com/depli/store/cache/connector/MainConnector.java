@@ -1,13 +1,12 @@
 package com.depli.store.cache.connector;
 
 import com.depli.store.persistent.entity.JMXNode;
-
+import java.io.IOException;
+import java.util.HashMap;
 import javax.management.MBeanServerConnection;
 import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
-import java.io.IOException;
-import java.util.HashMap;
 
 /**
  * Main connector
@@ -20,52 +19,54 @@ import java.util.HashMap;
 
 public class MainConnector {
 
-    private JMXNode jmxNode;
-    private JMXConnector jmxConnector;
-    private MBeanServerConnection serverConnection;
+  private JMXNode jmxNode;
+  private JMXConnector jmxConnector;
+  private MBeanServerConnection serverConnection;
 
 
-    public MainConnector(JMXNode jmxNode) {
-        this.jmxNode = jmxNode;
-        jmxConnector = null;
-        serverConnection = null;
+  public MainConnector(JMXNode jmxNode) {
+    this.jmxNode = jmxNode;
+    jmxConnector = null;
+    serverConnection = null;
+  }
+
+  public void openConnection() throws IOException {
+    String serviceUrl =
+        "service:jmx:rmi:///jndi/rmi://" + jmxNode.getHostname() + ":" + jmxNode.getPort()
+            + "/jmxrmi";
+    JMXServiceURL jmxServiceURL = new JMXServiceURL(serviceUrl);
+    HashMap<String, Object> env = new HashMap<>();
+
+    if (jmxNode.isAuthRequired()) {
+      if (jmxNode.isAuthRequired()) {
+        String[] credentials = new String[]{jmxNode.getUsername(), jmxNode.getPassword()};
+        env.put(JMXConnector.CREDENTIALS, credentials);
+      }
+      jmxConnector = JMXConnectorFactory.connect(jmxServiceURL, env);
+    } else {
+      jmxConnector = JMXConnectorFactory.connect(jmxServiceURL, null);
     }
 
-    public void openConnection() throws IOException {
-        String serviceUrl = "service:jmx:rmi:///jndi/rmi://" + jmxNode.getHostname() + ":" + jmxNode.getPort() + "/jmxrmi";
-        JMXServiceURL jmxServiceURL = new JMXServiceURL(serviceUrl);
-        HashMap<String, Object> env = new HashMap<>();
+    this.serverConnection = jmxConnector.getMBeanServerConnection();
+  }
 
-        if (jmxNode.isAuthRequired()) {
-            if (jmxNode.isAuthRequired()) {
-                String[] credentials = new String[]{jmxNode.getUsername(), jmxNode.getPassword()};
-                env.put(JMXConnector.CREDENTIALS, credentials);
-            }
-            jmxConnector = JMXConnectorFactory.connect(jmxServiceURL, env);
-        } else {
-            jmxConnector = JMXConnectorFactory.connect(jmxServiceURL, null);
-        }
+  public void closeConnection() throws IOException {
+    this.jmxConnector.close();
+  }
 
-        this.serverConnection = jmxConnector.getMBeanServerConnection();
-    }
+  public JMXNode getJmxNode() {
+    return jmxNode;
+  }
 
-    public void closeConnection() throws IOException {
-        this.jmxConnector.close();
-    }
+  public void setJmxNode(JMXNode jmxNode) {
+    this.jmxNode = jmxNode;
+  }
 
-    public JMXNode getJmxNode() {
-        return jmxNode;
-    }
+  public MBeanServerConnection getServerConnection() {
+    return serverConnection;
+  }
 
-    public void setJmxNode(JMXNode jmxNode) {
-        this.jmxNode = jmxNode;
-    }
-
-    public MBeanServerConnection getServerConnection() {
-        return serverConnection;
-    }
-
-    public void setServerConnection(MBeanServerConnection serverConnection) {
-        this.serverConnection = serverConnection;
-    }
+  public void setServerConnection(MBeanServerConnection serverConnection) {
+    this.serverConnection = serverConnection;
+  }
 }

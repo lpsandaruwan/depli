@@ -3,10 +3,9 @@ package com.depli.utility.initializer.cache.impl;
 import com.depli.service.store.descriptor.ThreadDescriptorService;
 import com.depli.store.cache.descriptor.ThreadDescriptor;
 import com.depli.utility.initializer.cache.CacheInitializer;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 /**
  * Thread Descriptor Cache Initializer implementation
@@ -20,11 +19,11 @@ import java.io.IOException;
 @Component
 public class ThreadDescriptorCacheInitializer implements CacheInitializer {
 
-    @Autowired
-    private ThreadDescriptorService threadDescriptorService;
+  @Autowired
+  private ThreadDescriptorService threadDescriptorService;
 
-    @Override
-    public void initialize(Long nodeId) throws IOException {
-        threadDescriptorService.save(nodeId, new ThreadDescriptor());
-    }
+  @Override
+  public void initialize(Long nodeId) throws IOException {
+    threadDescriptorService.save(nodeId, new ThreadDescriptor());
+  }
 }

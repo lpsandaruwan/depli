@@ -3,9 +3,8 @@ package com.depli.utility.connector.impl;
 import com.depli.store.cache.connector.MainConnector;
 import com.depli.store.persistent.entity.JMXNode;
 import com.depli.utility.connector.ManagementBeanServerConnector;
-import org.springframework.stereotype.Component;
-
 import java.io.IOException;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -18,11 +17,11 @@ import java.io.IOException;
 @Component
 public class ManagementBeanServerConnectorImpl implements ManagementBeanServerConnector {
 
-    @Override
-    public MainConnector getConnection(JMXNode jmxNode) throws IOException {
-        MainConnector mainConnector = new MainConnector(jmxNode);
-        mainConnector.openConnection();
+  @Override
+  public MainConnector getConnection(JMXNode jmxNode) throws IOException {
+    MainConnector mainConnector = new MainConnector(jmxNode);
+    mainConnector.openConnection();
 
-        return mainConnector;
-    }
+    return mainConnector;
+  }
 }

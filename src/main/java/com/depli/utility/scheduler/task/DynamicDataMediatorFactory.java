@@ -11,10 +11,10 @@ package com.depli.utility.scheduler.task;
 
 public interface DynamicDataMediatorFactory {
 
-    /**
-     * Async method to refresh dynamic data in cache stores for given nodeId
-     *
-     * @param nodeId JMXNode Id
-     */
-    public void mediate(Long nodeId);
+  /**
+   * Async method to refresh dynamic data in cache stores for given nodeId
+   *
+   * @param nodeId JMXNode Id
+   */
+  public void mediate(Long nodeId);
 }

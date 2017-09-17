@@ -2,7 +2,6 @@ package com.depli.service.builder;
 
 import com.depli.store.cache.connector.ConnectionTree;
 import com.depli.store.persistent.entity.JMXNode;
-
 import java.io.IOException;
 
 /**
@@ -16,11 +15,12 @@ import java.io.IOException;
 
 public interface ConnectionTreeBuilderService {
 
-    /**
-     * Returns built ConnectionTree instance with opened MBeanSeverConnections and MXBeans proxy connections.
-     *
-     * @param jmxNode JMXNode entity
-     * @return ConnectionTree instance for given nodeId
-     */
-    public ConnectionTree getTree(JMXNode jmxNode) throws IOException;
+  /**
+   * Returns built ConnectionTree instance with opened MBeanSeverConnections and MXBeans proxy
+   * connections.
+   *
+   * @param jmxNode JMXNode entity
+   * @return ConnectionTree instance for given nodeId
+   */
+  public ConnectionTree getTree(JMXNode jmxNode) throws IOException;
 }

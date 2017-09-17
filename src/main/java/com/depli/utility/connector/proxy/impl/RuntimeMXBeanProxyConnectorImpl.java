@@ -1,12 +1,11 @@
 package com.depli.utility.connector.proxy.impl;
 
 import com.depli.utility.connector.proxy.RuntimeMXBeanProxyConnector;
-import org.springframework.stereotype.Component;
-
-import javax.management.MBeanServerConnection;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
+import javax.management.MBeanServerConnection;
+import org.springframework.stereotype.Component;
 
 /**
  * Runtime MXBean proxy connector implementation
@@ -20,12 +19,12 @@ import java.lang.management.RuntimeMXBean;
 @Component
 public class RuntimeMXBeanProxyConnectorImpl implements RuntimeMXBeanProxyConnector {
 
-    @Override
-    public RuntimeMXBean getConnection(MBeanServerConnection serverConnection) throws IOException {
-        return ManagementFactory.newPlatformMXBeanProxy(
-                serverConnection,
-                ManagementFactory.RUNTIME_MXBEAN_NAME,
-                RuntimeMXBean.class
-        );
-    }
+  @Override
+  public RuntimeMXBean getConnection(MBeanServerConnection serverConnection) throws IOException {
+    return ManagementFactory.newPlatformMXBeanProxy(
+        serverConnection,
+        ManagementFactory.RUNTIME_MXBEAN_NAME,
+        RuntimeMXBean.class
+    );
+  }
 }

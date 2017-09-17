@@ -1,7 +1,6 @@
 package com.depli.service.store.persistent;
 
 import com.depli.store.persistent.entity.JMXNode;
-
 import java.util.List;
 
 /**
@@ -9,11 +8,12 @@ import java.util.List;
  */
 
 public interface JMXNodeService {
-    public List<JMXNode> findAll();
 
-    public JMXNode findByNodeId(long nodeId);
+  public List<JMXNode> findAll();
 
-    public Long removeByNodeId(long nodeId);
+  public JMXNode findByNodeId(long nodeId);
 
-    public JMXNode save(JMXNode jmxNode);
+  public Long removeByNodeId(long nodeId);
+
+  public JMXNode save(JMXNode jmxNode);
 }

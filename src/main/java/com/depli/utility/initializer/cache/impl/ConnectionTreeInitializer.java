@@ -5,10 +5,9 @@ import com.depli.service.store.connector.ConnectionTreeService;
 import com.depli.store.cache.connector.ConnectionTree;
 import com.depli.store.persistent.entity.JMXNode;
 import com.depli.utility.initializer.cache.CacheInitializer;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 /**
  * ConnectionTree Cache Initializer implementation
@@ -22,28 +21,30 @@ import java.io.IOException;
 @Component
 public class ConnectionTreeInitializer implements CacheInitializer {
 
-    @Autowired
-    private ConnectionTreeBuilderService connectionTreeBuilderService;
+  @Autowired
+  private ConnectionTreeBuilderService connectionTreeBuilderService;
 
-    @Autowired
-    private ConnectionTreeService connectionTreeService;
+  @Autowired
+  private ConnectionTreeService connectionTreeService;
 
-    /**
-     * Initializes ConnectionTree and store them in ConnectionTree cache store for given JMXNode entity.
-     *
-     * @param jmxNode JMXNode entity
-     */
-    public void initialize(JMXNode jmxNode) throws IOException {
-        ConnectionTree connectionTree = connectionTreeBuilderService.getTree(jmxNode);
-        connectionTreeService.save(jmxNode.getNodeId(), connectionTree);
-    }
+  /**
+   * Initializes ConnectionTree and store them in ConnectionTree cache store for given JMXNode
+   * entity.
+   *
+   * @param jmxNode JMXNode entity
+   */
+  public void initialize(JMXNode jmxNode) throws IOException {
+    ConnectionTree connectionTree = connectionTreeBuilderService.getTree(jmxNode);
+    connectionTreeService.save(jmxNode.getNodeId(), connectionTree);
+  }
 
-    /**
-     * Initializes elements and store them in appropriate cache store for given JMXNode entity Id.
-     *
-     * @param nodeId nodeId of JMXNode entity
-     */
-    @Override
-    public void initialize(Long nodeId) throws IOException {
-    }
+  /**
+   * Initializes elements and store them in appropriate cache store for given JMXNode entity Id.
+   *
+   * @param nodeId nodeId of JMXNode entity
+   */
+  @Override
+  public void initialize(Long nodeId) throws IOException {
+    // Do nothing prior to above method.
+  }
 }

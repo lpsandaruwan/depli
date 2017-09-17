@@ -4,8 +4,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * ClassLoadingDescriptorTest
  *
@@ -14,40 +12,41 @@ import static org.junit.Assert.*;
  */
 
 public class ClassLoadingDescriptorTest {
-    @Before
-    public void setUp() throws Exception {
-    }
 
-    @After
-    public void tearDown() throws Exception {
-    }
+  @Before
+  public void setUp() throws Exception {
+  }
 
-    @Test
-    public void getLoadedClassCount() throws Exception {
-    }
+  @After
+  public void tearDown() throws Exception {
+  }
 
-    @Test
-    public void setLoadedClassCount() throws Exception {
-    }
+  @Test
+  public void getLoadedClassCount() throws Exception {
+  }
 
-    @Test
-    public void getTotalLoadedClassCount() throws Exception {
-    }
+  @Test
+  public void setLoadedClassCount() throws Exception {
+  }
 
-    @Test
-    public void setTotalLoadedClassCount() throws Exception {
-    }
+  @Test
+  public void getTotalLoadedClassCount() throws Exception {
+  }
 
-    @Test
-    public void getUnloadedClassCount() throws Exception {
-    }
+  @Test
+  public void setTotalLoadedClassCount() throws Exception {
+  }
 
-    @Test
-    public void setUnloadedClassCount() throws Exception {
-    }
+  @Test
+  public void getUnloadedClassCount() throws Exception {
+  }
 
-    @Test
-    public void setDynamicData() throws Exception {
-    }
+  @Test
+  public void setUnloadedClassCount() throws Exception {
+  }
+
+  @Test
+  public void setDynamicData() throws Exception {
+  }
 
 }

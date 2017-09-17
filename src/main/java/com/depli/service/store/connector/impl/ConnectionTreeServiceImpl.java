@@ -19,16 +19,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConnectionTreeServiceImpl implements ConnectionTreeService {
 
-    @Autowired
-    private ConnectionTreeCacheService connectionTreeCacheService;
+  @Autowired
+  private ConnectionTreeCacheService connectionTreeCacheService;
 
-    @Override
-    public ConnectionTree getByNodeId(Long nodeId) {
-        return connectionTreeCacheService.getCache().get(nodeId);
-    }
+  @Override
+  public ConnectionTree getByNodeId(Long nodeId) {
+    return connectionTreeCacheService.getCache().get(nodeId);
+  }
 
-    @Override
-    public void save(Long nodeId, ConnectionTree connectionTree) {
-        connectionTreeCacheService.getCache().put(nodeId, connectionTree);
-    }
+  @Override
+  public void save(Long nodeId, ConnectionTree connectionTree) {
+    connectionTreeCacheService.getCache().put(nodeId, connectionTree);
+  }
 }

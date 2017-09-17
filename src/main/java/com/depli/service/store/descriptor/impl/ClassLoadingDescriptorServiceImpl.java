@@ -16,16 +16,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClassLoadingDescriptorServiceImpl implements ClassLoadingDescriptorService {
 
-    @Autowired
-    private ClassLoadingDescriptorCacheService classLoadingDescriptorCacheService;
+  @Autowired
+  private ClassLoadingDescriptorCacheService classLoadingDescriptorCacheService;
 
-    @Override
-    public ClassLoadingDescriptor getByNodeId(Long nodeId) {
-        return classLoadingDescriptorCacheService.getCache().get(nodeId);
-    }
+  @Override
+  public ClassLoadingDescriptor getByNodeId(Long nodeId) {
+    return classLoadingDescriptorCacheService.getCache().get(nodeId);
+  }
 
-    @Override
-    public void save(Long nodeId, ClassLoadingDescriptor classLoadingDescriptor) {
-        classLoadingDescriptorCacheService.getCache().put(nodeId, classLoadingDescriptor);
-    }
+  @Override
+  public void save(Long nodeId, ClassLoadingDescriptor classLoadingDescriptor) {
+    classLoadingDescriptorCacheService.getCache().put(nodeId, classLoadingDescriptor);
+  }
 }

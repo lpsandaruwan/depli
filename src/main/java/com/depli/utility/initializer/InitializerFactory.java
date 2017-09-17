@@ -13,8 +13,8 @@ import java.io.IOException;
 
 public interface InitializerFactory {
 
-    /**
-     * Initialize cache stores. If cache stores are already initialized, they will be cleared.
-     */
-    public void initialize() throws IOException;
+  /**
+   * Initialize cache stores. If cache stores are already initialized, they will be cleared.
+   */
+  public void initialize() throws IOException;
 }
