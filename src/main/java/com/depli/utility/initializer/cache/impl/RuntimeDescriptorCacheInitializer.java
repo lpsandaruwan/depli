@@ -6,7 +6,6 @@ import com.depli.store.cache.descriptor.RuntimeDescriptor;
 import com.depli.utility.initializer.cache.CacheInitializer;
 import com.depli.utility.mediator.RuntimeMXBeanMediator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;

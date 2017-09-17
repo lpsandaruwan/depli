@@ -1,7 +1,6 @@
 package com.depli.service.builder.impl;
 
 import com.depli.service.builder.ConnectionTreeBuilderService;
-import com.depli.service.store.persistent.JMXNodeService;
 import com.depli.store.cache.connector.ConnectionTree;
 import com.depli.store.cache.connector.MainConnector;
 import com.depli.store.persistent.entity.JMXNode;

@@ -1,11 +1,8 @@
 package com.depli.utility.initializer.cache.impl;
 
-import com.depli.service.store.connector.ConnectionTreeService;
 import com.depli.service.store.descriptor.ClassLoadingDescriptorService;
-import com.depli.store.cache.connector.ConnectionTree;
 import com.depli.store.cache.descriptor.ClassLoadingDescriptor;
 import com.depli.utility.initializer.cache.CacheInitializer;
-import com.depli.utility.mediator.ClassLoadingMXBeanMediator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -3,7 +3,6 @@ package com.depli.utility.initializer.impl;
 import com.depli.service.store.cache.connector.ConnectionTreeCacheService;
 import com.depli.service.store.cache.descriptor.*;
 import com.depli.service.store.persistent.JMXNodeService;
-import com.depli.store.cache.descriptor.OperatingSystemDescriptor;
 import com.depli.store.persistent.entity.JMXNode;
 import com.depli.utility.initializer.InitializerFactory;
 import com.depli.utility.initializer.cache.impl.*;

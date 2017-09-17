@@ -1,7 +1,7 @@
 package com.depli.utility.connector.impl;
 
-import com.depli.store.persistent.entity.JMXNode;
 import com.depli.store.cache.connector.MainConnector;
+import com.depli.store.persistent.entity.JMXNode;
 import com.depli.utility.connector.ManagementBeanServerConnector;
 import org.springframework.stereotype.Component;
 
