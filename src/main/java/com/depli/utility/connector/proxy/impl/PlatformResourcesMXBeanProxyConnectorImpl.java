@@ -22,7 +22,7 @@ public class PlatformResourcesMXBeanProxyConnectorImpl implements
     PlatformResourcesMXBeanProxyConnector {
 
   @Override
-  public OperatingSystemMXBean getConnection(MBeanServerConnection serverConnection)
+  public com.sun.management.OperatingSystemMXBean getConnection(MBeanServerConnection serverConnection)
       throws IOException {
     return ManagementFactory.newPlatformMXBeanProxy(
         serverConnection,

@@ -25,7 +25,7 @@ public class DynamicMediatorScheduler {
   @Autowired
   private DynamicDataMediatorFactory dynamicDataMediatorFactory;
 
-  @Scheduled(cron = "*/2 * * * * *")
+  @Scheduled(cron = "*/1 * * * * *")
   public void run() {
     for (JMXNode jmxNode : jmxNodeService.findAll()) {
       dynamicDataMediatorFactory.mediate(jmxNode.getNodeId());

@@ -18,6 +18,7 @@ public class TaskRunnerComponent implements CommandLineRunner {
 
   @Override
   public void run(String... strings) throws Exception {
+    Thread.sleep(4000);
     initializerFactory.initialize();
   }
 }

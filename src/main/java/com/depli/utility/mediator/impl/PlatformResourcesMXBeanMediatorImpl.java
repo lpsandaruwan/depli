@@ -1,6 +1,7 @@
 package com.depli.utility.mediator.impl;
 
 import com.depli.service.store.descriptor.PlatformResourcesDescriptorService;
+import com.depli.service.store.graph.ProcessingUnitGraphDataService;
 import com.depli.utility.mediator.PlatformResourcesMXBeanMediator;
 import com.sun.management.OperatingSystemMXBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class PlatformResourcesMXBeanMediatorImpl implements PlatformResourcesMXB
   @Autowired
   private PlatformResourcesDescriptorService platformResourcesDescriptorService;
 
+  @Autowired
+  private ProcessingUnitGraphDataService processingUnitGraphDataService;
+
   /**
    * Convert average value to a percentage.
    */
@@ -27,7 +31,7 @@ public class PlatformResourcesMXBeanMediatorImpl implements PlatformResourcesMXB
     if (value == -1) {
       return -1;
     }
-    return Math.round(value * 1000f) / 10f;
+    return Math.round(value * 100f *10f) / 10f;
   }
 
   /**
@@ -43,11 +47,20 @@ public class PlatformResourcesMXBeanMediatorImpl implements PlatformResourcesMXB
   @Async
   @Override
   public void mediateDynamicData(Long nodeId, OperatingSystemMXBean platformResourcesMXBean) {
+    /* assigning CPU usages to variables since two close method calls affect */
+    float cpuLoad = toFloat(platformResourcesMXBean.getSystemCpuLoad());
+    float jvmCpuLoad = toFloat(platformResourcesMXBean.getProcessCpuLoad());
+
     platformResourcesDescriptorService.getByNodeId(nodeId).setDynamicData(
         toFloat(platformResourcesMXBean.getFreePhysicalMemorySize()),
         toFloat(platformResourcesMXBean.getFreeSwapSpaceSize()),
-        toFloat(platformResourcesMXBean.getSystemCpuLoad()),
-        toFloat(platformResourcesMXBean.getProcessCpuLoad())
+        cpuLoad,
+        jvmCpuLoad
+    );
+
+    processingUnitGraphDataService.getByNodeId(nodeId).setDynamicData(
+        cpuLoad,
+        jvmCpuLoad
     );
   }
 

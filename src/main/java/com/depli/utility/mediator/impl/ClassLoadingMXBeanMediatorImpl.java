@@ -1,6 +1,7 @@
 package com.depli.utility.mediator.impl;
 
 import com.depli.service.store.descriptor.ClassLoadingDescriptorService;
+import com.depli.service.store.graph.ClassLoadingGraphDataService;
 import com.depli.utility.mediator.ClassLoadingMXBeanMediator;
 import java.lang.management.ClassLoadingMXBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,19 @@ public class ClassLoadingMXBeanMediatorImpl implements ClassLoadingMXBeanMediato
   @Autowired
   private ClassLoadingDescriptorService classLoadingDescriptorService;
 
+  @Autowired
+  private ClassLoadingGraphDataService classLoadingGraphDataService;
+
   @Async
   @Override
   public void mediateDynamicData(Long nodeId, ClassLoadingMXBean classLoadingMXBean) {
+    int loadedClassCount = classLoadingMXBean.getLoadedClassCount();
     classLoadingDescriptorService.getByNodeId(nodeId).setDynamicData(
-        classLoadingMXBean.getLoadedClassCount(),
+        loadedClassCount,
         classLoadingMXBean.getTotalLoadedClassCount(),
         classLoadingMXBean.getUnloadedClassCount()
     );
+
+    classLoadingGraphDataService.getByNodeId(nodeId).setDynamicData(loadedClassCount);
   }
 }

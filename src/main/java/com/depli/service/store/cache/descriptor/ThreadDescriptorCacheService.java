@@ -5,7 +5,7 @@ import org.infinispan.Cache;
 
 /**
  * Thread descriptor cache service
- * <p>
+ *
  * Service to retrieve and clear the cache which contains thread descriptors.
  *
  * @author lpsandaruwan

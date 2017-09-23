@@ -1,5 +1,7 @@
 package com.depli.store.cache.descriptor;
 
+import org.springframework.scheduling.annotation.Async;
+
 /**
  * Platform resources System Descriptor <p> Blueprint to keep memory usage data observed from
  * com.sun.management.OperatingSystemMXBean of appropriate remote JMX connection in runtime. This
@@ -172,6 +174,7 @@ public class PlatformResourcesDescriptor {
    * @param hostCpuUsage host CPU utilization percentage
    * @param jvmCpuUsage CPU usage percentage of java virtual machine
    */
+  @Async
   public void setDynamicData(float freePhysicalMemory, float freeSwapSpace, float hostCpuUsage,
       float jvmCpuUsage) {
     this.freePhysicalMemory = freePhysicalMemory;

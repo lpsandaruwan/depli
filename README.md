@@ -3,15 +3,12 @@
 
 # DEPLI
 
-###### A monitoring dashboard to indicate JVM performance using JMX remote connections.
+###### A Rich JVM Monitor.
 
-Depli is a beautiful tool that lets you monitor multiple JVM connections at once though JMX remote connections, built using Spring-boot and angular material.
-Just run the jar file, and access the web UI though your browser to add a JMX connection.
-Once you added a connection, Depli saves the node data in an h2 database, don't bother adding connection data again and again.
-
+Depli is a handsome tool that lets you monitor multiple JVM connections at once though Java management bean server connections, built using Spring-boot and angular material.
 
 ## Requirements
-Make sure you have installed Java version 7 or later. Depli uses webjars for frontend assets and to display material design icons an internet connection is required.
+Make sure you have installed Java version 7 or later.
 
 
 ### Run Depli using a release

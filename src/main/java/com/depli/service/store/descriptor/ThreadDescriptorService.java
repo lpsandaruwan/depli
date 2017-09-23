@@ -4,7 +4,7 @@ import com.depli.store.cache.descriptor.ThreadDescriptor;
 
 /**
  * Thread Descriptor Service
- * <p>
+ *
  * Provides service to manage thread descriptor cache and to retrieve
  * manipulated data from cache.
  *

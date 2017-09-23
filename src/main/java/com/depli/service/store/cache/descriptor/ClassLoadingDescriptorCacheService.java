@@ -5,7 +5,7 @@ import org.infinispan.Cache;
 
 /**
  * Class Loading Data descriptor cache service
- * <p>
+ *
  * Service to retrieve and clear the cache which contains class loading data descriptors.
  *
  * @author lpsandaruwan
