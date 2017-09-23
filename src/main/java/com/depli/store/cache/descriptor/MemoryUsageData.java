@@ -5,7 +5,7 @@ import java.lang.management.MemoryUsage;
 
 /**
  * Memory Usage Data
- * <p>
+ *
  * Representation of {@link ManagementFactory#getMemoryMXBean#MemoryUsage} class data in mega bytes.
  *
  * @author Lahiru Pathirage

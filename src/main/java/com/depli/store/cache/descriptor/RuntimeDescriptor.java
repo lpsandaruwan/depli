@@ -1,13 +1,17 @@
 package com.depli.store.cache.descriptor;
 
 import java.lang.management.ManagementFactory;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
- * Runtime Descriptor <p> Blueprint to keep memory usage data observed from {@link
+ * Runtime Descriptor
+ *
+ * Blueprint to keep memory usage data observed from {@link
  * ManagementFactory#getRuntimeMXBean} of appropriate remote JMX connection in runtime. This
  * blueprint keeps several convenient fields for storing system properties about the Java virtual
- * machine. <p>
+ * machine.
  *
  * @author lpsandaruwan
  * @since 3/24/17
@@ -339,5 +343,44 @@ public class RuntimeDescriptor {
     this.jvmName = jvmName;
     this.jvmVendor = jvmVendor;
     this.jvmVersion = jvmVersion;
+  }
+
+  /**
+   * Returns dynamic data as a map object.
+   *
+   * @return dynamic data as a map
+   */
+  public Map dynamicsToJson() {
+    Map<String, String> map = new HashMap<>();
+    map.put("uptime", uptime);
+
+    return map;
+  }
+
+  /**
+   * Returns static data as a map object.
+   *
+   * @return static data as a map
+   */
+  public Map staticsToJson() {
+    Map<String, String> jvmMetadataObject = new HashMap<>();
+    jvmMetadataObject.put("managementInterfaceVersion", managementInterfaceVersion);
+    jvmMetadataObject.put("runningJvmName", runningJvmName);
+    jvmMetadataObject.put("jvmStartTime", jvmStartTime);
+    jvmMetadataObject.put("jvmName", jvmName);
+    jvmMetadataObject.put("jvmVendor", jvmVendor);
+    jvmMetadataObject.put("jvmVersion", jvmVersion);
+
+    Map<String, Object> pathInfoObject = new HashMap<>();
+    pathInfoObject.put("bootstrapClassPath", bootstrapClassPath);
+    pathInfoObject.put("systemClassPath", systemClassPath);
+    pathInfoObject.put("inputArguments", inputArguments);
+    pathInfoObject.put("javaLibraryPath", javaLibraryPath);
+
+    Map<String, Map> mainObject = new HashMap<>();
+    mainObject.put("jvm", jvmMetadataObject);
+    mainObject.put("pathInfo", pathInfoObject);
+
+    return mainObject;
   }
 }

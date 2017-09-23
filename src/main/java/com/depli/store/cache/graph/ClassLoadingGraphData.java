@@ -33,7 +33,8 @@ public class ClassLoadingGraphData {
   }
 
   /**
-   * Returns a List object containing loaded class count values for Y axis of the class loading graph.
+   * Returns a List object containing loaded class count values for Y axis of the class loading
+   * graph.
    *
    * @return List object containing loaded class count values values
    */
@@ -42,7 +43,8 @@ public class ClassLoadingGraphData {
   }
 
   /**
-   * Returns a List object containing loaded class count values for Y axis of the class loading graph.
+   * Returns a List object containing loaded class count values for Y axis of the class loading
+   * graph.
    *
    * @param loadedClassCount List object containing loaded class count values values
    */

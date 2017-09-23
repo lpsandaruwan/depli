@@ -9,8 +9,6 @@ import com.depli.service.store.cache.descriptor.RuntimeDescriptorCacheService;
 import com.depli.service.store.cache.descriptor.ThreadDescriptorCacheService;
 import com.depli.service.store.cache.graph.ClassLoadingGraphDataCacheService;
 import com.depli.service.store.cache.graph.ProcessingUnitGraphDataCacheService;
-import com.depli.service.store.graph.ClassLoadingGraphDataService;
-import com.depli.service.store.graph.ProcessingUnitGraphDataService;
 import com.depli.service.store.persistent.JMXNodeService;
 import com.depli.store.persistent.entity.JMXNode;
 import com.depli.utility.initializer.InitializerFactory;

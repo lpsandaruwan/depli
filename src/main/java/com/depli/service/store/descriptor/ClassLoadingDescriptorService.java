@@ -1,6 +1,5 @@
 package com.depli.service.store.descriptor;
 
-import com.depli.service.store.graph.ClassLoadingGraphDataService;
 import com.depli.store.cache.descriptor.ClassLoadingDescriptor;
 
 /**

@@ -1,7 +1,6 @@
 package com.depli.utility.connector.proxy.impl;
 
 import com.depli.utility.connector.proxy.PlatformResourcesMXBeanProxyConnector;
-import com.sun.management.OperatingSystemMXBean;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import javax.management.MBeanServerConnection;
@@ -22,7 +21,8 @@ public class PlatformResourcesMXBeanProxyConnectorImpl implements
     PlatformResourcesMXBeanProxyConnector {
 
   @Override
-  public com.sun.management.OperatingSystemMXBean getConnection(MBeanServerConnection serverConnection)
+  public com.sun.management.OperatingSystemMXBean getConnection(
+      MBeanServerConnection serverConnection)
       throws IOException {
     return ManagementFactory.newPlatformMXBeanProxy(
         serverConnection,

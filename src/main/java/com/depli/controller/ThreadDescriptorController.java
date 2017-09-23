@@ -1,29 +1,40 @@
 package com.depli.controller;
 
 import com.depli.service.store.descriptor.ThreadDescriptorService;
-import com.depli.store.cache.descriptor.ThreadDescriptor;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * DThreadMXBeanController
- * REST API to expose MemoryMXBean to frontend.
+ * Thread Descriptor Controller
  *
- * Created by lpsandaruwan on 3/25/17.
+ * REST controller to expose thread descriptor objects.
+ *
+ * @author lpsandaruwan
+ * @since 3/25/17
  */
 
 @RestController
-@RequestMapping("/tdobjects")
+@RequestMapping("/descriptors/threads")
 public class ThreadDescriptorController {
 
   @Autowired
   private ThreadDescriptorService threadDescriptorService;
 
-  @RequestMapping(value = "/{nodeId}", method = RequestMethod.GET)
-  public ThreadDescriptor findClassLoadingDataById(@PathVariable long nodeId) {
-    return threadDescriptorService.getByNodeId(nodeId);
+  @GetMapping("/{descriptorIndex}/counts")
+  public ResponseEntity<Map> findThreadDescriptorCountDataById(@PathVariable Long descriptorIndex) {
+    return new ResponseEntity<>(threadDescriptorService.getByNodeId(descriptorIndex).countsToMap(),
+        HttpStatus.OK);
+  }
+
+  @GetMapping("/{descriptorIndex}/dumps")
+  public ResponseEntity<Map> findThreadDescriptorDumpDataById(@PathVariable Long descriptorIndex) {
+    return new ResponseEntity<>(threadDescriptorService.getByNodeId(descriptorIndex).dumpsToMap(),
+        HttpStatus.OK);
   }
 }

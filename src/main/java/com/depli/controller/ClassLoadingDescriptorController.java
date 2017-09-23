@@ -3,10 +3,11 @@ package com.depli.controller;
 import com.depli.service.store.descriptor.ClassLoadingDescriptorService;
 import com.depli.store.cache.descriptor.ClassLoadingDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -19,14 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/cdobjects")
+@RequestMapping("/descriptors/classes")
 public class ClassLoadingDescriptorController {
 
   @Autowired
   private ClassLoadingDescriptorService classLoadingDescriptorService;
 
-  @GetMapping("/{nodeId}")
-  public ClassLoadingDescriptor findByNodeId(@PathVariable long nodeId) {
-    return classLoadingDescriptorService.getByNodeId(nodeId);
+  @GetMapping("/{descriptorIndex}/dynamics")
+  public ResponseEntity<ClassLoadingDescriptor> findClassLoadingDescriptorByNodeId(
+      @PathVariable Long descriptorIndex) {
+    return new ResponseEntity<>(classLoadingDescriptorService.getByNodeId(descriptorIndex),
+        HttpStatus.OK);
   }
 }

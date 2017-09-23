@@ -2,9 +2,13 @@ package com.depli.store.cache.descriptor;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadInfo;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Thread Descriptor <p> Entity to keep memory usage data observed from {@link
+ * Thread Descriptor
+ *
+ * Entity to keep memory usage data observed from {@link
  * ManagementFactory#getThreadMXBean} of appropriate remote JMX connection in runtime.
  *
  * @author Lahiru Pathirage
@@ -138,6 +142,9 @@ public class ThreadDescriptor {
     this.threadInfoList = threadInfoList;
   }
 
+  /**
+   * Sets dynamic data fields.
+   */
   public void setDynamicData(
       int daemonThreadCount,
       int peakThreadCount,
@@ -150,5 +157,31 @@ public class ThreadDescriptor {
     this.liveThreadCount = liveThreadCount;
     this.totalStartedThreadCount = totalStartedThreadCount;
     this.threadInfoList = threadInfoList;
+  }
+
+  /**
+   * Returns count related fields as a map object.
+   *
+   * @return map object filled with counts
+   */
+  public Map<String, Integer> countsToMap() {
+    Map<String, Integer> map = new HashMap<>();
+    map.put("daemonThreadCount", daemonThreadCount);
+    map.put("peakThreadCount", peakThreadCount);
+    map.put("liveThreadCount", liveThreadCount);
+    map.put("totalStartedThreadCount", (int) totalStartedThreadCount);
+
+    return map;
+  }
+
+  /**
+   * Returns thread dump data as a map object.
+   *
+   * @return map object filled with thread dump data
+   */
+  public Map dumpsToMap() {
+    Map<String, ThreadInfo[]> map = new HashMap<>();
+    map.put("threadInfoList", threadInfoList);
+    return map;
   }
 }

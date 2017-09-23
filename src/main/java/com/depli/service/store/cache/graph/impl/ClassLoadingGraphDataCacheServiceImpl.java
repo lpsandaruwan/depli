@@ -3,7 +3,6 @@ package com.depli.service.store.cache.graph.impl;
 import static com.depli.constant.CacheName.CLASS_LOADING_GRAPH_DATA_CACHE;
 
 import com.depli.service.store.cache.graph.ClassLoadingGraphDataCacheService;
-import com.depli.service.store.graph.ClassLoadingGraphDataService;
 import com.depli.store.cache.graph.ClassLoadingGraphData;
 import org.infinispan.Cache;
 import org.infinispan.spring.provider.SpringEmbeddedCacheManager;

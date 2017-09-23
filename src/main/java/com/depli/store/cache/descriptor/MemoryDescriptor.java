@@ -4,8 +4,10 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryUsage;
 
 /**
- * Memory Usage Descriptor <p> Blueprint to keep memory usage data observed from {@link
- * ManagementFactory#getMemoryMXBean} of appropriate remote JMX connection in runtime.
+ * Memory Usage Descriptor
+ *
+ * Blueprint to keep memory usage data observed from {@link ManagementFactory#getMemoryMXBean} of
+ * appropriate remote JMX connection in runtime.
  *
  * @author lpsandaruwan
  * @since 3/24/17

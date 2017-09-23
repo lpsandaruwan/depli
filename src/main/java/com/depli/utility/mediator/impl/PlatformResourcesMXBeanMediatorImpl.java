@@ -31,7 +31,7 @@ public class PlatformResourcesMXBeanMediatorImpl implements PlatformResourcesMXB
     if (value == -1) {
       return -1;
     }
-    return Math.round(value * 100f *10f) / 10f;
+    return Math.round(value * 100f * 10f) / 10f;
   }
 
   /**

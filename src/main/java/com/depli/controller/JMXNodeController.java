@@ -4,6 +4,8 @@ import com.depli.service.store.persistent.JMXNodeService;
 import com.depli.store.persistent.entity.JMXNode;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,22 +30,24 @@ public class JMXNodeController {
   private JMXNodeService jmxNodeService;
 
   @GetMapping
-  public List<JMXNode> getAll() {
-    return jmxNodeService.findAll();
+  public ResponseEntity<List<JMXNode>> getAll() {
+    return new ResponseEntity<>(jmxNodeService.findAll(), HttpStatus.OK);
   }
 
   @GetMapping("/{nodeId}")
-  public JMXNode getByNodeId(@PathVariable Long nodeId) {
-    return jmxNodeService.findByNodeId(nodeId);
+  public ResponseEntity<JMXNode> getByNodeId(@PathVariable Long nodeId) {
+    return new ResponseEntity<>(jmxNodeService.findByNodeId(nodeId), HttpStatus.OK);
   }
 
-  @PostMapping("/save")
-  public void save(JMXNode jmxNode) {
+  @PostMapping
+  public ResponseEntity save(JMXNode jmxNode) {
     jmxNodeService.save(jmxNode);
+    return new ResponseEntity(HttpStatus.OK);
   }
 
   @DeleteMapping("/{nodeId}")
-  public void deleteByNodeId(@PathVariable Long nodeId) {
+  public ResponseEntity deleteByNodeId(@PathVariable Long nodeId) {
     jmxNodeService.removeByNodeId(nodeId);
+    return new ResponseEntity(HttpStatus.OK);
   }
 }

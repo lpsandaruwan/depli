@@ -1,7 +1,6 @@
 package com.depli.service.store.graph.impl;
 
 import com.depli.service.store.cache.graph.ClassLoadingGraphDataCacheService;
-import com.depli.service.store.descriptor.ClassLoadingDescriptorService;
 import com.depli.service.store.graph.ClassLoadingGraphDataService;
 import com.depli.store.cache.graph.ClassLoadingGraphData;
 import org.springframework.beans.factory.annotation.Autowired;

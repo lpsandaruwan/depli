@@ -1,6 +1,5 @@
 package com.depli.service.store.cache.graph;
 
-import com.depli.service.store.graph.ClassLoadingGraphDataService;
 import com.depli.store.cache.graph.ClassLoadingGraphData;
 import org.infinispan.Cache;
 

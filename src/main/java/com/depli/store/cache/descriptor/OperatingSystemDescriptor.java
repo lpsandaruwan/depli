@@ -3,10 +3,11 @@ package com.depli.store.cache.descriptor;
 import java.lang.management.ManagementFactory;
 
 /**
- * Operating System Descriptor <p> Entity to keep memory usage data observed from {@link
- * ManagementFactory#getOperatingSystemMXBean} of appropriate remote JMX connection in runtime. This
- * descriptor contains information on the operating system on which the Java virtual machine is
- * running.
+ * Operating System Descriptor
+ *
+ * Entity to keep memory usage data observed from {@link ManagementFactory#getOperatingSystemMXBean}
+ * of appropriate remote JMX connection in runtime. This descriptor contains information on the
+ * operating system on which the Java virtual machine is running.
  *
  * @author lpsandaruwan
  * @since 3/24/17

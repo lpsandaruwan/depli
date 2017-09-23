@@ -3,10 +3,11 @@ package com.depli.store.cache.descriptor;
 import org.springframework.scheduling.annotation.Async;
 
 /**
- * Platform resources System Descriptor <p> Blueprint to keep memory usage data observed from
- * com.sun.management.OperatingSystemMXBean of appropriate remote JMX connection in runtime. This
- * blueprint keeps several fields for keeping system resources usage about the operating system on
- * which the Java virtual machine is running. <p>
+ * Platform resources System Descriptor
+ *
+ * Blueprint to keep memory usage data observed from com.sun.management.OperatingSystemMXBean of
+ * appropriate remote JMX connection in runtime. This blueprint keeps several fields for keeping
+ * system resources usage about the operating system on which the Java virtual machine is running.
  *
  * @author lpsandaruwan
  * @since 3/28/17

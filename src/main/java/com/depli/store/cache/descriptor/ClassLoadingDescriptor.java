@@ -3,7 +3,9 @@ package com.depli.store.cache.descriptor;
 import java.lang.management.ManagementFactory;
 
 /**
- * Class Loading Data Descriptor <p> Blueprint to keep class loading data observed from {@link
+ * Class Loading Data Descriptor
+ *
+ * Blueprint to keep class loading data observed from {@link
  * ManagementFactory#getClassLoadingMXBean} of appropriate remote JMX connection in runtime.
  *
  * @author Lahiru Pathirage
