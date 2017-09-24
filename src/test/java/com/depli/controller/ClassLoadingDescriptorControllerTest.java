@@ -45,9 +45,8 @@ public class ClassLoadingDescriptorControllerTest {
     RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/descriptors/classes/1/dynamics")
         .accept(MediaType.APPLICATION_JSON);
     MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
-    LOGGER.info(
-        "ClassLoadingDescriptorControllerTest:findClassLoadingDescriptorByNodeId():Response: " +
-            mvcResult.getResponse().getContentAsString());
+    LOGGER.info("findClassLoadingDescriptorByNodeId():Response: " + mvcResult.getResponse()
+        .getContentAsString());
     String expectedResult = "{\"loadedClassCount\": 0, \"totalLoadedClassCount\": 0, \"unloadedClassCount\": 0}";
     JSONAssert.assertEquals(expectedResult, mvcResult.getResponse().getContentAsString(), false);
   }

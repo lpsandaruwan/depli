@@ -8,7 +8,7 @@ addons:
 jdk:
 - oraclejdk8
 script:
-- mvn clean install -DskipTests
+- mvn clean install
 - mvn sonar:sonar
 cache:
   directories:
