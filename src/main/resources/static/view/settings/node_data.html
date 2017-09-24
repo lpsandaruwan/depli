@@ -14,7 +14,7 @@
   <md-content class="padding-20">
     <form name="nodeData">
       <md-dialog-content>
-        <div>{{errorResponse.error}}</div>
+        <div class="color-error">{{errorResponse.error}}</div>
 
         <md-input-container class="md-block">
           <label>Name</label>
@@ -22,7 +22,7 @@
           <input required="" name="name" ng-model="jmxNode.nodeName">
 
           <div ng-messages="nodeData.name.$error">
-            <div ng-message="required">This field is required.</div>
+            <div class="color-error" ng-message="required">This field is required.</div>
           </div>
         </md-input-container>
 
@@ -32,7 +32,7 @@
           <input required="" name="hostname" ng-model="jmxNode.hostname">
 
           <div ng-messages="nodeData.name.$error">
-            <div ng-message="required">This field is required.</div>
+            <div class="color-error" ng-message="required">This field is required.</div>
           </div>
         </md-input-container>
 
@@ -42,7 +42,7 @@
           <input required="" name="port" ng-model="jmxNode.port">
 
           <div ng-messages="nodeData.name.$error">
-            <div ng-message="required">This field is required.</div>
+            <div class="color-error" ng-message="required">This field is required.</div>
           </div>
         </md-input-container>
 
@@ -54,21 +54,13 @@
           <span ng-if="jmxNode.authRequired">On</span>
         </md-switch>
 
-        <md-switch ng-model="jmxNode.sslRequired" aria-label="ssl">
-          SSL:
-
-          <span ng-if="!jmxNode.sslRequired">Off</span>
-
-          <span ng-if="jmxNode.sslRequired">On</span>
-        </md-switch>
-
         <md-input-container ng-if="jmxNode.authRequired">
           <label>Username</label>
 
           <input required="" name="username" ng-model="jmxNode.username">
 
           <div ng-messages="nodeData.username.$error">
-            <div ng-message="required">This field is required.</div>
+            <div class="color-error" ng-message="required">This field is required.</div>
           </div>
         </md-input-container>
 
@@ -78,7 +70,7 @@
           <input required="" name="password" ng-model="jmxNode.password">
 
           <div ng-messages="nodeData.password.$error">
-            <div ng-message="required">This field is required.</div>
+            <div class="color-error" ng-message="required">This field is required.</div>
           </div>
         </md-input-container>
       </md-dialog-content>

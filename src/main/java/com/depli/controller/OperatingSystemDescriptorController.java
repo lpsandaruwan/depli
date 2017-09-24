@@ -3,6 +3,8 @@ package com.depli.controller;
 import com.depli.service.store.descriptor.OperatingSystemDescriptorService;
 import com.depli.store.cache.descriptor.OperatingSystemDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +27,9 @@ public class OperatingSystemDescriptorController {
   private OperatingSystemDescriptorService operatingSystemDescriptorService;
 
   @GetMapping("/{descriptorIndex}/statics")
-  public OperatingSystemDescriptor findOperatingSystemDescriptorByNodeId(
+  public ResponseEntity<OperatingSystemDescriptor> findOperatingSystemDescriptorByNodeId(
       @PathVariable Long descriptorIndex) {
-    return operatingSystemDescriptorService.getByNodeId(descriptorIndex);
+    return new ResponseEntity<>(operatingSystemDescriptorService.getByNodeId(descriptorIndex),
+        HttpStatus.OK);
   }
 }

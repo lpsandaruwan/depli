@@ -44,10 +44,10 @@ public class ThreadDescriptor {
 
   // default constructor
   public ThreadDescriptor() {
-    daemonThreadCount = -1;
-    peakThreadCount = -1;
-    liveThreadCount = -1;
-    totalStartedThreadCount = -1;
+    daemonThreadCount = 0;
+    peakThreadCount = 0;
+    liveThreadCount = 0;
+    totalStartedThreadCount = 0;
   }
 
   /**

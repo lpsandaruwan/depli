@@ -1,5 +1,7 @@
 package com.depli.utility.mediator.impl;
 
+import static java.lang.Float.NaN;
+
 import com.depli.service.store.descriptor.PlatformResourcesDescriptorService;
 import com.depli.service.store.graph.ProcessingUnitGraphDataService;
 import com.depli.utility.mediator.PlatformResourcesMXBeanMediator;
@@ -29,7 +31,7 @@ public class PlatformResourcesMXBeanMediatorImpl implements PlatformResourcesMXB
    */
   private static float toFloat(double value) {
     if (value == -1) {
-      return -1;
+      return NaN;
     }
     return Math.round(value * 100f * 10f) / 10f;
   }
@@ -39,7 +41,7 @@ public class PlatformResourcesMXBeanMediatorImpl implements PlatformResourcesMXB
    */
   private static float toFloat(long value) {
     if (value == -1) {
-      return -1;
+      return NaN;
     }
     return Math.round((value / (1024f * 1024f)) * 10f) / 10f;
   }

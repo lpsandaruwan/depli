@@ -9,8 +9,8 @@ import com.depli.service.store.cache.descriptor.RuntimeDescriptorCacheService;
 import com.depli.service.store.cache.descriptor.ThreadDescriptorCacheService;
 import com.depli.service.store.cache.graph.ClassLoadingGraphDataCacheService;
 import com.depli.service.store.cache.graph.ProcessingUnitGraphDataCacheService;
-import com.depli.service.store.persistent.JMXNodeService;
 import com.depli.store.persistent.entity.JMXNode;
+import com.depli.store.persistent.repository.JMXNodeRepository;
 import com.depli.utility.initializer.InitializerFactory;
 import com.depli.utility.initializer.cache.impl.ClassLoadingDescriptorCacheInitializer;
 import com.depli.utility.initializer.cache.impl.ClassLoadingGraphDataCacheInitializer;
@@ -92,7 +92,7 @@ public class InitializerFactoryImpl implements InitializerFactory {
   private ProcessingUnitGraphDataCacheInitializer processingUnitGraphDataCacheInitializer;
 
   @Autowired
-  private JMXNodeService jmxNodeService;
+  private JMXNodeRepository jmxNodeRepository;
 
   @Override
   public void initialize() throws IOException {
@@ -108,7 +108,7 @@ public class InitializerFactoryImpl implements InitializerFactory {
     processingUnitGraphDataCacheService.clearCache();
 
     /* Iterate JMXNode entities and initialize cache stores */
-    for (JMXNode jmxNode : jmxNodeService.findAll()) {
+    for (JMXNode jmxNode : jmxNodeRepository.findAll()) {
       Long nodeId = jmxNode.getNodeId();
 
       connectionTreeInitializer.initialize(jmxNode);

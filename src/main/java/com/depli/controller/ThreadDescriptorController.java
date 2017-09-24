@@ -26,13 +26,13 @@ public class ThreadDescriptorController {
   @Autowired
   private ThreadDescriptorService threadDescriptorService;
 
-  @GetMapping("/{descriptorIndex}/counts")
+  @GetMapping("/{descriptorIndex}/dynamics/counts")
   public ResponseEntity<Map> findThreadDescriptorCountDataById(@PathVariable Long descriptorIndex) {
     return new ResponseEntity<>(threadDescriptorService.getByNodeId(descriptorIndex).countsToMap(),
         HttpStatus.OK);
   }
 
-  @GetMapping("/{descriptorIndex}/dumps")
+  @GetMapping("/{descriptorIndex}/dynamics/dumps")
   public ResponseEntity<Map> findThreadDescriptorDumpDataById(@PathVariable Long descriptorIndex) {
     return new ResponseEntity<>(threadDescriptorService.getByNodeId(descriptorIndex).dumpsToMap(),
         HttpStatus.OK);

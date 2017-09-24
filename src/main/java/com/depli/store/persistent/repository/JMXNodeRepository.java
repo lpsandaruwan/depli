@@ -26,4 +26,6 @@ public interface JMXNodeRepository extends Repository<JMXNode, Long> {
 
   // Add new JMX node information to database
   JMXNode save(JMXNode jmxNode);
+
+  boolean existsByNodeId(Long nodeId);
 }

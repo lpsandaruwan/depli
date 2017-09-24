@@ -5,12 +5,12 @@
 
     <md-tabs md-dynamic-height md-border-bottom flex="90">
       <md-tab label="statistics">
-        <md-card ng-controller="instanceViewModule">
+        <md-card ng-controller="statisticsController">
           <div class="padding-40" layout="row">
             <section flex="30">
               <h3>CPU</h3>
 
-              <canvas id="lineCpu" class="chart chart-line" chart-data="statsData"
+              <canvas id="lineCpu" class="chart chart-line" chart-data="cpuGraphData"
                       chart-labels="cpuChartLabels" chart-series="cpuChartSeries"
                       chart-options="{animation: false}"
                       chart-colors="cpuChartColor">
@@ -29,7 +29,7 @@
 
                     <div flex></div>
 
-                    <div>{{jmxNode.envData.operatingSystemName}}</div>
+                    <div>{{operatingSystemInformation.operatingSystemName}}</div>
                   </div>
 
                   <div layout="row">
@@ -37,7 +37,7 @@
 
                     <div flex></div>
 
-                    <div>{{jmxNode.envData.operatingSystemVersion}}</div>
+                    <div>{{operatingSystemInformation.operatingSystemVersion}}</div>
                   </div>
 
                   <div layout="row">
@@ -45,7 +45,7 @@
 
                     <div flex></div>
 
-                    <div>{{jmxNode.envData.architecture}}</div>
+                    <div>{{operatingSystemInformation.architecture}}</div>
                   </div>
 
                   <div layout="row">
@@ -53,7 +53,7 @@
 
                     <div flex></div>
 
-                    <div>x{{jmxNode.envData.cpuCount}}</div>
+                    <div>x{{operatingSystemInformation.cpuCount}}</div>
                   </div>
 
                   <div layout="row">
@@ -79,7 +79,7 @@
 
                     <div flex></div>
 
-                    <div>{{jmxNode.runData.jvmName}}</div>
+                    <div>{{runtimeStatics.jvm.jvmName}}</div>
                   </div>
 
 
@@ -88,7 +88,7 @@
 
                     <div flex></div>
 
-                    <div>{{jmxNode.runData.runningJvmName}}</div>
+                    <div>{{runtimeStatics.jvm.runningJvmName}}</div>
                   </div>
 
                   <div layout="row">
@@ -96,7 +96,7 @@
 
                     <div flex></div>
 
-                    <div>{{jmxNode.runData.jvmVersion}}</div>
+                    <div>{{runtimeStatics.jvm.jvmVersion}}</div>
                   </div>
 
                   <div layout="row">
@@ -104,7 +104,7 @@
 
                     <div flex></div>
 
-                    <div>{{jmxNode.runData.managementInterfaceVersion}}</div>
+                    <div>{{runtimeStatics.jvm.managementInterfaceVersion}}</div>
                   </div>
 
                   <div layout="row">
@@ -112,7 +112,7 @@
 
                     <div flex></div>
 
-                    <div>{{jmxNode.runData.jvmVendor}}</div>
+                    <div>{{runtimeStatics.jvm.jvmVendor}}</div>
                   </div>
 
                   <div layout="row">
@@ -120,7 +120,7 @@
 
                     <div flex></div>
 
-                    <div>{{jmxNode.runData.jvmStartTime}}</div>
+                    <div>{{runtimeStatics.jvm.jvmStartTime}}</div>
                   </div>
 
                   <div layout="row">
@@ -128,7 +128,7 @@
 
                     <div flex></div>
 
-                    <div>{{jvmUptime}}</div>
+                    <div>{{runtimeDynamics.uptime}}</div>
                   </div>
                 </div>
               </div>
@@ -139,13 +139,13 @@
         <md-card>
           <div class="padding-40" layout="row">
             <section flex="30">
-              <h3>Class Loading Data</h3>
+              <h3>Class Loading</h3>
 
               <div>
-                <canvas id="lineClass" class="chart chart-line" chart-data="classChartData"
-                        chart-labels="labelsClassChart" chart-series="seriesClassChart"
+                <canvas id="lineClass" class="chart chart-line" chart-data="classLoadingChartData"
+                        chart-labels="classChartLabels" chart-series="classChartSeries"
                         chart-options="{animation: false}"
-                        chart-colors="colorsClassChart">
+                        chart-colors="classChartColors">
                 </canvas>
               </div>
 
@@ -155,7 +155,7 @@
 
                   <div flex></div>
 
-                  <div>{{jmxNode.classData.loadedClassCount}}</div>
+                  <div>{{classLoadingData.loadedClassCount}}</div>
                 </div>
 
                 <div layout="row">
@@ -163,7 +163,7 @@
 
                   <div flex></div>
 
-                  <div>{{jmxNode.classData.totalLoadedClassCount}}</div>
+                  <div>{{classLoadingData.totalLoadedClassCount}}</div>
                 </div>
 
                 <div layout="row">
@@ -171,7 +171,7 @@
 
                   <div flex></div>
 
-                  <div>{{jmxNode.classData.unloadedClassCount}}</div>
+                  <div>{{classLoadingData.unloadedClassCount}}</div>
                 </div>
               </div>
             </section>
@@ -182,9 +182,9 @@
               <h3>Host Memory(MB)</h3>
 
               <div>
-                <canvas id="barHost" class="chart chart-bar" chart-colors="colorsHostMemChart"
-                        chart-data="hostMemChartData" chart-labels="labelsHostMemChart"
-                        chart-series="seriesHostMemChart">
+                <canvas id="barHost" class="chart chart-bar" chart-colors="hostMemChartColors"
+                        chart-data="hostMemChartData" chart-labels="hostMemChartLabels"
+                        chart-series="hostMemChartSeries">
                 </canvas>
               </div>
 
@@ -195,7 +195,7 @@
                   <div flex></div>
 
                   <div>
-                    {{jmxNode.peosData.freePhysicalMemory}}MB/{{jmxNode.peosData.totalPhysicalMemory}}MB
+                    {{platformResources.freePhysicalMemory}}MB/{{platformResources.totalPhysicalMemory}}MB
                   </div>
                 </div>
 
@@ -204,7 +204,7 @@
 
                   <div flex></div>
 
-                  <div>{{jmxNode.peosData.freeSwapSpace}}MB/{{jmxNode.peosData.totalSwapSpace}}MB
+                  <div>{{platformResources.freeSwapSpace}}MB/{{platformResources.totalSwapSpace}}MB
                   </div>
                 </div>
               </div>
@@ -217,8 +217,8 @@
 
               <div>
                 <canvas id="barJVM" class="chart chart-bar"
-                        chart-data="dataMemChart" chart-labels="labelsMemChart"
-                        chart-series="seriesMemChart">
+                        chart-data="memChartData" chart-labels="memChartLabels"
+                        chart-series="memChartSeries">
                 </canvas>
               </div>
 
@@ -232,7 +232,7 @@
 
                       <div flex></div>
 
-                      <div>{{jmxNode.memData.heapMemory.init}}MB</div>
+                      <div>{{memoryData.heapMemory.init}}MB</div>
                     </div>
 
                     <div layout="row">
@@ -240,7 +240,7 @@
 
                       <div flex></div>
 
-                      <div>{{jmxNode.memData.heapMemory.used}}MB</div>
+                      <div>{{memoryData.heapMemory.used}}MB</div>
                     </div>
 
                     <div layout="row">
@@ -248,7 +248,7 @@
 
                       <div flex></div>
 
-                      <div>{{jmxNode.memData.heapMemory.committed}}MB</div>
+                      <div>{{memoryData.heapMemory.committed}}MB</div>
                     </div>
 
                     <div layout="row">
@@ -256,7 +256,7 @@
 
                       <div flex></div>
 
-                      <div>{{jmxNode.memData.heapMemory.max}}MB</div>
+                      <div>{{memoryData.heapMemory.max}}MB</div>
                     </div>
                   </div>
                 </div>
@@ -272,7 +272,7 @@
 
                       <div flex></div>
 
-                      <div>{{jmxNode.memData.nonHeapMemory.init}}MB</div>
+                      <div>{{memoryData.nonHeapMemory.init}}MB</div>
                     </div>
 
                     <div layout="row">
@@ -280,7 +280,7 @@
 
                       <div flex></div>
 
-                      <div>{{jmxNode.memData.nonHeapMemory.used}}MB</div>
+                      <div>{{memoryData.nonHeapMemory.used}}MB</div>
                     </div>
 
                     <div layout="row">
@@ -288,7 +288,7 @@
 
                       <div flex></div>
 
-                      <div>{{jmxNode.memData.nonHeapMemory.committed}}MB</div>
+                      <div>{{memoryData.nonHeapMemory.committed}}MB</div>
                     </div>
 
                     <div layout="row">
@@ -296,7 +296,7 @@
 
                       <div flex></div>
 
-                      <div>{{jmxNode.memData.nonHeapMemory.max}}MB</div>
+                      <div>{{memoryData.nonHeapMemory.max}}MB</div>
                     </div>
                   </div>
                 </div>
@@ -307,7 +307,7 @@
       </md-tab>
 
       <md-tab label="runtime data">
-        <div ng-controller="instanceViewModule">
+        <div ng-controller="statisticsController">
           <md-card class="padding-40">
             <div>
               <div>
@@ -320,7 +320,7 @@
             <h4>Input Arguments</h4>
 
             <div class="text-stat"
-                 ng-repeat="classPath in jmxNode.runData.inputArguments | filter:searchPath">
+                 ng-repeat="classPath in runtimeStatics.pathInfo.inputArguments | filter:searchPath">
               <p>{{classPath}}</p>
             </div>
             <br>
@@ -328,7 +328,7 @@
             <h4>Library Path</h4>
 
             <div class="text-stat"
-                 ng-repeat="classPath in jmxNode.runData.javaLibraryPath | filter:searchPath">
+                 ng-repeat="classPath in runtimeStatics.pathInfo.javaLibraryPath | filter:searchPath">
               <p>{{classPath}}</p>
             </div>
             <br>
@@ -336,7 +336,7 @@
             <h4>Bootstrap Class Path</h4>
 
             <div class="text-stat"
-                 ng-repeat="classPath in jmxNode.runData.bootstrapClassPath | filter:searchPath">
+                 ng-repeat="classPath in runtimeStatics.pathInfo.bootstrapClassPath | filter:searchPath">
               <p>{{classPath}}</p>
             </div>
             <br>
@@ -344,7 +344,7 @@
             <h4>System Class Path</h4>
 
             <div class="text-stat"
-                 ng-repeat="classPath in jmxNode.runData.systemClassPath | filter:searchPath">
+                 ng-repeat="classPath in runtimeStatics.pathInfo.systemClassPath | filter:searchPath">
               <p>{{classPath}}</p>
             </div>
           </md-card>

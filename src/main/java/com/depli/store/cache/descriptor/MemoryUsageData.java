@@ -1,5 +1,7 @@
 package com.depli.store.cache.descriptor;
 
+import static java.lang.Float.NaN;
+
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryUsage;
 
@@ -20,15 +22,15 @@ public class MemoryUsageData {
   private float max;
 
   public MemoryUsageData() {
-    this.init = -1;
-    this.used = -1;
-    this.committed = -1;
-    this.max = -1;
+    this.init = NaN;
+    this.used = NaN;
+    this.committed = NaN;
+    this.max = -NaN;
   }
 
   private static float toFloat(long value) {
     if (value == -1) {
-      return value;
+      return NaN;
     }
 
     return Math.round((value / (1024f * 1024f)) * 10f) / 10f;

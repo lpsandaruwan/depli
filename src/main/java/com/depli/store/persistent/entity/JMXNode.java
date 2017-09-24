@@ -1,6 +1,5 @@
 package com.depli.store.persistent.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,17 +40,11 @@ public class JMXNode {
   @NotNull
   private boolean authRequired;
 
-  @Column(name = "ssl_required")
-  @NotNull
-  private boolean sslRequired;
-
   @Column(name = "username")
-  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   @Size(max = 50)
   private String username;
 
   @Column(name = "password")
-  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   @Size(max = 50)
   private String password;
 
@@ -61,13 +54,11 @@ public class JMXNode {
   public JMXNode(String nodeName,
       String hostname,
       int port,
-      boolean authRequired,
-      boolean sslRequired) {
+      boolean authRequired) {
     this.nodeName = nodeName;
     this.hostname = hostname;
     this.port = port;
     this.authRequired = authRequired;
-    this.sslRequired = sslRequired;
   }
 
   public long getNodeId() {
@@ -108,14 +99,6 @@ public class JMXNode {
 
   public void setAuthRequired(boolean authRequired) {
     this.authRequired = authRequired;
-  }
-
-  public boolean isSslRequired() {
-    return sslRequired;
-  }
-
-  public void setSslRequired(boolean sslRequired) {
-    this.sslRequired = sslRequired;
   }
 
   public String getUsername() {

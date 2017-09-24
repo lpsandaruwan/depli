@@ -3,6 +3,8 @@ package com.depli.controller;
 import com.depli.service.store.descriptor.PlatformResourcesDescriptorService;
 import com.depli.store.cache.descriptor.PlatformResourcesDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +27,9 @@ public class PlatformResourcesDescriptorController {
   private PlatformResourcesDescriptorService platformResourcesDescriptorService;
 
   @GetMapping("/{descriptorIndex}/dynamics")
-  public PlatformResourcesDescriptor findPlatformResourcesDescriptorByNodeId(
+  public ResponseEntity<PlatformResourcesDescriptor> findPlatformResourcesDescriptorByNodeId(
       @PathVariable Long descriptorIndex) {
-    return platformResourcesDescriptorService.getByNodeId(descriptorIndex);
+    return new ResponseEntity<>(platformResourcesDescriptorService.getByNodeId(descriptorIndex),
+        HttpStatus.OK);
   }
 }

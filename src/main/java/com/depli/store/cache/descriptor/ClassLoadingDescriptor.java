@@ -32,9 +32,9 @@ public class ClassLoadingDescriptor {
   private long unloadedClassCount;
 
   public ClassLoadingDescriptor() {
-    this.loadedClassCount = -1;
-    this.totalLoadedClassCount = -1;
-    this.unloadedClassCount = -1;
+    this.loadedClassCount = 0;
+    this.totalLoadedClassCount = 0;
+    this.unloadedClassCount = 0;
   }
 
   /**

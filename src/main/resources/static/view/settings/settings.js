@@ -2,12 +2,12 @@
  * Created by lpsandaruwan on 3/31/17.
  */
 
-var settingsModule = angular.module("settingsModule", []);
+var settingsModule = angular.module('settingsModule', []);
 
 settingsModule
 .controller("settingsModule",
     function ($http, $interval, $mdDialog, $rootScope, $route, $scope, $timeout,
-        jmxNodeService) {
+        JMXNodeService) {
       // page animation helper
       $scope.pageClass = "page-settings";
 
@@ -18,15 +18,15 @@ settingsModule
 
       // set toolbar header
       var setToolbarHeader = function () {
-        jmxNodeService.setNodeName("> SETTINGS");
-
-        $rootScope.toolbarHeader = jmxNodeService.getNodeName();
+        JMXNodeService.setNodeName("> SETTINGS");
+        $rootScope.toolbarHeader = JMXNodeService.getNodeName();
       };
       setToolbarHeader();
 
       // get node list
       var getJmxNodeList = function () {
-        $http.get("nodes")
+
+        JMXNodeService.getAll()
         .then(function onSuccess(response) {
           $scope.jmxNodeList = response.data;
 
@@ -61,7 +61,6 @@ settingsModule
         $scope.jmxNode.hostname = undefined;
         $scope.jmxNode.port = undefined;
         $scope.jmxNode.authRequired = false;
-        $scope.jmxNode.sslRequired = false;
         $scope.jmxNode.username = null;
         $scope.jmxNode.password = null;
 
@@ -72,7 +71,7 @@ settingsModule
 
         // save node store
         var saveNodeData = function () {
-          $http.post("nodes/save", $scope.jmxNode)
+          JMXNodeService.saveNew($scope.jmxNode)
           .then(function onSuccess() {
             $scope.inProgress = false;
             $mdDialog.hide();
@@ -80,8 +79,7 @@ settingsModule
           .catch(function onError(response) {
             $scope.inProgress = false;
             $scope.errorResponse.status = true;
-            $scope.errorResponse.error = "error, response code: "
-                + response.status;
+            $scope.errorResponse.error = "Error: " + response.data.error;
           })
         };
 
@@ -95,7 +93,7 @@ settingsModule
       $scope.addNewNode = function (ev) {
         $mdDialog.show({
           controller: addNodeController,
-          templateUrl: "settings/node_data.html",
+          templateUrl: "view/settings/node_data.html",
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose: true,
@@ -115,14 +113,13 @@ settingsModule
 
         // get node store
         var getJmxNodeData = function () {
-          $http.get("nodes/" + jmxNodeId)
+          JMXNodeService.getByNodeId(jmxNodeId)
           .then(function onSuccess(response) {
             $scope.jmxNode = response.data;
           })
           .catch(function onError(response) {
-            $scope.errorResponse.status = false;
-            $scope.errorResponse.error = "error getting node store, response code: "
-                + response.status;
+            $scope.errorResponse.status = true;
+            $scope.errorResponse.error = "Error: " + response.data.error;
           })
         };
         getJmxNodeData();
@@ -134,7 +131,7 @@ settingsModule
 
         // save node store
         var saveNodeData = function () {
-          $http.post("nodes/save", $scope.jmxNode)
+          JMXNodeService.updateByNodeId(jmxNodeId, $scope.jmxNode)
           .then(function onSuccess() {
             $scope.inProgress = false;
             $mdDialog.hide();
@@ -142,8 +139,7 @@ settingsModule
           .catch(function onError(response) {
             $scope.inProgress = false;
             $scope.errorResponse.status = true;
-            $scope.errorResponse.error = "error, response code: "
-                + response.status;
+            $scope.errorResponse.error = "Error: " + response.data.error;
           })
         };
 
@@ -157,7 +153,7 @@ settingsModule
       $scope.editNewNode = function (ev, _jmxNodeId) {
         $mdDialog.show({
           controller: editNodeController,
-          templateUrl: "settings/node_data.html",
+          templateUrl: "view/settings/node_data.html",
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose: true,
@@ -185,15 +181,14 @@ settingsModule
 
         $mdDialog.show(confirm)
         .then(function () {
-          $http.delete("nodes/" + jmxNodeId)
+          JMXNodeService.deleteByNodeId(jmxNodeId)
           .then(function onSuccess(response) {
             if (response.data === true) {
               $mdDialog.hide();
             }
           })
           .catch(function onError(response) {
-            $scope.errorResponse.error = "error, response code: "
-                + response.status;
+            $scope.errorResponse.error = "Error: " + response.data.error;
           });
 
           $timeout(function () {

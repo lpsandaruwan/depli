@@ -1,7 +1,7 @@
 package com.depli.utility.scheduler;
 
-import com.depli.service.store.persistent.JMXNodeService;
 import com.depli.store.persistent.entity.JMXNode;
+import com.depli.store.persistent.repository.JMXNodeRepository;
 import com.depli.utility.scheduler.task.DynamicDataMediatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -20,14 +20,14 @@ import org.springframework.stereotype.Component;
 public class DynamicMediatorScheduler {
 
   @Autowired
-  private JMXNodeService jmxNodeService;
+  private JMXNodeRepository jmxNodeRepository;
 
   @Autowired
   private DynamicDataMediatorFactory dynamicDataMediatorFactory;
 
   @Scheduled(cron = "*/1 * * * * *")
   public void run() {
-    for (JMXNode jmxNode : jmxNodeService.findAll()) {
+    for (JMXNode jmxNode : jmxNodeRepository.findAll()) {
       dynamicDataMediatorFactory.mediate(jmxNode.getNodeId());
     }
   }

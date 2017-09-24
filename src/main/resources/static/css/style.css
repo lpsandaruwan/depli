@@ -62,8 +62,8 @@
 */
 
 md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
-  color: red !important;
-  background-color: red !important;
+  color: #2aacff !important;
+  background-color: #0084e6 !important;
 }
 
 md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {
@@ -75,7 +75,7 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
 }
 
 .md-button:hover {
-  color: red !important;
+  color: #0079fc !important;
 }
 
 md-input-container:not(.md-input-invalid).md-input-focused .md-input {
@@ -110,6 +110,10 @@ body {
 
 .color-submain {
   color: #4e4e4e;
+}
+
+.color-error {
+  color: red !important;
 }
 
 .padding-20 {

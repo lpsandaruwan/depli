@@ -1,7 +1,10 @@
 package com.depli.service.store.persistent;
 
 import com.depli.store.persistent.entity.JMXNode;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import org.springframework.http.ResponseEntity;
 
 /**
  * Created by Lahiru Pathirage on 8/6/2017.
@@ -9,11 +12,13 @@ import java.util.List;
 
 public interface JMXNodeService {
 
-  public List<JMXNode> findAll();
+  public ResponseEntity<List<JMXNode>> findAll();
 
-  public JMXNode findByNodeId(long nodeId);
+  public ResponseEntity findByNodeId(Long nodeId);
 
-  public Long removeByNodeId(long nodeId);
+  public ResponseEntity<Map> updateByNodeId(Long nodeId, JMXNode jmxNode);
 
-  public JMXNode save(JMXNode jmxNode);
+  public ResponseEntity<Map> removeByNodeId(Long nodeId);
+
+  public ResponseEntity<Map> save(JMXNode jmxNode) throws IOException;
 }

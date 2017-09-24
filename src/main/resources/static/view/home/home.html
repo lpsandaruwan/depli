@@ -11,7 +11,7 @@
     <md-grid-tile class="gray" ng-repeat="jmxNode in jmxNodeList" md-rowspan="2" md-colspan="2"
                   md-colspan-sm="1"
                   md-colspan-xs="1">
-      <div ng-if="jmxNode.isInitialized" flex="100">
+      <div flex="100">
         <div class="md-toolbar-tools">
           <h2 class="color-main flex md-truncate">{{jmxNode.nodeName}}</h2>
 
@@ -43,7 +43,7 @@
           <div class="text-stat" layout="row">
             <div layout="column" flex="45">
               <div layout="row">
-                <div>JVM on host CPU</div>
+                <div>JVM CPU</div>
 
                 <div flex></div>
 
@@ -96,19 +96,19 @@
 
 
               <div layout="row">
-                <div>Host free mem</div>
+                <div>Free physical mem</div>
 
                 <div flex></div>
 
-                <div>{{jmxNode.hostFreePhysicalMemory}}MB</div>
+                <div>{{jmxNode.freePhysicalMemory}}MB</div>
               </div>
 
               <div layout="row">
-                <div>Host total mem</div>
+                <div>Total physical mem</div>
 
                 <div flex></div>
 
-                <div>{{jmxNode.hostTotalPhysicalMemory}}MB</div>
+                <div>{{jmxNode.totalPhysicalMemory}}MB</div>
               </div>
             </div>
           </div>
@@ -127,11 +127,6 @@
             <div class="padding-right-10"></div>
           </div>
         </md-grid-tile-footer>
-      </div>
-
-      <div ng-if="!jmxNode.isInitialized">
-        <h3>Connection failed on {{jmxNode.nodeName}} @ {{jmxNode.hostname}}:{{jmxNode.port}}</h3>
-        <h3>{{jmxNode.error}}</h3>
       </div>
     </md-grid-tile>
   </md-grid-list>

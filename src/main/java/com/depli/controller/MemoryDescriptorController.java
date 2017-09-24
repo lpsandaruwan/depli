@@ -3,6 +3,8 @@ package com.depli.controller;
 import com.depli.service.store.descriptor.MemoryDescriptorService;
 import com.depli.store.cache.descriptor.MemoryDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +27,9 @@ public class MemoryDescriptorController {
   private MemoryDescriptorService memoryDescriptorService;
 
   @GetMapping("/{descriptorIndex}/dynamics")
-  public MemoryDescriptor findMemoryDescriptorByNodeId(@PathVariable Long descriptorIndex) {
-    return memoryDescriptorService.getByNodeId(descriptorIndex);
+  public ResponseEntity<MemoryDescriptor> findMemoryDescriptorByNodeId(
+      @PathVariable Long descriptorIndex) {
+    return new ResponseEntity<>(memoryDescriptorService.getByNodeId(descriptorIndex),
+        HttpStatus.OK);
   }
 }
