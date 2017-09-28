@@ -3,22 +3,52 @@ package com.depli.service.store.persistent;
 import com.depli.store.persistent.entity.JMXNode;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-import org.springframework.http.ResponseEntity;
 
 /**
- * Created by Lahiru Pathirage on 8/6/2017.
+ * JMXNode service
+ *
+ * Service to manipulate JMXNode entities.
+ *
+ * @author lpsandaruwan
+ * @since 8/6/2017
  */
 
 public interface JMXNodeService {
 
-  public ResponseEntity<List<JMXNode>> findAll();
+  /**
+   * Retrieves JMXNode entities.
+   *
+   * @return List of JMXNode entities
+   */
+  public List<JMXNode> findAll();
 
-  public ResponseEntity findByNodeId(Long nodeId);
+  /**
+   * Returns the JMXNode entity for given node Id.
+   *
+   * @param nodeId JMXNode Id.
+   * @return JMXNode entity for given node Id
+   */
+  public JMXNode findByNodeId(Long nodeId);
 
-  public ResponseEntity<Map> updateByNodeId(Long nodeId, JMXNode jmxNode);
+  /**
+   * Updates JMXNode entity and persists.
+   *
+   * @param nodeId node Id of the JMXNode entity to be updated.
+   * @param jmxNode JMXNode object with data which needs to be updated
+   */
+  public boolean updateByNodeId(Long nodeId, JMXNode jmxNode);
 
-  public ResponseEntity<Map> removeByNodeId(Long nodeId);
+  /**
+   * Removes persisted JMXNode entity.
+   *
+   * @param nodeId JMXNode entity Id
+   */
+  public boolean removeByNodeId(Long nodeId);
 
-  public ResponseEntity<Map> save(JMXNode jmxNode) throws IOException;
+  /**
+   * Persists new JMXNode object.
+   *
+   * @param jmxNode JMXNode object
+   */
+  public boolean save(JMXNode jmxNode) throws IOException;
 }

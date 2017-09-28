@@ -6,26 +6,30 @@ import org.springframework.data.repository.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Created by lpsandaruwan on 3/22/17.
+ * JMXNode repository.
+ *
+ * @author lpsandaruwan
+ * @since 3/22/17
  */
 
-@Transactional
+
 public interface JMXNodeRepository extends Repository<JMXNode, Long> {
 
-  // Returns a list of JMXNode objects
+  @Transactional(readOnly = true)
   List<JMXNode> findAll();
 
-  // Find JMX node by hostname
+  @Transactional(readOnly = true)
   JMXNode findByHostname(String hostname);
 
-  // Find JMX node information by node id
-  JMXNode findByNodeId(long nodeId);
+  @Transactional(readOnly = true)
+  JMXNode findByNodeId(Long nodeId);
 
-  // Delete JMX node entry from database
-  Long removeByNodeId(long nodeId);
+  @Transactional
+  Long removeByNodeId(Long nodeId);
 
-  // Add new JMX node information to database
+  @Transactional
   JMXNode save(JMXNode jmxNode);
 
+  @Transactional(readOnly = true)
   boolean existsByNodeId(Long nodeId);
 }
