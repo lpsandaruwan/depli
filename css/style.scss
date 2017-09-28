@@ -14,7 +14,7 @@ $base-spacing: $base-line-height * 1em;
 
 $text-color: #3d3d3d;
 $background-color: #ffffff;
-$brand-color: red;
+$brand-color: #4b74ff;
 
 $grey-color: #605e63;
 $grey-color-light: lighten($grey-color, 40%);
@@ -72,7 +72,7 @@ h1, h2, h3, h4, h5, h6, p, a, li, ul, ol, time, .md-menu {
 }
 
 .red {
-  background: #ff8a80; }
+  background: #4192ff; }
 
 
 /**
@@ -194,11 +194,11 @@ body {
 }
 
 .left-border {
-  border-left: solid red 6px;
+  border-left: solid #4b74ff 6px;
 }
 
 .left-border-thick {
-  border-left: solid red 4px;
+  border-left: solid #4b74ff 4px;
 }
 
 h1 {
@@ -295,20 +295,20 @@ a {
   text-decoration: none;
 
   &:hover {
-    color: red;
+    color: blue;
   }
 
   &.page-link{
     font-size: 12px;
 
     &:hover {
-      color: red;
+      color: #4b74ff;
     }
   }
   &.postLink{
 
     &:hover {
-      color: red;
+      color: #4b74ff;
     }
 
   }
@@ -317,7 +317,7 @@ a {
     color: $text-color;
 
     &:hover {
-      color: red;
+      color: #4b74ff;
       font-size: 28px;
     }
 
@@ -330,7 +330,7 @@ a {
 
 
 .red {
-  background: #ff8a80; }
+  background: #49b1ff; }
 
 /**
  * Blockquotes
@@ -395,7 +395,7 @@ pre {
 }
 
 .controller-btn:not([disabled]):hover {
-  background-color: red !important;
+  background-color: blue !important;
 }
 
 
@@ -424,15 +424,15 @@ pre {
 
 // icon colors
 svg:hover #facebook-back {
-  fill: red;
+  fill: blue;
 }
 
 svg:hover #github-back {
-  fill: red;
+  fill: blue;
 }
 
 svg:hover #twitter-back {
-  fill: red;
+  fill: blue;
 }
 
 /**

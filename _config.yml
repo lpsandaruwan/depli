@@ -3,10 +3,9 @@
 title: DEPLI
 email: lpsandaruwan@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Depli is a handsome performance monitoring dashboard dedicated for looking into Java virtual machines through JMX remote connections.
-  It is very user-friendly and does not ask you for tough configurations.
-  Just run the Jar file and add a connection using web UI.
-
+  A handsome performance monitoring dashboard dedicated for looking into Java virtual machines through management
+  bean server connections which provides the solution to monitor all the running Java applications at once with
+  an attractive user interface.
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
