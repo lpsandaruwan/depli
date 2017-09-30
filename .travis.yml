@@ -1,7 +1,7 @@
 dist: trusty
 sudo: required
 addons:
-  sonarqube:
+  sonarcloud:
     organization: lpsandaruwan-github
     token:
       secure: M0bsKiQEu48YZ5rgQyAzmSLYn8KQxr3JJfGCxpDkn7ywWvlX1n51eud5/Ntqiw2cOMQZzOfglcrqI4V1pCc14Fl8yFeSVVd3/uRX22M+j7QduVHEnPm3ocYM+yoKoE1+wQZd0I7hK9BlZKXPWsnipneVYsJSrNSO/YjJCWLh7G7aASLI0oXoTja8uUgoMwmXl9LJ2pPKKIw4wirkqf7zHpnCCvz1jwg52h2ESCl6DKsjc1cbDJMLLoS2hCfrmHZpWj2c5+QN5e23NRpLEVLO2U10ydTfyk1VUJuG6EZHAGg85FgXrwUytT1am4f6Uzy/ryH2mzaH1UnsDiZ60BRbs3DQEP/ANYwGMhj1ImkFkB46e4kw7YYiMwOyHYxKSfhaaVHACAmaA6C2JEAeI513UNVUEIg3C2FFEoB/lK1eqKZPUfncXBffpnAOm93LEvT8poMAWarsVkb6J50sBvBGnTwBc+P6JdTh2lXffcph9JoCx1aPwtDBI3ttwjzoG6n6TP6s91rC9NjhyZLv/FgQyjNAyXEs+GnLu2MLe8Tl7EcchBGXvWQa9sdK6CASta+6Nqr/VE1+Z9FdmvTEC7ft0SuVrW9sWMOxTFsISdDqQK/utPkZ5jVuFS1p8ffOZo8X1PT3arfALJ3rxpq1kAMcca7GQ9BLfnpyk1fmVf+nD8Q=
@@ -9,7 +9,7 @@ jdk:
 - oraclejdk8
 script:
 - mvn clean install
-- mvn sonar:sonar
+- sonar-scanner
 cache:
   directories:
   - "$HOME/.sonar/cache"
