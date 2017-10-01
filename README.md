@@ -5,7 +5,7 @@
 
 ###### A Rich JVM Monitor.
 
-Depli is a handsome tool that lets you monitor multiple JVM connections at once though Java management bean server connections, built using Spring-boot and angular material.
+Depli is a handsome tool that lets you monitor multiple JVM connections at once though Java management bean server connections, has been built using Spring-boot and angular material.
 
 ## Requirements
 Make sure you have installed Java version 7 or later.
@@ -21,7 +21,7 @@ To run depli from a [release](https://github.com/lpsandaruwan/depli/releases) ex
 
 ### Build using source
 
-Make sure you have installed maven,
+Make sure you have configured maven. To obtain the standalone jar file,
 ```
 mvn clean install -DskipTests
 ```
@@ -54,10 +54,7 @@ java -jar depli-*.jar --server.port=9000
 - [x] Hot plug and unplug JMX connections
 - [x] Multiple JMX connections
 - [ ] Push notifications on user specific triggers and events
-- [ ] Notification bar
-- [ ] Notification mails
-- [ ] Performance statistics on user specific scenarios
-- [ ] Performance comparison between JVMs
+- [ ] User management and authentication.
 - [x] Threads/stacktrace search and lookup
 
 
