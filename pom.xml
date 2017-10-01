@@ -32,6 +32,7 @@
     <webjars.bower.chartjs.version>2.5.0</webjars.bower.chartjs.version>
     <webjars.bower.jquery.version>3.2.1</webjars.bower.jquery.version>
     <java.version>1.8</java.version>
+    <randombeans.version>2.0.0</randombeans.version>
   </properties>
 
   <developers>
@@ -165,6 +166,20 @@
       <artifactId>angular-chart.js</artifactId>
       <version>${webjars.bower.angular-chartjs.version}</version>
     </dependency>
+
+    <!-- testing related dependencies -->
+    <dependency>
+      <groupId>io.github.benas</groupId>
+      <artifactId>random-beans</artifactId>
+      <version>${randombeans.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>2.1.0</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
