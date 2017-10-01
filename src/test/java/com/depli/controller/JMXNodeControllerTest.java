@@ -99,18 +99,18 @@ public class JMXNodeControllerTest {
 
     @Test
     public void saveNewNode() throws Exception {
-        // success case - does not work
+        // success case
         Mockito.when(jmxNodeService.save(any()))
-                .thenReturn(true); // mockito does not return true here, I don't know why! :((
+                .thenReturn(true);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/nodes")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(mapper.writeValueAsString(jmxNode));    // error 500, because mockito did not return true:(
+                .content(mapper.writeValueAsString(jmxNode));
         mockMvc.perform(requestBuilder).andExpect(status().isCreated())
                 .andDo(print());
 
-        //error case - seems to work
+        //error case
         Mockito.when(jmxNodeService.save(any()))
                 .thenReturn(false);
         mockMvc.perform(requestBuilder).andExpect(status().isInternalServerError())
@@ -119,14 +119,14 @@ public class JMXNodeControllerTest {
 
     @Test
     public void updateByNodeId() throws Exception {
-        // success case - does not work
+        // success case
         Mockito.when(jmxNodeService.updateByNodeId(any(), any()))
-                .thenReturn(true); // mockito does not return true here, I don't know why! :((
+                .thenReturn(true);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/nodes/"+jmxNode.getNodeId())
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(mapper.writeValueAsString(jmxNode));    // error 400, because mockito did not return true :(
+                .content(mapper.writeValueAsString(jmxNode));
         mockMvc.perform(requestBuilder).andExpect(status().isOk())
                 .andDo(print());
 
