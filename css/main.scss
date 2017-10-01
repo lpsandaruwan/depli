@@ -295,7 +295,7 @@ a {
   text-decoration: none;
 
   &:hover {
-    color: blue;
+    color: #4b74ff;
   }
 
   &.page-link{
@@ -395,7 +395,7 @@ pre {
 }
 
 .controller-btn:not([disabled]):hover {
-  background-color: blue !important;
+  background-color: #4b74ff !important;
 }
 
 
@@ -424,15 +424,15 @@ pre {
 
 // icon colors
 svg:hover #facebook-back {
-  fill: blue;
+  fill: #4b74ff;
 }
 
 svg:hover #github-back {
-  fill: blue;
+  fill: #4b74ff;
 }
 
 svg:hover #twitter-back {
-  fill: blue;
+  fill: #4b74ff;
 }
 
 /**
