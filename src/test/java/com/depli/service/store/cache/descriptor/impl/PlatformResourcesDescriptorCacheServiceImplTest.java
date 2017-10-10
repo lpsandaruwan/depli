@@ -1,25 +1,25 @@
 package com.depli.service.store.cache.descriptor.impl;
 
-import com.depli.service.store.cache.BaseCacheServiceImplTest;
-import com.depli.service.store.cache.descriptor.PlatformResourcesDescriptorCacheService;
-import org.junit.Test;
-import org.mockito.InjectMocks;
-
 import static com.depli.constant.CacheName.PLATFORM_RESOURCES_DESCRIPTOR_CACHE;
 
-public class PlatformResourcesDescriptorCacheServiceImplTest extends BaseCacheServiceImplTest<PlatformResourcesDescriptorCacheService> {
+import com.depli.service.store.cache.BaseCacheServiceImplTest;
+import com.depli.service.store.cache.descriptor.PlatformResourcesDescriptorCacheService;
+import org.mockito.InjectMocks;
 
-    @InjectMocks
-    private PlatformResourcesDescriptorCacheServiceImpl platformResourcesDescriptorCacheService;
+public class PlatformResourcesDescriptorCacheServiceImplTest extends
+    BaseCacheServiceImplTest<PlatformResourcesDescriptorCacheService> {
 
-    @Override
-    protected PlatformResourcesDescriptorCacheService cacheService() {
-        return platformResourcesDescriptorCacheService;
-    }
+  @InjectMocks
+  private PlatformResourcesDescriptorCacheServiceImpl platformResourcesDescriptorCacheService;
 
-    @Override
-    protected String cacheKey() {
-        return PLATFORM_RESOURCES_DESCRIPTOR_CACHE;
-    }
+  @Override
+  protected PlatformResourcesDescriptorCacheService cacheService() {
+    return platformResourcesDescriptorCacheService;
+  }
+
+  @Override
+  protected String cacheKey() {
+    return PLATFORM_RESOURCES_DESCRIPTOR_CACHE;
+  }
 
 }

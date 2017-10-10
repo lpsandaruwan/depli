@@ -1,25 +1,25 @@
 package com.depli.service.store.cache.descriptor.impl;
 
-import com.depli.service.store.cache.BaseCacheServiceImplTest;
-import com.depli.service.store.cache.descriptor.ClassLoadingDescriptorCacheService;
-import org.junit.Test;
-import org.mockito.InjectMocks;
-
 import static com.depli.constant.CacheName.CLASS_LOADING_DESCRIPTOR_CACHE;
 
-public class ClassLoadingDescriptorCacheServiceImplTest extends BaseCacheServiceImplTest<ClassLoadingDescriptorCacheService> {
+import com.depli.service.store.cache.BaseCacheServiceImplTest;
+import com.depli.service.store.cache.descriptor.ClassLoadingDescriptorCacheService;
+import org.mockito.InjectMocks;
 
-    @InjectMocks
-    private ClassLoadingDescriptorCacheServiceImpl classLoadingDescriptorCacheService;
+public class ClassLoadingDescriptorCacheServiceImplTest extends
+    BaseCacheServiceImplTest<ClassLoadingDescriptorCacheService> {
 
-    @Override
-    protected ClassLoadingDescriptorCacheService cacheService() {
-        return classLoadingDescriptorCacheService;
-    }
+  @InjectMocks
+  private ClassLoadingDescriptorCacheServiceImpl classLoadingDescriptorCacheService;
 
-    @Override
-    protected String cacheKey() {
-        return CLASS_LOADING_DESCRIPTOR_CACHE;
-    }
+  @Override
+  protected ClassLoadingDescriptorCacheService cacheService() {
+    return classLoadingDescriptorCacheService;
+  }
+
+  @Override
+  protected String cacheKey() {
+    return CLASS_LOADING_DESCRIPTOR_CACHE;
+  }
 
 }

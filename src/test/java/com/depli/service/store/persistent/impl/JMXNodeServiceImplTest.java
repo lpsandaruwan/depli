@@ -1,9 +1,10 @@
 package com.depli.service.store.persistent.impl;
 
+import com.depli.store.persistent.entity.JMXNode;
+import com.depli.store.persistent.repository.JMXNodeRepository;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,9 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import com.depli.store.persistent.entity.JMXNode;
-import com.depli.store.persistent.repository.JMXNodeRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -39,7 +37,6 @@ public class JMXNodeServiceImplTest {
       }
     });
 
-
     List<JMXNode> nodes = nodeServiceImpl.findAll();
     Assert.assertThat(nodes, Matchers.hasSize(2));
   }
@@ -52,7 +49,6 @@ public class JMXNodeServiceImplTest {
         return new JMXNode("node1", "host1", 1111, false);
       }
     });
-
 
     JMXNode node = nodeServiceImpl.findByNodeId(1L);
     Assert.assertThat(node.getPort(), Matchers.is((1111)));
