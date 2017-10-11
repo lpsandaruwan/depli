@@ -100,6 +100,10 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web-services</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
 
     <!-- Infinispan related dependencies -->
     <dependency>
@@ -116,6 +120,13 @@
       <groupId>org.webjars.bower</groupId>
       <artifactId>jQuery</artifactId>
       <version>${webjars.bower.jquery.version}</version>
+    </dependency>
+
+    <!-- jwt dependencies -->
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt</artifactId>
+      <version>0.8.0</version>
     </dependency>
 
     <dependency>
