@@ -1,20 +1,27 @@
-package com.depli.security.model;
+package com.depli.store.persistent.entity;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "AUTHORITY")
+@Table(name = "authority")
 public class Authority {
 
   @Id
-  @Column(name = "ID")
+  @Column(name = "id")
 //  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authority_seq")
 //  @SequenceGenerator(name = "authority_seq", sequenceName = "authority_seq", allocationSize = 1)
   private Long id;
 
-  @Column(name = "NAME", length = 50)
+  @Column(name = "name", length = 50)
   @NotNull
   @Enumerated(EnumType.STRING)
   private AuthorityName name;

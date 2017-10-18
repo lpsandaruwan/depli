@@ -1,7 +1,8 @@
-package com.depli.security.controller;
+package com.depli.controller;
 
-import com.depli.security.JwtTokenUtil;
-import com.depli.security.JwtUser;
+import com.depli.service.security.JwtTokenUtil;
+import com.depli.service.security.JwtUser;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -9,8 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class UserRestController {

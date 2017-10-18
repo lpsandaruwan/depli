@@ -1,18 +1,17 @@
-package com.depli.security;
+package com.depli.service.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 import java.util.Date;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 public class JwtUser implements UserDetails {
 
   private final Long id;
   private final String username;
-  private final String firstname;
-  private final String lastname;
+  private final String firstName;
+  private final String lastName;
   private final String password;
   private final String email;
   private final Collection<? extends GrantedAuthority> authorities;
@@ -20,17 +19,17 @@ public class JwtUser implements UserDetails {
   private final Date lastPasswordResetDate;
 
   public JwtUser(Long id,
-                 String username,
-                 String firstname,
-                 String lastname,
-                 String email,
-                 String password, Collection<? extends GrantedAuthority> authorities,
-                 boolean enabled,
-                 Date lastPasswordResetDate) {
+      String username,
+      String firstName,
+      String lastName,
+      String email,
+      String password, Collection<? extends GrantedAuthority> authorities,
+      boolean enabled,
+      Date lastPasswordResetDate) {
     this.id = id;
     this.username = username;
-    this.firstname = firstname;
-    this.lastname = lastname;
+    this.firstName = firstName;
+    this.lastName = lastName;
     this.email = email;
     this.password = password;
     this.authorities = authorities;
@@ -66,12 +65,12 @@ public class JwtUser implements UserDetails {
     return true;
   }
 
-  public String getFirstname() {
-    return firstname;
+  public String getFirstName() {
+    return firstName;
   }
 
-  public String getLastname() {
-    return lastname;
+  public String getLastName() {
+    return lastName;
   }
 
   public String getEmail() {

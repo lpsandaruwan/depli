@@ -1,7 +1,7 @@
-package com.depli.security.config;
+package com.depli.configuration;
 
-import com.depli.security.JwtAuthenticationEntryPoint;
-import com.depli.security.JwtAuthenticationTokenFilter;
+import com.depli.service.security.JwtAuthenticationEntryPoint;
+import com.depli.service.security.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Autowired
   private JwtAuthenticationEntryPoint unauthorizedHandler;
@@ -30,10 +30,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   private UserDetailsService userDetailsService;
 
   @Autowired
-  public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+  public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder)
+      throws Exception {
     authenticationManagerBuilder
-      .userDetailsService(this.userDetailsService)
-      .passwordEncoder(passwordEncoder());
+        .userDetailsService(this.userDetailsService)
+        .passwordEncoder(passwordEncoder());
   }
 
   @Bean
@@ -42,34 +43,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   @Bean
-  public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
+  public JwtAuthenticationTokenFilter authenticationTokenFilterBean() {
     return new JwtAuthenticationTokenFilter();
   }
 
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
     httpSecurity
-      .csrf().disable()
-      .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-      .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-      .authorizeRequests()
-      .antMatchers("/auth/**").permitAll()
-      .antMatchers(
-        HttpMethod.GET,
-        "/",
-        "/*.html",
-        "/*.js",
-        "/favicon.ico",
-        "/**/*.html",
-        "/**/*.js",
-        "/**/*.css",
-        "/**/**/*.html",
-        "/**/**/*.js"
-      ).permitAll()
-      .anyRequest().authenticated();
+        .csrf().disable()
+        .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+        .authorizeRequests()
+        .antMatchers("/auth/**").permitAll()
+        .antMatchers(
+            HttpMethod.GET,
+            "/",
+            "/*.html",
+            "/*.js",
+            "/favicon.ico",
+            "/**/*.html",
+            "/**/*.js",
+            "/**/*.css",
+            "/**/**/*.html",
+            "/**/**/*.js"
+        ).permitAll()
+        .anyRequest().authenticated();
 
     httpSecurity
-      .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+        .addFilterBefore(authenticationTokenFilterBean(),
+            UsernamePasswordAuthenticationFilter.class);
 
     httpSecurity.headers().cacheControl();
   }

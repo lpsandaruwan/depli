@@ -56,7 +56,7 @@ public class JMXNodeController {
 
   @PostMapping
   public ResponseEntity<Map> saveNewNode(@RequestBody JMXNode jmxNode) throws IOException {
-    if(jmxNodeService.save(jmxNode)) {
+    if (jmxNodeService.save(jmxNode)) {
       return new ResponseEntity<>(HttpStatus.CREATED);
     }
     Map<String, String> map = new HashMap<>();
@@ -67,7 +67,7 @@ public class JMXNodeController {
   @PutMapping("/{nodeId}")
   public ResponseEntity<Map> updateByNodeId(@PathVariable Long nodeId,
       @RequestBody JMXNode jmxNode) {
-    if(jmxNodeService.updateByNodeId(nodeId, jmxNode)){
+    if (jmxNodeService.updateByNodeId(nodeId, jmxNode)) {
       return new ResponseEntity<>(HttpStatus.OK);
     }
     Map<String, String> map = new HashMap<>();
@@ -77,7 +77,7 @@ public class JMXNodeController {
 
   @DeleteMapping("/{nodeId}")
   public ResponseEntity<Map> deleteByNodeId(@PathVariable Long nodeId) {
-    if(jmxNodeService.removeByNodeId(nodeId)) {
+    if (jmxNodeService.removeByNodeId(nodeId)) {
       return new ResponseEntity<>(HttpStatus.OK);
     }
     Map<String, String> map = new HashMap<>();

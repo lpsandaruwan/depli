@@ -1,8 +1,8 @@
-package com.depli.security.service;
+package com.depli.service.security.service;
 
-import com.depli.security.JwtUserFactory;
-import com.depli.security.model.User;
-import com.depli.security.repository.UserRepository;
+import com.depli.service.security.JwtUserFactory;
+import com.depli.store.persistent.entity.User;
+import com.depli.store.persistent.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,7 +20,8 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
     User user = userRepository.findByUsername(username);
 
     if (user == null) {
-      throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
+      throw new UsernameNotFoundException(
+          String.format("No user found with username '%s'.", username));
     } else {
       return JwtUserFactory.create(user);
     }
