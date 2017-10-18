@@ -1,4 +1,4 @@
-package com.depli.security.service;
+package com.depli.service.security.service;
 
 import java.io.Serializable;
 
