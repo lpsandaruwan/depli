@@ -1,10 +1,12 @@
 package com.depli.utility.connector.impl;
 
+import com.depli.store.cache.connector.JMXConnectorFactory;
 import com.depli.store.cache.connector.MainConnector;
 import com.depli.store.persistent.entity.JMXNode;
 import com.depli.utility.connector.ManagementBeanServerConnector;
-import java.io.IOException;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
 
 
 /**
@@ -19,7 +21,7 @@ public class ManagementBeanServerConnectorImpl implements ManagementBeanServerCo
 
   @Override
   public MainConnector getConnection(JMXNode jmxNode) throws IOException {
-    MainConnector mainConnector = new MainConnector(jmxNode);
+    MainConnector mainConnector = new MainConnector(jmxNode, new JMXConnectorFactory());
     mainConnector.openConnection();
 
     return mainConnector;

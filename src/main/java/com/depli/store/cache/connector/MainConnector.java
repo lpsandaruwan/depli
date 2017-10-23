@@ -1,12 +1,12 @@
 package com.depli.store.cache.connector;
 
 import com.depli.store.persistent.entity.JMXNode;
-import java.io.IOException;
-import java.util.HashMap;
+
 import javax.management.MBeanServerConnection;
 import javax.management.remote.JMXConnector;
-import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
+import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * Main connector
@@ -22,12 +22,14 @@ public class MainConnector {
   private JMXNode jmxNode;
   private JMXConnector jmxConnector;
   private MBeanServerConnection serverConnection;
+  private ConnectorFactory jmxFactory;
 
 
-  public MainConnector(JMXNode jmxNode) {
+  public MainConnector(JMXNode jmxNode, ConnectorFactory jmxFactory) {
     this.jmxNode = jmxNode;
     jmxConnector = null;
     serverConnection = null;
+    this.jmxFactory = jmxFactory;
   }
 
   public void openConnection() throws IOException {
@@ -42,9 +44,9 @@ public class MainConnector {
         String[] credentials = new String[]{jmxNode.getUsername(), jmxNode.getPassword()};
         env.put(JMXConnector.CREDENTIALS, credentials);
       }
-      jmxConnector = JMXConnectorFactory.connect(jmxServiceURL, env);
+      jmxConnector = jmxFactory.connect(jmxServiceURL, env);
     } else {
-      jmxConnector = JMXConnectorFactory.connect(jmxServiceURL, null);
+      jmxConnector = jmxFactory.connect(jmxServiceURL, null);
     }
 
     this.serverConnection = jmxConnector.getMBeanServerConnection();
