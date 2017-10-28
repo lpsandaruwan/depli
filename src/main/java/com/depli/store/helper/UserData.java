@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class InputUser implements Serializable {
+public class UserData implements Serializable {
 
   private static final long serialVersionUID = 1L;
 

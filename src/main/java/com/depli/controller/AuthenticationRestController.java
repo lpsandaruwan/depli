@@ -2,7 +2,7 @@ package com.depli.controller;
 
 import com.depli.service.store.helper.impl.UserDetailsServiceImpl;
 import com.depli.store.helper.AuthenticationRequestModel;
-import com.depli.store.helper.InputUser;
+import com.depli.store.helper.UserData;
 import com.depli.store.helper.JwtAuthenticationResponse;
 import com.depli.store.helper.JwtUser;
 import com.depli.store.persistent.entity.Authority;
@@ -81,18 +81,18 @@ public class AuthenticationRestController {
   @PostMapping("${jwt.route.authentication.onboard}")
   @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity createNewUser(HttpServletRequest request,
-      @RequestBody InputUser inputUser) {
+      @RequestBody UserData userData) {
     try {
       User user = new User();
       long id = new Random().nextLong();
       user.setId(id);
-      user.setUsername(inputUser.getUsername());
-      user.setPassword(new BCryptPasswordEncoder().encode(inputUser.getPassword()));
-      user.setEnabled(inputUser.isEnabled());
+      user.setUsername(userData.getUsername());
+      user.setPassword(new BCryptPasswordEncoder().encode(userData.getPassword()));
+      user.setEnabled(userData.isEnabled());
       user.setLastPasswordResetDate(new Date());
 
       List<Authority> authorities = new ArrayList<>();
-      for (String inputAuth : inputUser.getAuthorities()) {
+      for (String inputAuth : userData.getAuthorities()) {
         if (AuthorityName.ROLE_ADMIN.name().equals("ROLE_" + inputAuth)) {
           authorities.add(new Authority().withId(1L).withName(AuthorityName.ROLE_ADMIN));
         }
