@@ -282,15 +282,6 @@ public class RuntimeDescriptor {
   }
 
   /**
-   * Sets the uptime of the Java virtual machine.
-   *
-   * @param uptime JVM uptime
-   */
-  public void setUptime(String uptime) {
-    this.uptime = uptime;
-  }
-
-  /**
    * Sets dynamic data fields.
    *
    * @param uptime JVM uptime

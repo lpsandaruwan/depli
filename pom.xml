@@ -4,19 +4,42 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.depli</groupId>
+  <groupId>com.lpsandaruwan</groupId>
   <artifactId>depli</artifactId>
   <version>1.1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Depli</name>
   <description>A handsome JVM monitor</description>
+  <url>http://lahiru.site/depli</url>
+
+  <developers>
+    <developer>
+      <name>Lahiru Pathirage</name>
+      <url>http://lahiru.site</url>
+    </developer>
+  </developers>
+
+  <issueManagement>
+    <url>https://github.com/lpsandaruwan/depli/issues</url>
+  </issueManagement>
+
+  <ciManagement>
+    <url>https://travis-ci.org/lpsandaruwan/depli</url>
+  </ciManagement>
+
+  <licenses>
+    <license>
+      <name>Generic Public License</name>
+      <url>http://www.gnu.org/licenses</url>
+    </license>
+  </licenses>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>1.5.6.RELEASE</version>
-    <relativePath/> <!-- lookup parent frepositoryries -->
+    <relativePath/>
   </parent>
 
   <properties>
@@ -36,20 +59,6 @@
     <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
     <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
   </properties>
-
-  <developers>
-    <developer>
-      <name>Lahiru Pathirage</name>
-      <url>http://lahiru.site</url>
-    </developer>
-  </developers>
-
-  <licenses>
-    <license>
-      <name>Generic Public License</name>
-      <url>http://www.gnu.org/licenses</url>
-    </license>
-  </licenses>
 
   <dependencyManagement>
     <dependencies>
