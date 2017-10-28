@@ -9,7 +9,7 @@ jdk:
 - oraclejdk8
 script:
 - mvn clean install
-- sonar-scanner
+- mvn sonar:sonar
 cache:
   directories:
   - "$HOME/.sonar/cache"

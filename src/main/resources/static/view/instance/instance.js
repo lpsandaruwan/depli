@@ -135,7 +135,9 @@ instanceViewModule
           }
 
           $scope.hostMemChartData = [
-            [(response.data.totalPhysicalMemory - response.data.freePhysicalMemory), (response.data.totalSwapSpace - response.data.freeSwapSpace)],
+            [(response.data.totalPhysicalMemory
+            - response.data.freePhysicalMemory),
+              (response.data.totalSwapSpace - response.data.freeSwapSpace)],
             [response.data.totalPhysicalMemory, response.data.totalSwapSpace]
           ];
         })
@@ -171,7 +173,8 @@ instanceViewModule
     })
 
 .controller("threadDataController",
-    function ($http, $interval, $scope, $timeout, JMXNodeService, ThreadDataService) {
+    function ($http, $interval, $scope, $timeout, JMXNodeService,
+        ThreadDataService) {
       $scope.jmxNodeId = JMXNodeService.getSelectedNodeId();
 
       var getThreadInformation = function () {

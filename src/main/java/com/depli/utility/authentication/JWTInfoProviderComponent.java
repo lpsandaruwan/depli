@@ -1,5 +1,6 @@
-package com.depli.service.security;
+package com.depli.utility.authentication;
 
+import com.depli.store.helper.JwtUser;
 import com.depli.utility.TimeProvider;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -9,20 +10,19 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JwtTokenUtil implements Serializable {
+public class JWTInfoProviderComponent implements Serializable {
 
-  static final String CLAIM_KEY_USERNAME = "sub";
-  static final String CLAIM_KEY_AUDIENCE = "aud";
-  static final String CLAIM_KEY_CREATED = "iat";
+  private static final Logger LOGGER = LoggerFactory.getLogger(JWTInfoProviderComponent.class);
+
   private static final long serialVersionUID = -3301605591108950415L;
-  final String AUDIENCE_UNKNOWN = "unknown";
-  final String AUDIENCE_WEB = "web";
 
   @Autowired
   private TimeProvider timeProvider;
@@ -62,8 +62,8 @@ public class JwtTokenUtil implements Serializable {
   }
 
   private boolean isTokenExpired(String token) {
-    final Date expiration = getExpirationDateFromToken(token);
-    return expiration.before(timeProvider.now());
+    final Date expirationDate = getExpirationDateFromToken(token);
+    return expirationDate.before(timeProvider.now());
   }
 
   private boolean isCreatedBeforeLastPasswordReset(Date created, Date lastPasswordReset) {
@@ -79,7 +79,7 @@ public class JwtTokenUtil implements Serializable {
     final Date createdDate = timeProvider.now();
     final Date expirationDate = calculateExpirationDate(createdDate);
 
-    System.out.println("doGenerateToken: " + createdDate);
+    LOGGER.debug("doGenerateToken: %s", createdDate);
 
     return Jwts.builder()
         .setClaims(claims)

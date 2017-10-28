@@ -1,7 +1,7 @@
 package com.depli.configuration;
 
-import com.depli.service.security.JwtAuthenticationEntryPoint;
-import com.depli.service.security.JwtAuthenticationTokenFilter;
+import com.depli.store.helper.AuthenticationTokenFilter;
+import com.depli.utility.authentication.impl.AuthenticationEntryPointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Autowired
-  private JwtAuthenticationEntryPoint unauthorizedHandler;
+  private AuthenticationEntryPointImpl unauthorizedHandler;
 
   @Autowired
   private UserDetailsService userDetailsService;
@@ -43,8 +43,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   }
 
   @Bean
-  public JwtAuthenticationTokenFilter authenticationTokenFilterBean() {
-    return new JwtAuthenticationTokenFilter();
+  public AuthenticationTokenFilter authenticationTokenFilterBean() {
+    return new AuthenticationTokenFilter();
   }
 
   @Override

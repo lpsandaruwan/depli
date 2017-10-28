@@ -1,5 +1,6 @@
-package com.depli.service.security;
+package com.depli.store.helper;
 
+import com.depli.utility.authentication.JWTInfoProviderComponent;
 import io.jsonwebtoken.ExpiredJwtException;
 import java.io.IOException;
 import javax.servlet.FilterChain;
@@ -17,15 +18,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
+public class AuthenticationTokenFilter extends OncePerRequestFilter {
 
-  private final Logger LOG = LoggerFactory.getLogger(JwtAuthenticationTokenFilter.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationTokenFilter.class);
 
   @Autowired
   private UserDetailsService userDetailsService;
 
   @Autowired
-  private JwtTokenUtil jwtTokenUtil;
+  private JWTInfoProviderComponent infoProviderComponent;
 
   @Value("${jwt.header}")
   private String tokenHeader;
@@ -42,26 +43,26 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
       authToken = requestHeader.substring(7);
 
       try {
-        username = jwtTokenUtil.getUsernameFromToken(authToken);
+        username = infoProviderComponent.getUsernameFromToken(authToken);
       } catch (IllegalArgumentException ex) {
-        LOG.error("an error occured during getting username from token", ex);
+        LOGGER.error("An error occurred during getting username from token", ex);
       } catch (ExpiredJwtException ex) {
-        LOG.warn("the token is expired and not valid anymore", ex);
+        LOGGER.warn("The token is expired and not valid anymore", ex);
       }
     } else {
-      LOG.warn("couldn't find bearer string, will ignore the header");
+      LOGGER.warn("Couldn't find bearer string, will ignore the header");
     }
 
     if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
       UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
-      if (jwtTokenUtil.validateToken(authToken, userDetails)) {
+      if (infoProviderComponent.validateToken(authToken, userDetails)) {
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
             userDetails, null,
             userDetails.getAuthorities());
         authentication
             .setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
-        LOG.info("authenticated user " + username + ", setting security context");
+        LOGGER.info("authenticated user %s, setting security context", username);
         SecurityContextHolder.getContext().setAuthentication(authentication);
       }
     }
