@@ -1,4 +1,4 @@
-package com.depli.service.security;
+package com.depli.store.helper;
 
 import com.depli.store.persistent.entity.Authority;
 import com.depli.store.persistent.entity.User;
@@ -10,16 +10,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 public final class JwtUserFactory {
 
   private JwtUserFactory() {
-
   }
 
   public static JwtUser create(User user) {
     return new JwtUser(
         user.getId(),
         user.getUsername(),
-        user.getFirstName(),
-        user.getLastName(),
-        user.getEmail(),
         user.getPassword(),
         mapToGrantedAuthorities(user.getAuthorities()),
         user.isEnabled(),

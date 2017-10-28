@@ -1,19 +1,19 @@
-package com.depli.service.security;
+package com.depli.store.helper;
 
 import java.io.Serializable;
 
-public class JwtAuthenticationRequest implements Serializable {
+public class AuthenticationRequestModel implements Serializable {
 
   private static final long serialVersionUID = -8445943548965154778L;
 
   private String username;
   private String password;
 
-  public JwtAuthenticationRequest() {
+  public AuthenticationRequestModel() {
     super();
   }
 
-  public JwtAuthenticationRequest(String username, String password) {
+  public AuthenticationRequestModel(String username, String password) {
     this.setUsername(username);
     this.setPassword(password);
   }

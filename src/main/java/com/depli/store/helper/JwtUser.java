@@ -1,4 +1,4 @@
-package com.depli.service.security;
+package com.depli.store.helper;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Collection;
@@ -10,27 +10,18 @@ public class JwtUser implements UserDetails {
 
   private final Long id;
   private final String username;
-  private final String firstName;
-  private final String lastName;
   private final String password;
-  private final String email;
   private final Collection<? extends GrantedAuthority> authorities;
   private final boolean enabled;
   private final Date lastPasswordResetDate;
 
   public JwtUser(Long id,
       String username,
-      String firstName,
-      String lastName,
-      String email,
       String password, Collection<? extends GrantedAuthority> authorities,
       boolean enabled,
       Date lastPasswordResetDate) {
     this.id = id;
     this.username = username;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
     this.password = password;
     this.authorities = authorities;
     this.enabled = enabled;
@@ -63,18 +54,6 @@ public class JwtUser implements UserDetails {
   @Override
   public boolean isCredentialsNonExpired() {
     return true;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public String getEmail() {
-    return email;
   }
 
   @JsonIgnore

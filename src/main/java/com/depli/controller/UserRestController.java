@@ -1,14 +1,15 @@
 package com.depli.controller;
 
-import com.depli.service.security.JwtTokenUtil;
-import com.depli.service.security.JwtUser;
+import com.depli.store.helper.JwtUser;
+import com.depli.utility.authentication.JWTInfoProviderComponent;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,17 +19,17 @@ public class UserRestController {
   private String tokenHeader;
 
   @Autowired
-  private JwtTokenUtil jwtTokenUtil;
+  private JWTInfoProviderComponent infoProviderComponent;
 
   @Autowired
   private UserDetailsService userDetailsService;
 
-  @RequestMapping(value = "user", method = RequestMethod.GET)
+  @GetMapping("user")
   @PreAuthorize("hasRole('Admin')")
-  public JwtUser getAuthenticationUser(HttpServletRequest request) {
+  public ResponseEntity<JwtUser> getAuthenticationUser(HttpServletRequest request) {
     String token = request.getHeader(tokenHeader).substring(7);
-    String username = jwtTokenUtil.getUsernameFromToken(token);
-    JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-    return user;
+    String username = infoProviderComponent.getUsernameFromToken(token);
+    return new ResponseEntity<>((JwtUser) userDetailsService.loadUserByUsername(username),
+        HttpStatus.OK);
   }
 }

@@ -1,14 +1,14 @@
 package com.depli.controller;
 
-import com.depli.service.security.JwtAuthenticationRequest;
-import com.depli.service.security.JwtTokenUtil;
-import com.depli.service.security.JwtUser;
-import com.depli.store.temporary.InputUser;
+import com.depli.service.store.helper.impl.UserDetailsServiceImpl;
+import com.depli.store.helper.AuthenticationRequestModel;
+import com.depli.store.helper.InputUser;
+import com.depli.store.helper.JwtAuthenticationResponse;
+import com.depli.store.helper.JwtUser;
 import com.depli.store.persistent.entity.Authority;
 import com.depli.store.persistent.entity.AuthorityName;
 import com.depli.store.persistent.entity.User;
-import com.depli.service.security.service.JwtAuthenticationResponse;
-import com.depli.service.security.service.JwtUserDetailsServiceImpl;
+import com.depli.utility.authentication.JWTInfoProviderComponent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -41,14 +41,14 @@ public class AuthenticationRestController {
   private AuthenticationManager authenticationManager;
 
   @Autowired
-  private JwtTokenUtil jwtTokenUtil;
+  private JWTInfoProviderComponent infoProviderComponent;
 
   @Autowired
   private UserDetailsService userDetailsService;
 
   @PostMapping("${jwt.route.authentication.path}")
   public ResponseEntity<JwtAuthenticationResponse> createAuthenticationToken(
-      @RequestBody JwtAuthenticationRequest authenticationRequest) {
+      @RequestBody AuthenticationRequestModel authenticationRequest) {
 
     final Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),
@@ -58,19 +58,20 @@ public class AuthenticationRestController {
 
     final UserDetails userDetails = userDetailsService
         .loadUserByUsername(authenticationRequest.getUsername());
-    final String token = jwtTokenUtil.generateToken(userDetails);
+    final String token = infoProviderComponent.generateToken(userDetails);
 
     return new ResponseEntity<>(new JwtAuthenticationResponse(token), HttpStatus.OK);
   }
 
   @GetMapping("${jwt.route.authentication.refresh}")
-  public ResponseEntity<JwtAuthenticationResponse> refreshAndGetAuthenticationToken(HttpServletRequest request) {
+  public ResponseEntity<JwtAuthenticationResponse> refreshAndGetAuthenticationToken(
+      HttpServletRequest request) {
     String token = request.getHeader(tokenHeader).substring(7);
-    String username = jwtTokenUtil.getUsernameFromToken(token);
+    String username = infoProviderComponent.getUsernameFromToken(token);
     JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
 
-    if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
-      String refreshedToken = jwtTokenUtil.refreshToken(token);
+    if (infoProviderComponent.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
+      String refreshedToken = infoProviderComponent.refreshToken(token);
       return new ResponseEntity<>(new JwtAuthenticationResponse(refreshedToken), HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.OK);
@@ -87,9 +88,6 @@ public class AuthenticationRestController {
       user.setId(id);
       user.setUsername(inputUser.getUsername());
       user.setPassword(new BCryptPasswordEncoder().encode(inputUser.getPassword()));
-      user.setFirstName(inputUser.getFirstName());
-      user.setLastName(inputUser.getLastName());
-      user.setEmail(inputUser.getEmail());
       user.setEnabled(inputUser.isEnabled());
       user.setLastPasswordResetDate(new Date());
 
@@ -104,7 +102,7 @@ public class AuthenticationRestController {
       }
 
       user.setAuthorities(authorities);
-      ((JwtUserDetailsServiceImpl) userDetailsService).createUser(user);
+      ((UserDetailsServiceImpl) userDetailsService).createUser(user);
       return new ResponseEntity<>(HttpStatus.CREATED);
     } catch (Exception ex) {
       return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);

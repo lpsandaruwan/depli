@@ -47,7 +47,6 @@ depliFrontend
       $qProvider.errorOnUnhandledRejections(false);
     });
 
-
 depliFrontend
 .config(function ($mdThemingProvider) {
   $mdThemingProvider.theme('customTheme')
