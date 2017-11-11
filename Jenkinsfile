@@ -8,12 +8,16 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh 'mvn test'
-      }
-    }
-    stage('SonarAnalysis') {
-      steps {
-        sh 'mvn sonar:sonar'
+        parallel(
+          "Test": {
+            sh 'mvn test'
+            
+          },
+          "SonarAnalysis": {
+            sh 'mvn sonar:sonar'
+            
+          }
+        )
       }
     }
   }
