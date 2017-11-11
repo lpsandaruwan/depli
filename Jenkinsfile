@@ -16,6 +16,10 @@ pipeline {
           "SonarAnalysis": {
             sh 'mvn sonar:sonar'
             
+          },
+          "": {
+            archiveArtifacts '*.jar'
+            
           }
         )
       }
