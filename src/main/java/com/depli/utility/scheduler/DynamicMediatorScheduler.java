@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
- * Dynamic Mediator Scheduler Factory
+ * Dynamic Mediator Scheduler
  *
  * Interface for the Async methods to refresh dynamic descriptor data in caches periodically.
  *

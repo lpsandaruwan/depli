@@ -26,7 +26,7 @@ public class DepliApplication extends AsyncConfigurerSupport {
 
   @Override
   public Executor getAsyncExecutor() {
-        /* Configure and initialize async thread store */
+    /* Configure and initialize async thread store */
     ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
     threadPoolTaskExecutor.setCorePoolSize(10);
     threadPoolTaskExecutor.setMaxPoolSize(1000);

@@ -5,7 +5,7 @@ import java.lang.management.OperatingSystemMXBean;
 
 /**
  * Operating System MXBean Mediator
- * <p>
+ *
  * Converts/mediates data observed from OperatingSystemMXBeans for storing data in
  * OperatingSystemDescriptor objects.
  *
