@@ -31,9 +31,7 @@ public class MainConnector {
   }
 
   public void openConnection() throws IOException {
-    String serviceUrl =
-        "service:jmx:rmi:///jndi/rmi://" + jmxNode.getHostname() + ":" + jmxNode.getPort()
-            + "/jmxrmi";
+    String serviceUrl = jmxNode.getServiceUrl();
     JMXServiceURL jmxServiceURL = new JMXServiceURL(serviceUrl);
     HashMap<String, Object> env = new HashMap<>();
 

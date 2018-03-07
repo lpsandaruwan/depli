@@ -27,14 +27,10 @@ public class JMXNode {
   @Size(max = 30)
   private String nodeName;
 
-  @Column(name = "hostname")
+  @Column(name = "service_url")
   @NotNull
-  @Size(max = 50)
-  private String hostname;
-
-  @Column(name = "port")
-  @NotNull
-  private int port;
+  @Size(max = 150)
+  private String serviceUrl;
 
   @Column(name = "auth_required")
   @NotNull
@@ -52,12 +48,10 @@ public class JMXNode {
   }
 
   public JMXNode(String nodeName,
-      String hostname,
-      int port,
+      String serviceUrl,
       boolean authRequired) {
     this.nodeName = nodeName;
-    this.hostname = hostname;
-    this.port = port;
+    this.serviceUrl = serviceUrl;
     this.authRequired = authRequired;
   }
 
@@ -75,22 +69,6 @@ public class JMXNode {
 
   public void setNodeName(String nodeName) {
     this.nodeName = nodeName;
-  }
-
-  public String getHostname() {
-    return hostname;
-  }
-
-  public void setHostname(String hostname) {
-    this.hostname = hostname;
-  }
-
-  public Integer getPort() {
-    return port;
-  }
-
-  public void setPort(int port) {
-    this.port = port;
   }
 
   public boolean isAuthRequired() {
@@ -115,5 +93,13 @@ public class JMXNode {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public String getServiceUrl() {
+    return serviceUrl;
+  }
+
+  public void setServiceUrl(String serviceUrl) {
+    this.serviceUrl = serviceUrl;
   }
 }

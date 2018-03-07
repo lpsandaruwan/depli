@@ -58,8 +58,7 @@ settingsModule
 
         $scope.jmxNode.authId = undefined;
         $scope.jmxNode.nodeName = undefined;
-        $scope.jmxNode.hostname = undefined;
-        $scope.jmxNode.port = undefined;
+        $scope.jmxNode.serviceUrl = undefined;
         $scope.jmxNode.authRequired = false;
         $scope.jmxNode.username = null;
         $scope.jmxNode.password = null;

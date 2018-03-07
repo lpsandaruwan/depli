@@ -32,8 +32,8 @@ public class JMXNodeServiceImplTest {
     Mockito.when(jmxNodeRepository.findAll()).then(new Answer<List<JMXNode>>() {
       @Override
       public List<JMXNode> answer(InvocationOnMock invocation) throws Throwable {
-        return Arrays.asList(new JMXNode("node1", "host1", 1111, false),
-            new JMXNode("node2", "host2", 2222, false));
+        return Arrays.asList(new JMXNode("node1", "service:jmx:rmi:///jndi/rmi://localhost:9024/jmxrmi", false),
+            new JMXNode("node2", "service:jmx:rmi:///jndi/rmi://localhost:9024/jmxrmi", false));
       }
     });
 
@@ -46,20 +46,19 @@ public class JMXNodeServiceImplTest {
     Mockito.when(jmxNodeRepository.findByNodeId(1L)).then(new Answer<JMXNode>() {
       @Override
       public JMXNode answer(InvocationOnMock invocation) throws Throwable {
-        return new JMXNode("node1", "host1", 1111, false);
+        return new JMXNode("node1", "service:jmx:rmi:///jndi/rmi://localhost:9024/jmxrmi",false);
       }
     });
 
     JMXNode node = nodeServiceImpl.findByNodeId(1L);
-    Assert.assertThat(node.getPort(), Matchers.is((1111)));
-    Assert.assertThat(node.getHostname(), Matchers.is(("host1")));
+    Assert.assertThat(node.getServiceUrl(), Matchers.is((1111)));
     Assert.assertThat(node.getUsername(), Matchers.isEmptyOrNullString());
   }
 
 
   @Test
   public void updateNodeWithId1() {
-    JMXNode node = new JMXNode("node1", "host1", 1111, false);
+    JMXNode node = new JMXNode("node1", "service:jmx:rmi:///jndi/rmi://localhost:9024/jmxrmi", false);
     Mockito.when(jmxNodeRepository.existsByNodeId(1L)).then(new Answer<Boolean>() {
       @Override
       public Boolean answer(InvocationOnMock invocation) throws Throwable {
@@ -86,7 +85,7 @@ public class JMXNodeServiceImplTest {
 
   @Test
   public void saveANode() throws IOException {
-    JMXNode node = new JMXNode("node1", "host1", 1111, false);
+    JMXNode node = new JMXNode("node1", "service:jmx:rmi:///jndi/rmi://localhost:9024/jmxrmi", false);
     Mockito.when(jmxNodeRepository.save(node)).then(new Answer<JMXNode>() {
       @Override
       public JMXNode answer(InvocationOnMock invocation) throws Throwable {
