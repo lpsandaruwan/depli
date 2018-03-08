@@ -58,13 +58,13 @@ public class JMXNodeControllerTest {
   private Map server01expectedJSON;
   private Map server02expectedJSON;
 
-  private JMXNode mockJMXnode = new JMXNode("nodeName", "hostname",4, false);
+  private JMXNode mockJMXnode = new JMXNode("nodeName", "service:jmx:rmi:///jndi/rmi://localhost:9024/jmxrmi", false);
 
   @Before
   public void setup() {
     this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-    JMXNode server01 = new JMXNode("master", "server01", 12345, false);
-    JMXNode server02 = new JMXNode("slave", "server02", 12345, true);
+    JMXNode server01 = new JMXNode("master", "service:jmx:rmi:///jndi/rmi://localhost:9024/jmxrmi", false);
+    JMXNode server02 = new JMXNode("slave", "service:jmx:rmi:///jndi/rmi://localhost:9024/jmxrmi", true);
     server02.setPassword("s3cr3t");
     server02.setUsername("toor");
     this.nodes = Arrays.asList(server01, server02);
@@ -101,8 +101,7 @@ public class JMXNodeControllerTest {
     mockMvc.perform(requestBuilderForSuccess).andExpect(status().isOk())
         .andExpect(jsonPath("$.nodeId").isNumber())
         .andExpect(jsonPath("$.nodeName").isString())
-        .andExpect(jsonPath("$.hostname").isString())
-        .andExpect(jsonPath("$.port").isNumber())
+        .andExpect(jsonPath("$.serviceUrl").isString())
         .andExpect(jsonPath("$.authRequired").isBoolean())
         .andExpect(jsonPath("$.username").isEmpty())
         .andExpect(jsonPath("$.password").isEmpty())
@@ -133,7 +132,7 @@ public class JMXNodeControllerTest {
             throws Exception {
 
         when(jmxNodeService.save(any())).thenReturn(Boolean.TRUE);
-        JMXNode newServer =  new JMXNode("undefined", "server03", 12345, false);
+        JMXNode newServer =  new JMXNode("undefined", "service:jmx:rmi:///jndi/rmi://localhost:9024/jmxrmi", false);
         RequestBuilder requestBuilderForSuccess = MockMvcRequestBuilders.post("/nodes")
                 .content(asJsonString(newServer))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -149,7 +148,7 @@ public class JMXNodeControllerTest {
             throws Exception {
 
         when(jmxNodeService.save(any())).thenReturn(Boolean.FALSE);
-        JMXNode newServer =  new JMXNode("undefined", "server03", 12345, false);
+        JMXNode newServer =  new JMXNode("undefined", "service:jmx:rmi:///jndi/rmi://localhost:9024/jmxrmi", false);
         RequestBuilder requestBuilderForSuccess = MockMvcRequestBuilders.post("/nodes")
                 .content(asJsonString(newServer))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -165,7 +164,7 @@ public class JMXNodeControllerTest {
             throws Exception {
 
         when(jmxNodeService.updateByNodeId(eq(0L), any())).thenReturn(Boolean.TRUE);
-        JMXNode update =  new JMXNode("undefined", "server03", 12345, false);
+        JMXNode update =  new JMXNode("undefined", "service:jmx:rmi:///jndi/rmi://localhost:9024/jmxrmi", false);
         RequestBuilder requestBuilderForSuccess = MockMvcRequestBuilders.put("/nodes/0")
                 .content(asJsonString(update))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -180,7 +179,7 @@ public class JMXNodeControllerTest {
             throws Exception {
 
         when(jmxNodeService.updateByNodeId(eq(0L), any())).thenReturn(Boolean.FALSE);
-        JMXNode update =  new JMXNode("undefined", "server03", 12345, false);
+        JMXNode update =  new JMXNode("undefined", "service:jmx:rmi:///jndi/rmi://localhost:9024/jmxrmi", false);
         RequestBuilder requestBuilderForSuccess = MockMvcRequestBuilders.put("/nodes/0")
                 .content(asJsonString(update))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -223,8 +222,7 @@ public class JMXNodeControllerTest {
         Map map = new HashMap<String, Object>();
         map.put("nodeId", (int) node.getNodeId());
         map.put("nodeName", node.getNodeName());
-        map.put("hostname", node.getHostname());
-        map.put("port", node.getPort());
+        map.put("serviceUrl", node.getServiceUrl());
         map.put("authRequired", node.isAuthRequired());
         map.put("username", node.getUsername());
         map.put("password", node.getPassword());
