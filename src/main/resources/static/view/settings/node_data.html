@@ -27,21 +27,11 @@
         </md-input-container>
 
         <md-input-container>
-          <label>Hostname</label>
+          <label>Service URL</label>
 
-          <input required="" name="hostname" ng-model="jmxNode.hostname">
+          <input size="50" required="" name="serviceUrl" ng-model="jmxNode.serviceUrl">
 
-          <div ng-messages="nodeData.name.$error">
-            <div class="color-error" ng-message="required">This field is required.</div>
-          </div>
-        </md-input-container>
-
-        <md-input-container>
-          <label>Port</label>
-
-          <input required="" name="port" ng-model="jmxNode.port">
-
-          <div ng-messages="nodeData.name.$error">
+          <div ng-messages="nodeData.serviceUrl.$error">
             <div class="color-error" ng-message="required">This field is required.</div>
           </div>
         </md-input-container>

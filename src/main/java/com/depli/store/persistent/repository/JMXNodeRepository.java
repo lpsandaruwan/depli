@@ -19,9 +19,6 @@ public interface JMXNodeRepository extends Repository<JMXNode, Long> {
   List<JMXNode> findAll();
 
   @Transactional(readOnly = true)
-  JMXNode findByHostname(String hostname);
-
-  @Transactional(readOnly = true)
   JMXNode findByNodeId(Long nodeId);
 
   @Transactional

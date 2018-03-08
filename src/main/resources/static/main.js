@@ -72,7 +72,7 @@ depliFrontend
       // display jmx node in detailed view
       $scope.gotoInstanceView = function (jmxNode) {
         JMXNodeService.setNodeName(
-            "> " + jmxNode.nodeName + "@" + jmxNode.hostname);
+            "> " + jmxNode.nodeName);
         setToolbarHeader();
         JMXNodeService.selectJmxNode(jmxNode.nodeId);
       };
