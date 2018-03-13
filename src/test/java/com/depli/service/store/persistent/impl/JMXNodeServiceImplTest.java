@@ -51,7 +51,7 @@ public class JMXNodeServiceImplTest {
     });
 
     JMXNode node = nodeServiceImpl.findByNodeId(1L);
-    Assert.assertThat(node.getServiceUrl(), Matchers.is((1111)));
+    Assert.assertThat(node.getServiceUrl(), Matchers.is(("service:jmx:rmi:///jndi/rmi://localhost:9024/jmxrmi")));
     Assert.assertThat(node.getUsername(), Matchers.isEmptyOrNullString());
   }
 
